@@ -5,6 +5,7 @@ import 'package:device_preview/device_preview.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 import 'core/core.dart';
+import 'features/home/home.dart';
 import 'splash_screen/splash_screen_mobile.dart';
 import 'splash_screen/splash_screen_tablet.dart';
 
@@ -36,7 +37,11 @@ class _AppState extends State<App> {
       DeviceOrientation.portraitDown,
     ]);
     Future.delayed(Duration(seconds: 5), () {
-      
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) {
+          return HomeView();
+        })
+      );
     });
   }
 

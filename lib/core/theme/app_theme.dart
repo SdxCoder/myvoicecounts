@@ -10,6 +10,8 @@ ThemeData themeData = ThemeData(
   primaryColorDark: Color(hexColor('#211535')),
   primaryColorLight: Color(hexColor('#b72b9b')),
   accentColor: Color(hexColor('#ff9300')),
+  scaffoldBackgroundColor:  Color(hexColor('#b72b9b')),
+  splashColor: Color(hexColor('#ccc')),
   textTheme: TextTheme(
     display1: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 18),
     display2: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 22),
@@ -18,6 +20,17 @@ ThemeData themeData = ThemeData(
     body1:  TextStyle(color: Color(hexColor('f2f2f2')), fontSize: 16),
   )
 );
+
+
+
+LinearGradient gradientHome = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+       Color(hexColor('f2f2f2')),
+      Color(hexColor('c096ca')),
+    ]);
+
 
 LinearGradient gradient3 = LinearGradient(
     begin: Alignment.topLeft,
