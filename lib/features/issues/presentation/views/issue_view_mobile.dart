@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class IssueViewMobile extends StatelessWidget {
@@ -34,40 +35,47 @@ class IssueViewMobile extends StatelessWidget {
                    Divider(
                     color: themeData.primaryColorDark,
                   ),
-                  ButtonBar(
-                      alignment: MainAxisAlignment.center,
-                      children: [
-                      SizedBox(
-                        width: sizingInfo.screenSize.width * 0.3,
-                        height: (sizingInfo.screenSize.height < 600) ? 40 : 48,
-                        child: RaisedButton(
-                           elevation: 0,
-                           shape: RoundedRectangleBorder(
+                 Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          width: sizingInfo.screenSize.width * 0.3,
+                          height:
+                              (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                          child: RaisedButton(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16)),
-                          child: Text("PEOPLE",
-                              style: themeData.textTheme.body1
-                                  .copyWith(color: Colors.black87)),
-                          onPressed: () {},
-                          color: Colors.yellow,
+                            child: Text("PEOPLE",
+                                style: themeData.textTheme.body1
+                                    .copyWith(color: Colors.black87)),
+                            onPressed: () {
+                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => PeopleView()));
+                            },
+                            color: Colors.yellow,
+                          ),
                         ),
-                      ),
-                      Spacer(),
-                       SizedBox(
-                        width: sizingInfo.screenSize.width * 0.3,
-                        height: (sizingInfo.screenSize.height < 600) ? 40 : 48,
-                        child: RaisedButton(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
+                        SizedBox(width: sizingInfo.screenSize.width * 0.05),
+                        SizedBox(
+                          width: sizingInfo.screenSize.width * 0.3,
+                          height:
+                              (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                          child: RaisedButton(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16)),
-                          child: Text("DATA",
-                              style: themeData.textTheme.body1
-                                  .copyWith(color: Color(hexColor('f2f2f2')))),
-                          onPressed: () {},
-                          color: Colors.green,
+                            child: Text("DATA",
+                                style: themeData.textTheme.body1.copyWith(
+                                    color: Color(hexColor('f2f2f2')))),
+                            onPressed: () {},
+                            color: Colors.green,
+                          ),
                         ),
-                       ),
-                    ]),
-                     SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -117,6 +125,7 @@ Widget _issueItem(
                         color: Colors.green,
                         size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
                       )),
+                      SizedBox(width: 1),
                   InkWell(
                       onTap: () {},
                       child: Icon(
@@ -124,6 +133,7 @@ Widget _issueItem(
                         color: Colors.red,
                         size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
                       )),
+                      SizedBox(width: 1),
                   InkWell(
                       onTap: () {},
                       child: Icon(

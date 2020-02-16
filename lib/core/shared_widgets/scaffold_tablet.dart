@@ -16,12 +16,12 @@ class ScaffoldTablet extends StatelessWidget {
       children: <Widget>[
         SafeArea(
           child: Container(
-            height: 70,
+            height: 120,
             decoration: BoxDecoration(color: themeData.primaryColorLight),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 16.0,left: 16, bottom: 16),
+          padding: const EdgeInsets.only(top: 16.0,left: 20, bottom: 30.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -29,7 +29,7 @@ class ScaffoldTablet extends StatelessWidget {
                     icon: Icon(
                       Icons.home,
                       color: Colors.white,
-                      size: 32,
+                      size: 48,
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(context,
@@ -40,13 +40,13 @@ class ScaffoldTablet extends StatelessWidget {
                     icon: Icon(
                       Icons.settings,
                       color: Colors.white,
-                      size: 32,
+                      size: 48,
                     ),
                     onPressed: () {}),
               ]),
         ),
         Container(
-            margin: EdgeInsets.only(left: 70),
+            margin: EdgeInsets.only(left: 120),
             decoration: BoxDecoration(
               gradient: gradientHome,
               borderRadius: BorderRadius.only(
