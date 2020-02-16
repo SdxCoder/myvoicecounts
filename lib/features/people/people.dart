@@ -1,0 +1,1 @@
+export './presentation/views/people_view.dart';

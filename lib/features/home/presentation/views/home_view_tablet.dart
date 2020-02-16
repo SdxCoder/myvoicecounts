@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/issues/issues.dart';
+import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeViewTablet extends StatefulWidget {
@@ -88,7 +90,11 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                             style: themeData.textTheme.body1
                                 .copyWith(color: Colors.black),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                              return PeopleView();
+                            }));
+                          },
                         ),
                       ),
                       SizedBox(height: sizingInfo.screenSize.width * 0.03),
@@ -106,7 +112,11 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                             "ISSUES",
                             style: themeData.textTheme.body1,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                             Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                              return IssueView();
+                            }));
+                          },
                         ),
                       ),
                       SizedBox(height: sizingInfo.screenSize.width * 0.03),

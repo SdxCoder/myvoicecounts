@@ -13,10 +13,10 @@ ThemeData themeData = ThemeData(
   scaffoldBackgroundColor:  Color(hexColor('#b72b9b')),
   splashColor: Color(hexColor('#ccc')),
   textTheme: TextTheme(
-    display1: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 18),
-    display2: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 22),
-    display3: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 26),
-    display4: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 36),
+    display1: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 20),
+    display2: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 24),
+    display3: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 32),
+    display4: TextStyle(color : Color(hexColor('f2f2f2')), fontSize: 48),
     body1:  TextStyle(color: Color(hexColor('f2f2f2')), fontSize: 16),
   )
 );
