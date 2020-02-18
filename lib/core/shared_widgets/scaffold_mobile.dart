@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:myvoicecounts/features/home/home.dart';
 
 import '../core.dart';
+import '../../features/settings/settings.dart';
 
 class ScaffoldMobile extends StatelessWidget {
   final Widget title;
@@ -22,7 +23,7 @@ class ScaffoldMobile extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
+          padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 16),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             IconButton(
@@ -47,7 +48,9 @@ class ScaffoldMobile extends StatelessWidget {
                   color: Colors.white,
                   size: 24,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SettingsView()));
+                }),
           ]),
         ),
         Container(
