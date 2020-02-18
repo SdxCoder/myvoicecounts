@@ -63,7 +63,7 @@ class PeopleViewTablet extends StatelessWidget {
                             style: themeData.textTheme.display2
                                 .copyWith(color: Color(hexColor('f2f2f2')))),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
                         },
                         color: Colors.green,
                       ),

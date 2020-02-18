@@ -2,19 +2,22 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-class PieOutsideLabelChart extends StatelessWidget {
+class PieChartGraph extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
+  final SizingInformation sizingInfo;
 
-  PieOutsideLabelChart(this.seriesList, {this.animate});
+  PieChartGraph(this.seriesList, {this.animate, this.sizingInfo});
 
   /// Creates a [PieChart] with sample data and no transition.
-  factory PieOutsideLabelChart.withSampleData() {
-    return new PieOutsideLabelChart(
-      _createSampleData(),
+  factory PieChartGraph.withCandidateData(sizingInfo) {
+    return new PieChartGraph(
+      _createCandidateData(),
       // Disable animations for image tests.
       animate: false,
+      sizingInfo: sizingInfo,
     );
   }
 
@@ -41,7 +44,7 @@ class PieOutsideLabelChart extends StatelessWidget {
   }
 
   /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createSampleData() {
+  static List<charts.Series<LinearSales, int>> _createCandidateData() {
     final data = [
       new LinearSales(0, 100),
       new LinearSales(1, 75),

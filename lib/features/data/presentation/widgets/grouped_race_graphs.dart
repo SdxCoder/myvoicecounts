@@ -3,16 +3,16 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class GroupedTopAgeGraph extends StatelessWidget {
+class GroupedRaceGraph extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
   final SizingInformation sizingInfo;
 
-  GroupedTopAgeGraph(this.seriesList, {this.animate, this.sizingInfo});
+  GroupedRaceGraph(this.seriesList, {this.animate, this.sizingInfo});
 
-  factory GroupedTopAgeGraph.withTopAgeData(sizingInfo) {
-    return new GroupedTopAgeGraph(
-      _createTopAgeData(),
+  factory GroupedRaceGraph.withRaceData(sizingInfo) {
+    return new GroupedRaceGraph(
+      _createRaceData(),
       // Disable animations for image tests.
       sizingInfo: sizingInfo,
       animate: true,
@@ -26,7 +26,6 @@ class GroupedTopAgeGraph extends StatelessWidget {
       animate: animate,
       barGroupingType: charts.BarGroupingType.grouped,
       behaviors: [
-      
 
         new charts.SeriesLegend(
          
@@ -60,9 +59,16 @@ class GroupedTopAgeGraph extends StatelessWidget {
        domainAxis: new charts.OrdinalAxisSpec(
         renderSpec: new charts.SmallTickRendererSpec(
           // Tick and Label styling here.
+          lineStyle: charts.LineStyleSpec(
+            dashPattern: [
+              0
+            ],
+           // thickness: 0,
+           // color: charts.ColorUtil.fromDartColor(Colors.white)
+          ),
           labelOffsetFromAxisPx: 16,
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width*0.03).toInt(), // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -70,66 +76,71 @@ class GroupedTopAgeGraph extends StatelessWidget {
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<OrdinalAdu, String>> _createTopAgeData() {
+  static List<charts.Series<OrdinalRaceAdu, String>> _createRaceData() {
     final agreed = [
-      new OrdinalAdu('15-20', 5),
-      new OrdinalAdu('21-35', 25),
-      new OrdinalAdu('36-50', 100),
-      new OrdinalAdu('51-65', 75),
+      new OrdinalRaceAdu('American\nIndian', 5),
+      new OrdinalRaceAdu('Asian', 25),
+      new OrdinalRaceAdu('African\nAmerican', 100),
+      new OrdinalRaceAdu('Native\nHawaian', 67),
+      new OrdinalRaceAdu('White', 75),
     ];
 
     final disagreed = [
-      new OrdinalAdu('15-20', 25),
-      new OrdinalAdu('21-35', 50),
-      new OrdinalAdu('36-50', 10),
-      new OrdinalAdu('51-65', 20),
+      new OrdinalRaceAdu('American\nIndian', 5),
+      new OrdinalRaceAdu('Asian', 25),
+      new OrdinalRaceAdu('African\nAmerican', 100),
+      new OrdinalRaceAdu('Native\nHawaian', 67),
+      new OrdinalRaceAdu('White', 75),
     ];
 
     final undecided = [
-      new OrdinalAdu('15-20', 45),
-      new OrdinalAdu('21-35', 15),
-      new OrdinalAdu('36-50', 25),
-      new OrdinalAdu('51-65', 45),
+       new OrdinalRaceAdu('American\nIndian', 5),
+      new OrdinalRaceAdu('Asian', 25),
+      new OrdinalRaceAdu('African\nAmerican', 100),
+      new OrdinalRaceAdu('Native\nHawaian', 67),
+      new OrdinalRaceAdu('White', 75),
     ];
 
     return [
-      new charts.Series<OrdinalAdu, String>(
+      new charts.Series<OrdinalRaceAdu, String>(
         id: 'agreed',
         displayName: "Agreed",
-        domainFn: (OrdinalAdu adu, _) => adu.age,
-        measureFn: (OrdinalAdu adu, _) => adu.adu,
+        domainFn: (OrdinalRaceAdu adu, _) =>adu.race,
+        measureFn: (OrdinalRaceAdu adu, _) =>adu.adu,
         fillColorFn: (_, __) =>
             charts.ColorUtil.fromDartColor(themeData.primaryColor),
         seriesColor: charts.ColorUtil.fromDartColor(themeData.primaryColor),
         data: agreed,
       ),
-      new charts.Series<OrdinalAdu, String>(
+      new charts.Series<OrdinalRaceAdu, String>(
         id: 'disagreed',
         displayName: "Disagreed",
-        domainFn: (OrdinalAdu adu, _) => adu.age,
-        measureFn: (OrdinalAdu adu, _) => adu.adu,
+        domainFn: (OrdinalRaceAdu adu, _) =>adu.race,
+        measureFn: (OrdinalRaceAdu adu, _) =>adu.adu,
         fillColorFn: (_, __) =>
             charts.ColorUtil.fromDartColor(themeData.accentColor),
         seriesColor: charts.ColorUtil.fromDartColor(themeData.accentColor),
         data: disagreed,
       ),
-      new charts.Series<OrdinalAdu, String>(
+      new charts.Series<OrdinalRaceAdu, String>(
         id: 'undecided',
         displayName: "Undecided",
-        domainFn: (OrdinalAdu adu, _) => adu.age,
-        measureFn: (OrdinalAdu adu, _) => adu.adu,
+        domainFn: (OrdinalRaceAdu adu, _) =>adu.race,
+        measureFn: (OrdinalRaceAdu adu, _) =>adu.adu,
         fillColorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.white),
         seriesColor: charts.ColorUtil.fromDartColor(Colors.white),
         data: undecided,
       ),
     ];
   }
+
 }
 
-/// Sample ordinal data type.
-class OrdinalAdu {
-  final String age;
+
+class OrdinalRaceAdu {
+  final String race;
   final int adu;
 
-  OrdinalAdu(this.age, this.adu);
+  OrdinalRaceAdu(this.race, this.adu);
 }
+

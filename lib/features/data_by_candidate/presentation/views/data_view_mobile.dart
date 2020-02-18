@@ -6,8 +6,6 @@ import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../widgets/grouped_age_graphs.dart';
-
 import '../widgets/widgets.dart';
 
 class DataViewMobile extends StatelessWidget {
@@ -31,11 +29,8 @@ class DataViewMobile extends StatelessWidget {
                   crossAxisCount: 1,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   children: <Widget>[
-                    _buildGraphByTopAge(context, sizingInfo),
-                    _buildGraphByGender(context, sizingInfo),
-                    _buildGraphByEthnicity(context, sizingInfo),
-                    _buildGraphByRace(context, sizingInfo),
-                    _buildGraphByParty(context, sizingInfo)
+                    _buildGraphForCandidate(context, sizingInfo),
+                   
                     
                   ],
                 ),
@@ -120,7 +115,7 @@ class DataViewMobile extends StatelessWidget {
     );
   }
 
-  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo) {
+  Widget _buildGraphForCandidate(context, SizingInformation sizingInfo) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -135,106 +130,11 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedTopAgeGraph.withTopAgeData(sizingInfo),
+            child: PieChartGraph.withCandidateData(sizingInfo),
           )
         ],
       ),
     );
   }
-
-  Widget _buildGraphByGender(context, SizingInformation sizingInfo) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Text('GENDER',
-              style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
-              )),
-          SizedBox(
-            height: sizingInfo.screenSize.width * 0.05,
-          ),
-          Expanded(
-            child: GroupedGenderGraph.withGenderData(sizingInfo),
-          )
-        ],
-      ),
-    );
-  }
-
-  
-  Widget _buildGraphByEthnicity(context, SizingInformation sizingInfo) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Text('ETHNICITY',
-              style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
-              )),
-          SizedBox(
-            height: sizingInfo.screenSize.width * 0.05,
-          ),
-          Expanded(
-            child: GroupedEthnicityGraph.withEthnicityData(sizingInfo),
-          )
-        ],
-      ),
-    );
-  }
-
-  
-  Widget _buildGraphByParty(context, SizingInformation sizingInfo) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Text('PARTY',
-              style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
-              )),
-          SizedBox(
-            height: sizingInfo.screenSize.width * 0.05,
-          ),
-          Expanded(
-            child: GroupedPartyGraph.withPartyData(sizingInfo),
-          )
-        ],
-      ),
-    );
-  }
-
-
-  
-  Widget _buildGraphByRace(context, SizingInformation sizingInfo) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Text('RACE',
-              style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
-              )),
-          SizedBox(
-            height: sizingInfo.screenSize.width * 0.05,
-          ),
-          Expanded(
-            child: GroupedRaceGraph.withRaceData(sizingInfo),
-          )
-        ],
-      ),
-    );
-  }
-
-  
-
 
 }

@@ -1,0 +1,1 @@
+export './presentation/views/data_candidate_view.dart';

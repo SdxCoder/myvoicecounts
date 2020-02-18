@@ -3,18 +3,18 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class GroupedGenderGraph extends StatelessWidget {
+class GroupedEthnicityGraph extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
   final SizingInformation sizingInfo;
 
-  GroupedGenderGraph(this.seriesList, {this.animate, this.sizingInfo});
+  GroupedEthnicityGraph(this.seriesList, {this.animate, this.sizingInfo});
 
  
 
-  factory GroupedGenderGraph.withGenderData(sizingInfo) {
-    return new GroupedGenderGraph(
-      _createGenderData(),
+  factory GroupedEthnicityGraph.withEthnicityData(sizingInfo) {
+    return new GroupedEthnicityGraph(
+      _createEthnicityData(),
       // Disable animations for image tests.
       animate: true,
       sizingInfo: sizingInfo,
@@ -71,48 +71,48 @@ class GroupedGenderGraph extends StatelessWidget {
   }
 
     /// Create series list with multiple series
-  static List<charts.Series<OrdinalAgeAdu, String>> _createGenderData() {
+  static List<charts.Series<OrdinalEthnicityAdu, String>> _createEthnicityData() {
     final agreed = [
-      new OrdinalAgeAdu('Males', 5),
-      new OrdinalAgeAdu('Females', 25),
+      new OrdinalEthnicityAdu('Hispanic\nLatino', 5),
+      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', 25),
      
     ];
 
     final disagreed = [
-     new OrdinalAgeAdu('Males', 35),
-      new OrdinalAgeAdu('Females', 100),
+     new OrdinalEthnicityAdu('Hispanic\nLatino', 35),
+      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', 100),
     ];
 
     final undecided = [
-       new OrdinalAgeAdu('Males', 25),
-      new OrdinalAgeAdu('Females', 75),
+       new OrdinalEthnicityAdu('Hispanic\nLatino', 25),
+      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', 75),
     ];
 
 
     return [
-      new charts.Series<OrdinalAgeAdu, String>(
+      new charts.Series<OrdinalEthnicityAdu, String>(
         id: 'agreed',
         displayName: "Agreed",
-        domainFn: (OrdinalAgeAdu adu, _) => adu.gender,
-        measureFn: (OrdinalAgeAdu adu, _) => adu.adu,
+        domainFn: (OrdinalEthnicityAdu adu, _) => adu.ethnicity,
+        measureFn: (OrdinalEthnicityAdu adu, _) => adu.adu,
           seriesColor: charts.ColorUtil.fromDartColor(themeData.primaryColor),
         fillColorFn:(_,__ ) => charts.ColorUtil.fromDartColor(themeData.primaryColor) ,
         data: agreed,
       ),
-      new charts.Series<OrdinalAgeAdu, String>(
+      new charts.Series<OrdinalEthnicityAdu, String>(
         id: 'disagreed',
          displayName: "Agreed",
-        domainFn: (OrdinalAgeAdu adu, _) => adu.gender,
-        measureFn: (OrdinalAgeAdu adu, _) => adu.adu,
+        domainFn: (OrdinalEthnicityAdu adu, _) => adu.ethnicity,
+        measureFn: (OrdinalEthnicityAdu adu, _) => adu.adu,
           seriesColor: charts.ColorUtil.fromDartColor(themeData.accentColor),
         fillColorFn:(_,__ ) => charts.ColorUtil.fromDartColor(themeData.accentColor) ,
         data: disagreed,
       ),
-      new charts.Series<OrdinalAgeAdu, String>(
+      new charts.Series<OrdinalEthnicityAdu, String>(
         id: 'undecided',
          displayName: "Agreed",
-        domainFn: (OrdinalAgeAdu adu, _) => adu.gender,
-        measureFn: (OrdinalAgeAdu adu, _) => adu.adu,
+        domainFn: (OrdinalEthnicityAdu adu, _) => adu.ethnicity,
+        measureFn: (OrdinalEthnicityAdu adu, _) => adu.adu,
           seriesColor: charts.ColorUtil.fromDartColor(Colors.white),
         fillColorFn:(_,__ ) => charts.ColorUtil.fromDartColor(Colors.white) ,
         data: undecided,
@@ -124,10 +124,10 @@ class GroupedGenderGraph extends StatelessWidget {
 /// Sample ordinal data type.
 
 
-class OrdinalAgeAdu{
-  final String gender;
+class OrdinalEthnicityAdu{
+  final String ethnicity;
   final int adu;
 
-  OrdinalAgeAdu(this.gender, this.adu);
+  OrdinalEthnicityAdu(this.ethnicity, this.adu);
 
 }

@@ -3,16 +3,16 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class GroupedTopAgeGraph extends StatelessWidget {
+class GroupedPartyGraph extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
   final SizingInformation sizingInfo;
 
-  GroupedTopAgeGraph(this.seriesList, {this.animate, this.sizingInfo});
+  GroupedPartyGraph(this.seriesList, {this.animate, this.sizingInfo});
 
-  factory GroupedTopAgeGraph.withTopAgeData(sizingInfo) {
-    return new GroupedTopAgeGraph(
-      _createTopAgeData(),
+  factory GroupedPartyGraph.withPartyData(sizingInfo) {
+    return new GroupedPartyGraph(
+      _createPartyData(),
       // Disable animations for image tests.
       sizingInfo: sizingInfo,
       animate: true,
@@ -26,7 +26,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
       animate: animate,
       barGroupingType: charts.BarGroupingType.grouped,
       behaviors: [
-      
+       
 
         new charts.SeriesLegend(
          
@@ -62,7 +62,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
           // Tick and Label styling here.
           labelOffsetFromAxisPx: 16,
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width*0.03).toInt(), // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -70,54 +70,54 @@ class GroupedTopAgeGraph extends StatelessWidget {
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<OrdinalAdu, String>> _createTopAgeData() {
+  static List<charts.Series<OrdinalPartyAdu, String>> _createPartyData() {
     final agreed = [
-      new OrdinalAdu('15-20', 5),
-      new OrdinalAdu('21-35', 25),
-      new OrdinalAdu('36-50', 100),
-      new OrdinalAdu('51-65', 75),
+      new OrdinalPartyAdu('Democrat', 5),
+      new OrdinalPartyAdu('Independent', 25),
+      new OrdinalPartyAdu('Republican', 100),
+      new OrdinalPartyAdu('Other', 75),
     ];
 
     final disagreed = [
-      new OrdinalAdu('15-20', 25),
-      new OrdinalAdu('21-35', 50),
-      new OrdinalAdu('36-50', 10),
-      new OrdinalAdu('51-65', 20),
+      new OrdinalPartyAdu('Democrat', 5),
+      new OrdinalPartyAdu('Independent', 25),
+      new OrdinalPartyAdu('Republican', 100),
+      new OrdinalPartyAdu('Other', 75),
     ];
 
     final undecided = [
-      new OrdinalAdu('15-20', 45),
-      new OrdinalAdu('21-35', 15),
-      new OrdinalAdu('36-50', 25),
-      new OrdinalAdu('51-65', 45),
+      new OrdinalPartyAdu('Democrat', 5),
+      new OrdinalPartyAdu('Independent', 25),
+      new OrdinalPartyAdu('Republican', 100),
+      new OrdinalPartyAdu('Other', 75),
     ];
 
     return [
-      new charts.Series<OrdinalAdu, String>(
+      new charts.Series<OrdinalPartyAdu, String>(
         id: 'agreed',
         displayName: "Agreed",
-        domainFn: (OrdinalAdu adu, _) => adu.age,
-        measureFn: (OrdinalAdu adu, _) => adu.adu,
+        domainFn: (OrdinalPartyAdu sales, _) => sales.party,
+        measureFn: (OrdinalPartyAdu sales, _) => sales.adu,
         fillColorFn: (_, __) =>
             charts.ColorUtil.fromDartColor(themeData.primaryColor),
         seriesColor: charts.ColorUtil.fromDartColor(themeData.primaryColor),
         data: agreed,
       ),
-      new charts.Series<OrdinalAdu, String>(
+      new charts.Series<OrdinalPartyAdu, String>(
         id: 'disagreed',
         displayName: "Disagreed",
-        domainFn: (OrdinalAdu adu, _) => adu.age,
-        measureFn: (OrdinalAdu adu, _) => adu.adu,
+        domainFn: (OrdinalPartyAdu sales, _) => sales.party,
+        measureFn: (OrdinalPartyAdu sales, _) => sales.adu,
         fillColorFn: (_, __) =>
             charts.ColorUtil.fromDartColor(themeData.accentColor),
         seriesColor: charts.ColorUtil.fromDartColor(themeData.accentColor),
         data: disagreed,
       ),
-      new charts.Series<OrdinalAdu, String>(
+      new charts.Series<OrdinalPartyAdu, String>(
         id: 'undecided',
         displayName: "Undecided",
-        domainFn: (OrdinalAdu adu, _) => adu.age,
-        measureFn: (OrdinalAdu adu, _) => adu.adu,
+        domainFn: (OrdinalPartyAdu sales, _) => sales.party,
+        measureFn: (OrdinalPartyAdu sales, _) => sales.adu,
         fillColorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.white),
         seriesColor: charts.ColorUtil.fromDartColor(Colors.white),
         data: undecided,
@@ -127,9 +127,9 @@ class GroupedTopAgeGraph extends StatelessWidget {
 }
 
 /// Sample ordinal data type.
-class OrdinalAdu {
-  final String age;
+class OrdinalPartyAdu {
+  final String party;
   final int adu;
 
-  OrdinalAdu(this.age, this.adu);
+  OrdinalPartyAdu(this.party, this.adu);
 }

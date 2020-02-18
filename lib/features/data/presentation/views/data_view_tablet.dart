@@ -10,15 +10,11 @@ import '../widgets/grouped_age_graphs.dart';
 
 import '../widgets/widgets.dart';
 
-class DataViewMobile extends StatelessWidget {
+class DataViewTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      builder: (context, sizingInfo) => ScaffoldMobile(
-        title: Text(
-          "Demographics By Issue",
-          style: themeData.textTheme.body1,
-        ),
+      builder: (context, sizingInfo) => ScaffoldTablet(
         body: Stack(
           children: <Widget>[
             Container(
@@ -28,8 +24,9 @@ class DataViewMobile extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: GridView.count(
                   physics: BouncingScrollPhysics(),
-                  crossAxisCount: 1,
+                  crossAxisCount: 2,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
+                  crossAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   children: <Widget>[
                     _buildGraphByTopAge(context, sizingInfo),
                     _buildGraphByGender(context, sizingInfo),
