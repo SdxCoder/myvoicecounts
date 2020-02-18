@@ -15,7 +15,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
       _createTopAgeData(),
       // Disable animations for image tests.
       sizingInfo: sizingInfo,
-      animate: true,
+      animate: false,
     );
   }
 

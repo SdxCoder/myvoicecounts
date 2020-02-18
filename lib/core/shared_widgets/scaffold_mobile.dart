@@ -23,7 +23,7 @@ class ScaffoldMobile extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 16),
+          padding: const EdgeInsets.only(top: 20.0, left: 8, right: 8, bottom: 16),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             IconButton(

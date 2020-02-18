@@ -18,8 +18,8 @@ class DataViewTablet extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: sizingInfo.screenSize.width*0.2,
-              bottom: sizingInfo.screenSize.width*0.2),
+              margin: EdgeInsets.only(top: sizingInfo.screenSize.height*0.2,
+              bottom: sizingInfo.screenSize.height*0.2),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: GridView.count(
@@ -46,7 +46,7 @@ class DataViewTablet extends StatelessWidget {
                   "Regulate Fracking?",
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey,
-                      fontSize:sizingInfo.screenSize.width*0.06),
+                      fontSize:sizingInfo.screenSize.height*0.06),
                 ),
               ),
             ),

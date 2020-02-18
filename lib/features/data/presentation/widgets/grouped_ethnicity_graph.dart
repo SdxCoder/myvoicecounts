@@ -16,7 +16,7 @@ class GroupedEthnicityGraph extends StatelessWidget {
     return new GroupedEthnicityGraph(
       _createEthnicityData(),
       // Disable animations for image tests.
-      animate: true,
+      animate: false,
       sizingInfo: sizingInfo,
 
     );

@@ -15,7 +15,7 @@ class GroupedPartyGraph extends StatelessWidget {
       _createPartyData(),
       // Disable animations for image tests.
       sizingInfo: sizingInfo,
-      animate: true,
+      animate: false,
     );
   }
 

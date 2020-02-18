@@ -15,7 +15,7 @@ class GroupedRaceGraph extends StatelessWidget {
       _createRaceData(),
       // Disable animations for image tests.
       sizingInfo: sizingInfo,
-      animate: true,
+      animate: false,
     );
   }
 
@@ -60,11 +60,8 @@ class GroupedRaceGraph extends StatelessWidget {
         renderSpec: new charts.SmallTickRendererSpec(
           // Tick and Label styling here.
           lineStyle: charts.LineStyleSpec(
-            dashPattern: [
-              0
-            ],
-           // thickness: 0,
-           // color: charts.ColorUtil.fromDartColor(Colors.white)
+            thickness: 0,
+            color: charts.ColorUtil.fromDartColor(Colors.white)
           ),
           labelOffsetFromAxisPx: 16,
           labelStyle: new charts.TextStyleSpec(

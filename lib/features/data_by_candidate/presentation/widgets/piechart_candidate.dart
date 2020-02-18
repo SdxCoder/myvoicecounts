@@ -66,7 +66,7 @@ class PieChartGraph extends StatelessWidget {
        
         data: data,
         // Set a label accessor to control the text of the arc label.
-        labelAccessorFn: (LinearSales row, _) => '${row.year} - ${row.sales}%',
+        labelAccessorFn: (LinearSales row, _) => '${row.year} ${row.sales}%',
       ),
     ];
   }

@@ -16,7 +16,7 @@ class GroupedGenderGraph extends StatelessWidget {
     return new GroupedGenderGraph(
       _createGenderData(),
       // Disable animations for image tests.
-      animate: true,
+      animate: false,
       sizingInfo: sizingInfo,
 
     );
