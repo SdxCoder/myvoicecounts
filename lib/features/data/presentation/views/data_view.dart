@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import './data_view_mobile.dart';
+
 
 class DataView extends StatelessWidget {
   @override

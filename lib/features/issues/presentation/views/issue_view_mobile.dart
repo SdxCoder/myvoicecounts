@@ -4,6 +4,8 @@ import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../../data/data.dart';
+
 class IssueViewMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,9 @@ class IssueViewMobile extends StatelessWidget {
                             child: Text("DATA",
                                 style: themeData.textTheme.body1.copyWith(
                                     color: Color(hexColor('f2f2f2')))),
-                            onPressed: () {},
+                            onPressed: () {
+                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                            },
                             color: Colors.green,
                           ),
                         ),

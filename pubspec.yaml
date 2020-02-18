@@ -19,7 +19,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
+  charts_flutter: ^0.8.1
+  flutter_calendar_carousel: ^1.4.10
+  flutter_charts:
   responsive_builder:
   responsive_scaffold:
   device_preview: ^0.2.6

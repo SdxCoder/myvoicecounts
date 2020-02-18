@@ -7,6 +7,9 @@ import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+
+import '../../../data/data.dart';
+
 class HomeViewTablet extends StatefulWidget {
   @override
   _HomeViewTabletState createState() => _HomeViewTabletState();
@@ -96,7 +99,9 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                         "DATA",
                         style: themeData.textTheme.body1,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                      },
                     ),
                   ),
                 ],

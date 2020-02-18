@@ -7,6 +7,10 @@ import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+
+
+import '../../../data/data.dart';
+
 class HomeViewMobile extends StatefulWidget {
   @override
   _HomeViewMobileState createState() => _HomeViewMobileState();
@@ -157,7 +161,9 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                       "DATA",
                       style: themeData.textTheme.body1,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                    },
                   ),
                 ),
                 SizedBox(height: 16)

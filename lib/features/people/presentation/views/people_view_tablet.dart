@@ -4,6 +4,8 @@ import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../../data/data.dart';
+
 class PeopleViewTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,9 @@ class PeopleViewTablet extends StatelessWidget {
                         child: Text("DATA",
                             style: themeData.textTheme.display2
                                 .copyWith(color: Color(hexColor('f2f2f2')))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                        },
                         color: Colors.green,
                       ),
                     ),
