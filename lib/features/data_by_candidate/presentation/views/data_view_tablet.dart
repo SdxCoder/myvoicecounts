@@ -21,7 +21,7 @@ class DataViewTablet extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: GridView.count(
                   physics: BouncingScrollPhysics(),
-                  crossAxisCount: 2,
+                  crossAxisCount: 1,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   crossAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   children: <Widget>[

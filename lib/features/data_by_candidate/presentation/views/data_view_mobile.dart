@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
-import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -41,7 +40,7 @@ class DataViewMobile extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, left:16.0,),
                 child: Text(
-                  "Regulate Fracking?",
+                  "How am I doing?",
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey,
                       fontSize:sizingInfo.screenSize.width*0.06),
@@ -120,7 +119,7 @@ class DataViewMobile extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
-          Text('TOP 5 AGE GROUPS',
+          Text('Sentiment on ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
               style: themeData.textTheme.body1.copyWith(
                 fontSize: sizingInfo.screenSize.width * 0.05,
                 fontWeight: FontWeight.bold,

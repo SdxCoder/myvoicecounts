@@ -1,20 +1,22 @@
 
 
+
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import './data_view_mobile.dart';
-import './data_view_tablet.dart';
+import './sfv_view_mobile.dart';
+import './sfv_view_tablet.dart';
 
-
-class DataCandidateView extends StatelessWidget {
+class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+  
     return Scaffold(
       body: ScreenTypeLayout.builder(
-        mobile: (context) => DataViewMobile(),
-        tablet: (context) => DataViewTablet(),
-      ),
+        mobile : (context) => SettingsViewMobile(),
+        tablet: (context) => SettingsViewTablet(),
+      )
     );
   }
 }

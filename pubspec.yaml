@@ -19,7 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  
+  video_player: ^0.10.7
   charts_flutter: ^0.8.1
   flutter_calendar_carousel: ^1.4.10
   flutter_charts:

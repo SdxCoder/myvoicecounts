@@ -39,29 +39,34 @@ class PieChartGraph extends StatelessWidget {
         //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
         defaultRenderer: new charts.ArcRendererConfig(arcRendererDecorators: [
           new charts.ArcLabelDecorator(
-              labelPosition: charts.ArcLabelPosition.outside)
+              labelPosition: charts.ArcLabelPosition.auto)
         ]));
   }
 
   /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createCandidateData() {
+  static List<charts.Series<LinearSales, String>> _createCandidateData() {
     final data = [
-      new LinearSales(0, 100),
-      new LinearSales(1, 75),
-      new LinearSales(2, 25),
-      new LinearSales(3, 5),
+      new LinearSales("Agreed", 100),
+      new LinearSales("Disagreed", 75),
+      new LinearSales("Undecided", 25),
     ];
 
     return [
-      new charts.Series<LinearSales, int>(
+      new charts.Series<LinearSales, String>(
         id: 'Sales',
         domainFn: (LinearSales sales, _) => sales.year,
         measureFn: (LinearSales sales, _) => sales.sales,
-        colorFn:(_,__ ) => charts.ColorUtil.fromDartColor(themeData.primaryColor) ,
+      //  colorFn:(_,__ ) =>  charts.MaterialPalette.purple.shadeDefault,
+        fillColorFn:(_,__ ) =>  charts.MaterialPalette.purple.shadeDefault.lighter,
+        insideLabelStyleAccessorFn: (_,__) => charts.TextStyleSpec(
+          fontSize: 16,
+          color: charts.ColorUtil.fromDartColor(Colors.white)
+
+        ),
        
         data: data,
         // Set a label accessor to control the text of the arc label.
-        labelAccessorFn: (LinearSales row, _) => '${row.year}: ${row.sales}',
+        labelAccessorFn: (LinearSales row, _) => '${row.year} - ${row.sales}%',
       ),
     ];
   }
@@ -69,7 +74,7 @@ class PieChartGraph extends StatelessWidget {
 
 /// Sample linear data type.
 class LinearSales {
-  final int year;
+  final String year;
   final int sales;
 
   LinearSales(this.year, this.sales);

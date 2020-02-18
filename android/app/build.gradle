@@ -49,8 +49,8 @@ android {
         applicationId "myvoicecounts.sdx"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1 // flutterVersionCode.toInteger()
-        versionName "1.0" //flutterVersionName
+        versionCode 2 // flutterVersionCode.toInteger()
+        versionName "2.0" //flutterVersionName
     }
 
     signingConfigs {

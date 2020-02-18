@@ -4,7 +4,7 @@ import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../../data/data.dart';
+import '../../../data_by_candidate/data_cadidate.dart';
 
 class PeopleViewMobile extends StatelessWidget {
   @override
@@ -71,7 +71,7 @@ class PeopleViewMobile extends StatelessWidget {
                                 style: themeData.textTheme.body1.copyWith(
                                     color: Color(hexColor('f2f2f2')))),
                             onPressed: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder : (context)=> DataView()));
+                              Navigator.of(context).push(MaterialPageRoute(builder : (context)=> DataCandidateView()));
                             },
                             color: Colors.green,
                           ),
