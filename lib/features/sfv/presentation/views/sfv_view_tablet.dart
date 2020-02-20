@@ -1,198 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
+import '../widgets/video_player.dart';
 
-class SettingsViewTablet extends StatefulWidget {
+class SfvViewTablet extends StatefulWidget {
   @override
-  _SettingsViewTabletState createState() => _SettingsViewTabletState();
+  _SfvViewTabletState createState() => _SfvViewTabletState();
 }
 
-class _SettingsViewTabletState extends State<SettingsViewTablet> {
-  List<Widget> wds = [];
-
+class _SfvViewTabletState extends State<SfvViewTablet> {
   @override
   void initState() {
     super.initState();
-    wds.add(Text("sss"));
   }
 
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      builder: (context, sizingInfo) { 
-        print(sizingInfo.screenSize.aspectRatio);
-        return ScaffoldTablet(
+      builder: (context, sizingInfo) => ScaffoldTablet(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-          child: Column(
-            children: <Widget>[
-              Text(
-                "How this works?",
-                style: themeData.textTheme.body1.copyWith(
-                    color: Colors.black54,
-                    fontSize: sizingInfo.screenSize.height * 0.08),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Divider(
-                height: 0,
-              ),
-               SizedBox(
-                height: sizingInfo.screenSize.height * 0.05,
-              ),
-              Expanded(
-                child: GridView.count(
-                    crossAxisCount: (sizingInfo.screenSize.aspectRatio > 1.4) ? 5 : 4,
-                    crossAxisSpacing: 32,
-                    mainAxisSpacing: 32,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.cyan),
-                          child: Text(
-                            "State",
-                            style: themeData.textTheme.body1.copyWith(
-                              fontSize : sizingInfo.screenSize.width*0.03
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.cyan),
-                          child: Text(
-                            "City",
-                            style:  themeData.textTheme.display3.copyWith(
-                              fontSize : sizingInfo.screenSize.width*0.03
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.cyan),
-                          child: Text(
-                            "Zip",
-                            style:  themeData.textTheme.display3.copyWith(
-                              fontSize : sizingInfo.screenSize.width*0.03
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: themeData.accentColor),
-                          child: Text(
-                            "Age",
-                            style: themeData.textTheme.body1
-                                .copyWith(color: Colors.white,
-                                 fontSize : sizingInfo.screenSize.width*0.03),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: themeData.accentColor),
-                          child: Text(
-                            "Ethnicity",
-                            style: themeData.textTheme.body1
-                                .copyWith(color: Colors.white,
-                                 fontSize : sizingInfo.screenSize.width*0.03
-                                ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: themeData.accentColor),
-                          child: Text(
-                            "Gender",
-                            style: themeData.textTheme.body1
-                                .copyWith(color: Colors.white, 
-                                 fontSize : sizingInfo.screenSize.width*0.03),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: themeData.primaryColor),
-                          child: Text(
-                            "Race",
-                            style: themeData.textTheme.body1
-                                .copyWith(color: Colors.white, 
-                                 fontSize : sizingInfo.screenSize.width*0.03),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: themeData.primaryColor),
-                          child: Text(
-                            "Party",
-                            style: themeData.textTheme.body1
-                                .copyWith(color: Colors.white, 
-                                 fontSize : sizingInfo.screenSize.width*0.03),
-                          ),
-                        ),
-                      ),
-                    ]),
-              ),
-               SizedBox(
-                height: sizingInfo.screenSize.height * 0.05,
-              ),
-              Divider(
-                height: 0,
-                color: themeData.primaryColorDark,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                "Integrity Control:\nEdit 2 of 3 total before erase",
-                style: themeData.textTheme.body1.copyWith(
-                  color: themeData.primaryColorDark,
-                  fontSize: sizingInfo.screenSize.height * 0.05,
-                ),
-              )
-            ],
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 32),
+          child: _sfvList(context, sizingInfo),
         ),
-      );
-      }
+      ),
     );
   }
+}
+
+Widget _sfvList(BuildContext context, SizingInformation sizingInfo) {
+  return ListView.builder(
+    physics: BouncingScrollPhysics(),
+    itemCount: 10,
+    itemBuilder: (BuildContext context, int index) {
+      return Column(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return VideoApp(
+                  url:
+                      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                  sizingInfo: sizingInfo,
+                );
+              }));
+            },
+            child: Row(
+              children: <Widget>[
+                Container(
+                  height: sizingInfo.screenSize.height * 0.4,
+                  width: sizingInfo.screenSize.width * 0.4,
+                  child: Image.asset('images/thumbnail.png'),
+                ),
+                SizedBox(
+                  width: sizingInfo.screenSize.width * 0.05,
+                ),
+                Text(
+                  "Video Title",
+                  style: themeData.textTheme.body1.copyWith(
+                      color: Colors.black54,
+                      fontSize: sizingInfo.screenSize.height * 0.04),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: sizingInfo.screenSize.height * 0.00),
+        ],
+      );
+    },
+  );
 }

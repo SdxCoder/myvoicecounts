@@ -21,7 +21,7 @@ class PeopleViewMobile extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 24),
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Text(
                       "Would I Vote for You Today?",
                       style: themeData.textTheme.body1.copyWith(

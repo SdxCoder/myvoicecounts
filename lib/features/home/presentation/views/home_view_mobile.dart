@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
+import 'package:myvoicecounts/features/sfv/sfv.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 
@@ -41,13 +42,13 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                 children: <Widget>[
                   Container(
                     // Put Map here
-                    height: sizingInfo.screenSize.height * 0.4,
+                    height: sizingInfo.screenSize.height * 0.3,
                   ),
                   Positioned(
                       top: 0,
                       right: 0,
                       child: Text(
-                        "Total Votes\n4567800",
+                        "Total Votes\n45,67,800",
                         textAlign: TextAlign.right,
                         style: themeData.textTheme.body1
                             .copyWith(color: themeData.primaryColorLight),
@@ -163,6 +164,28 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                     ),
                     onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                    },
+                  ),
+                ),
+                 SizedBox(height: sizingInfo.screenSize.width * 0.03),
+                SizedBox(
+                  width: sizingInfo.screenSize.width * 0.4,
+                  height: (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                  child: RaisedButton(
+                    color: Colors.cyan,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    elevation: 0,
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Text(
+                      "VIDEOS",
+                      style: themeData.textTheme.body1,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return SfvView();
+                      }));
                     },
                   ),
                 ),

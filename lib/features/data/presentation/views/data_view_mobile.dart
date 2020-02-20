@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/views/legends.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
@@ -22,8 +23,9 @@ class DataViewMobile extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: sizingInfo.screenSize.width*0.2,
-              bottom: sizingInfo.screenSize.width*0.2),
+              margin: EdgeInsets.only(
+                  top: sizingInfo.screenSize.width * 0.2,
+                  bottom: sizingInfo.screenSize.width * 0.2),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: GridView.count(
@@ -36,7 +38,6 @@ class DataViewMobile extends StatelessWidget {
                     _buildGraphByEthnicity(context, sizingInfo),
                     _buildGraphByRace(context, sizingInfo),
                     _buildGraphByParty(context, sizingInfo)
-                    
                   ],
                 ),
               ),
@@ -44,17 +45,19 @@ class DataViewMobile extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.only(top: 20, left:16.0,),
+                padding: const EdgeInsets.only(
+                  top: 20,
+                ),
                 child: Text(
                   "Regulate Fracking?",
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey,
-                      fontSize:sizingInfo.screenSize.width*0.06),
+                      fontSize: sizingInfo.screenSize.width * 0.06),
                 ),
               ),
             ),
             Positioned(
-              top: sizingInfo.screenSize.width*0.17,
+              top: sizingInfo.screenSize.width * 0.17,
               right: 16,
               child: FloatingActionButton(
                   backgroundColor: themeData.primaryColor,
@@ -127,7 +130,7 @@ class DataViewMobile extends StatelessWidget {
         children: <Widget>[
           Text('TOP 5 AGE GROUPS',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
+                fontSize: sizingInfo.screenSize.width * 0.04,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
@@ -136,7 +139,11 @@ class DataViewMobile extends StatelessWidget {
           ),
           Expanded(
             child: GroupedTopAgeGraph.withTopAgeData(sizingInfo),
-          )
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
         ],
       ),
     );
@@ -149,7 +156,7 @@ class DataViewMobile extends StatelessWidget {
         children: <Widget>[
           Text('GENDER',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
+                fontSize: sizingInfo.screenSize.width * 0.04,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
@@ -158,13 +165,16 @@ class DataViewMobile extends StatelessWidget {
           ),
           Expanded(
             child: GroupedGenderGraph.withGenderData(sizingInfo),
-          )
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
         ],
       ),
     );
   }
 
-  
   Widget _buildGraphByEthnicity(context, SizingInformation sizingInfo) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -172,7 +182,7 @@ class DataViewMobile extends StatelessWidget {
         children: <Widget>[
           Text('ETHNICITY',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
+                fontSize: sizingInfo.screenSize.width * 0.04,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
@@ -181,13 +191,16 @@ class DataViewMobile extends StatelessWidget {
           ),
           Expanded(
             child: GroupedEthnicityGraph.withEthnicityData(sizingInfo),
-          )
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
         ],
       ),
     );
   }
 
-  
   Widget _buildGraphByParty(context, SizingInformation sizingInfo) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -195,7 +208,7 @@ class DataViewMobile extends StatelessWidget {
         children: <Widget>[
           Text('PARTY',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
+                fontSize: sizingInfo.screenSize.width * 0.04,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
@@ -204,14 +217,16 @@ class DataViewMobile extends StatelessWidget {
           ),
           Expanded(
             child: GroupedPartyGraph.withPartyData(sizingInfo),
-          )
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
         ],
       ),
     );
   }
 
-
-  
   Widget _buildGraphByRace(context, SizingInformation sizingInfo) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -219,7 +234,7 @@ class DataViewMobile extends StatelessWidget {
         children: <Widget>[
           Text('RACE',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
+                fontSize: sizingInfo.screenSize.width * 0.04,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
@@ -228,13 +243,13 @@ class DataViewMobile extends StatelessWidget {
           ),
           Expanded(
             child: GroupedRaceGraph.withRaceData(sizingInfo),
-          )
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
         ],
       ),
     );
   }
-
-  
-
-
 }

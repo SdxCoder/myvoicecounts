@@ -25,29 +25,15 @@ class GroupedRaceGraph extends StatelessWidget {
       seriesList,
       animate: animate,
       barGroupingType: charts.BarGroupingType.grouped,
-      behaviors: [
-
-        new charts.SeriesLegend(
-         
-          defaultHiddenSeries: ['Other'],
-          position: charts.BehaviorPosition.bottom,
-          cellPadding: EdgeInsets.only(
-            top : sizingInfo.screenSize.height*0.03, 
-            left: 16),
-         
-          outsideJustification: charts.OutsideJustification.middle,
-          entryTextStyle: charts.TextStyleSpec(
-              color: charts.ColorUtil.fromDartColor(themeData.primaryColorDark),
-              fontFamily: 'Georgia',
-              fontSize: 11),
-        )
-      ],
+     
       primaryMeasureAxis: new charts.NumericAxisSpec(
         renderSpec: new charts.GridlineRendererSpec(
           // Tick and Label styling here.
 
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600) ? 
+              (sizingInfo.screenSize.width*0.02).toInt() :
+              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -65,7 +51,9 @@ class GroupedRaceGraph extends StatelessWidget {
           ),
           labelOffsetFromAxisPx: 16,
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.03).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600) ? 
+              (sizingInfo.screenSize.width*0.02).toInt() :
+              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),

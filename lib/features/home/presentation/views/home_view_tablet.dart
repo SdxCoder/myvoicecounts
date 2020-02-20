@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
+import 'package:myvoicecounts/features/sfv/sfv.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 
@@ -104,6 +105,26 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                       },
                     ),
                   ),
+                   SizedBox(height: sizingInfo.screenSize.width * 0.03),
+                  SizedBox(
+                    width: sizingInfo.screenSize.width * 0.2,
+                    height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
+                    child: RaisedButton(
+                      color: Colors.cyan,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                      elevation: 0,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Text(
+                        "VIDEOS",
+                        style: themeData.textTheme.body1,
+                      ),
+                      onPressed: () {
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => SfvView()));
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -166,7 +187,7 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                         ),
                         Spacer(),
                         Text(
-                          "Total Votes\n4567800",
+                          "Total Votes\n45,67,800",
                           textAlign: TextAlign.right,
                           style: themeData.textTheme.display3
                               .copyWith(color: themeData.primaryColorLight),

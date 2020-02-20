@@ -11,15 +11,15 @@ import 'splash_screen/splash_screen_tablet.dart';
 
 void main() {
   runApp(
-   // DevicePreview(
-   //   builder: (context) =>
+   DevicePreview(
+      builder: (context) =>
        MaterialApp(
-     //   locale: DevicePreview.of(context).locale,
-      //  builder: DevicePreview.appBuilder,
+        locale: DevicePreview.of(context).locale,
+         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         theme: themeData,
         home: App(),
-   //   ),
+      ),
     ),
   );
 }

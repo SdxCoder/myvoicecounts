@@ -55,6 +55,7 @@ flutter:
     - images/bernie.jpg
     - images/donald.jpg
     - images/kamala.jpg
+    - images/thumbnail.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

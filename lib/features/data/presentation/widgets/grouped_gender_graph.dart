@@ -30,29 +30,13 @@ class GroupedGenderGraph extends StatelessWidget {
       animate: animate,
       barGroupingType: charts.BarGroupingType.grouped,
 
-       behaviors: [
-         
-
-        new charts.SeriesLegend(
-          // Configures the "Other" series to be hidden on first chart draw.
-          defaultHiddenSeries: ['Other'],
-          position: charts.BehaviorPosition.bottom,
-          cellPadding: EdgeInsets.only(
-            top : sizingInfo.screenSize.height*0.03, 
-            left: 16),
-         
-          outsideJustification: charts.OutsideJustification.middle,
-          entryTextStyle: charts.TextStyleSpec(
-              color: charts.ColorUtil.fromDartColor(themeData.primaryColorDark),
-              fontFamily: 'Georgia',
-              fontSize: 11),
-        )
-      ],
       primaryMeasureAxis: new charts.NumericAxisSpec(
         renderSpec: new charts.GridlineRendererSpec(
           // Tick and Label styling here.
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600) ? 
+              (sizingInfo.screenSize.width*0.02).toInt() :
+              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -60,9 +44,16 @@ class GroupedGenderGraph extends StatelessWidget {
        domainAxis: new charts.OrdinalAxisSpec(
         renderSpec: new charts.SmallTickRendererSpec(
           // Tick and Label styling here.
+           lineStyle: charts.LineStyleSpec(
+            thickness: 0,
+            color: charts.ColorUtil.fromDartColor(Colors.white)
+          ),
+          
           labelOffsetFromAxisPx: 16,
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600) ? 
+              (sizingInfo.screenSize.width*0.02).toInt() :
+              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -101,7 +92,7 @@ class GroupedGenderGraph extends StatelessWidget {
       ),
       new charts.Series<OrdinalAgeAdu, String>(
         id: 'disagreed',
-         displayName: "Agreed",
+         displayName: "Disagreed",
         domainFn: (OrdinalAgeAdu adu, _) => adu.gender,
         measureFn: (OrdinalAgeAdu adu, _) => adu.adu,
           seriesColor: charts.ColorUtil.fromDartColor(themeData.accentColor),
@@ -110,7 +101,7 @@ class GroupedGenderGraph extends StatelessWidget {
       ),
       new charts.Series<OrdinalAgeAdu, String>(
         id: 'undecided',
-         displayName: "Agreed",
+         displayName: "Undecided",
         domainFn: (OrdinalAgeAdu adu, _) => adu.gender,
         measureFn: (OrdinalAgeAdu adu, _) => adu.adu,
           seriesColor: charts.ColorUtil.fromDartColor(Colors.white),

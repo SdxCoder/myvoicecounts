@@ -7,15 +7,15 @@ import 'package:responsive_builder/responsive_builder.dart';
 import './sfv_view_mobile.dart';
 import './sfv_view_tablet.dart';
 
-class SettingsView extends StatelessWidget {
+class SfvView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
   
     return Scaffold(
       body: ScreenTypeLayout.builder(
-        mobile : (context) => SettingsViewMobile(),
-        tablet: (context) => SettingsViewTablet(),
+        mobile : (context) => SfvViewMobile(),
+        tablet: (context) => SfvViewTablet(),
       )
     );
   }

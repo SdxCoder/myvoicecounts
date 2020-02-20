@@ -28,27 +28,16 @@ class GroupedTopAgeGraph extends StatelessWidget {
       behaviors: [
       
 
-        new charts.SeriesLegend(
-         
-          defaultHiddenSeries: ['Other'],
-          position: charts.BehaviorPosition.bottom,
-          cellPadding: EdgeInsets.only(
-            top : sizingInfo.screenSize.height*0.03, 
-            left: 16),
-         
-          outsideJustification: charts.OutsideJustification.middle,
-          entryTextStyle: charts.TextStyleSpec(
-              color: charts.ColorUtil.fromDartColor(themeData.primaryColorDark),
-              fontFamily: 'Georgia',
-              fontSize: 11),
-        )
+     
       ],
       primaryMeasureAxis: new charts.NumericAxisSpec(
         renderSpec: new charts.GridlineRendererSpec(
           // Tick and Label styling here.
 
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600) ? 
+              (sizingInfo.screenSize.width*0.02).toInt() :
+              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -60,9 +49,15 @@ class GroupedTopAgeGraph extends StatelessWidget {
        domainAxis: new charts.OrdinalAxisSpec(
         renderSpec: new charts.SmallTickRendererSpec(
           // Tick and Label styling here.
-          labelOffsetFromAxisPx: 16,
+           lineStyle: charts.LineStyleSpec(
+            thickness: 0,
+            color: charts.ColorUtil.fromDartColor(Colors.white)
+          ),
+          labelOffsetFromAxisPx: 16, 
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width*0.04).toInt(), // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600) ? 
+              (sizingInfo.screenSize.width*0.02).toInt() :
+              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
