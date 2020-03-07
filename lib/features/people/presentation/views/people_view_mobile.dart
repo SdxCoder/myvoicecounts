@@ -26,8 +26,8 @@ class PeopleViewMobile extends StatelessWidget {
                       "Would I Vote for You Today?",
                       style: themeData.textTheme.body1.copyWith(
                           color: Colors.grey,
-                          fontSize:
-                              (sizingInfo.screenSize.height < 600) ? 20 : 26),
+                          fontSize: headlineSize(sizingInfo)),
+                              
                     ),
                   ),
                   SizedBox(height: 16),

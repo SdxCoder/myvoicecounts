@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:myvoicecounts/core/core.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
+import '../view_models/settings_view_model.dart';
 
 class SettingsViewTablet extends StatefulWidget {
+  final SettingsViewModel model;
+
+  const SettingsViewTablet({Key key, this.model}) : super(key: key);
+
   @override
   _SettingsViewTabletState createState() => _SettingsViewTabletState();
 }
@@ -28,7 +33,7 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
           child: Column(
             children: <Widget>[
               Text(
-                "How this works?",
+                "How this works",
                 style: themeData.textTheme.body1.copyWith(
                     color: Colors.black54,
                     fontSize: sizingInfo.screenSize.height * 0.08),
@@ -181,13 +186,20 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
               SizedBox(
                 height: 16,
               ),
-              Text(
-                "Integrity Control:\nEdit 2 of 3 total before erase",
-                style: themeData.textTheme.body1.copyWith(
-                  color: themeData.primaryColorDark,
-                  fontSize: sizingInfo.screenSize.height * 0.05,
-                ),
-              )
+               Row(
+                children: <Widget>[
+                  IconButton(icon: Icon(Icons.info, color: themeData.primaryColor,), onPressed: (){
+                    widget.model.showIntegretyControl();
+                  }),
+                  Text(
+                    "Integrity Control:\nEdit 2 of 3 total before erase",
+                    style: themeData.textTheme.body1.copyWith(
+                      color: themeData.primaryColorDark,
+                      fontSize: sizingInfo.screenSize.width * 0.05,
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),

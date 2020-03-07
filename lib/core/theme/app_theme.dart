@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 final overlayColor = const Color(0xff000000).withAlpha(150);
 
@@ -54,4 +55,20 @@ hexColor(String hexCode) {
   String colorst = '0xff' + hexCode.replaceAll('#', '');
   int color = int.parse(colorst);
   return color;
+}
+
+
+double headlineSize(SizingInformation sizingInfo){
+  // Text size for tablet
+  double width = sizingInfo.screenSize.width;
+  if(width > 900){
+    return 48.0;
+  }
+  
+  if(width >= 600 && width < 900){
+    return 32.0;
+  }
+  
+  return 20.0;
+
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/features/home/home.dart';
 
 import '../core.dart';
@@ -49,7 +50,7 @@ class ScaffoldMobile extends StatelessWidget {
                   size: 24,
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SettingsView()));
+                  Modular.to.pushNamed(Paths.settings);
                 }),
           ]),
         ),

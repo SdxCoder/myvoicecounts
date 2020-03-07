@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
@@ -11,6 +12,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 
 import '../../../data/data.dart';
+
 
 class HomeViewMobile extends StatefulWidget {
   @override

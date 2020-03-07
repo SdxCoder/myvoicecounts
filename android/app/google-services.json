@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1006500866934",
+    "firebase_url": "https://myvoicecounts-60c77.firebaseio.com",
+    "project_id": "myvoicecounts-60c77",
+    "storage_bucket": "myvoicecounts-60c77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006500866934:android:32c0adf281433ec190a857",
+        "android_client_info": {
+          "package_name": "myvoicecounts.sdx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006500866934-dhn2d0f4tlsdral6dk5493imo5nvnoh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC95FFctmmSPKMn_tAnPI7nMUot2nN_TXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006500866934-dhn2d0f4tlsdral6dk5493imo5nvnoh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

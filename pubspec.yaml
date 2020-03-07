@@ -27,6 +27,12 @@ dependencies:
   responsive_builder:
   responsive_scaffold:
   device_preview: ^0.2.6
+  firebase_auth: ^0.15.5+2
+  cloud_firestore: ^0.13.4+1
+  flutter_modular: ^0.5.3
+  provider_architecture: ^1.0.6
+  flushbar: ^1.9.1
+  # device_id: ^0.2.0
 
 
   # The following adds the Cupertino Icons font to your application.

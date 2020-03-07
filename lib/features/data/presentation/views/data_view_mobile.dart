@@ -52,7 +52,7 @@ class DataViewMobile extends StatelessWidget {
                   "Regulate Fracking?",
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey,
-                      fontSize: sizingInfo.screenSize.width * 0.06),
+                      fontSize: headlineSize(sizingInfo)),
                 ),
               ),
             ),
