@@ -53,7 +53,68 @@ Future<void> showInfoDialogBox({
   );
 }
 
-showSnackBarInfo({String desc}){
+
+
+Future<void> showActionDialogBox({
+  @required String title,
+  @required String description,
+  Function onPressed,
+  String buttonText = "Yes",
+  String buttonTextCancel = "No"
+}) async {
+  print("show dialog");
+  await showDialog<void>(
+    context: Modular.navigatorKey.currentState.overlay.context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        actions: <Widget>[
+          RaisedButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      elevation: 0,
+                      child: Text(buttonText),
+                      onPressed: onPressed
+                    ),
+          FlatButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      
+                      child: Text(buttonTextCancel),
+                      onPressed: () {
+                        Modular.navigatorKey.currentState.pop();
+                      },
+                    )
+          
+        ],
+        content: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 16),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      title,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                Divider(),
+                Wrap(
+                  direction: Axis.horizontal,
+                  children: <Widget>[
+                    Text(description),
+                  ],
+                ),
+              ]),
+        ),
+      );
+    },
+  );
+}
+
+Future showSnackBarInfo({String desc}){
  var context = Modular.navigatorKey.currentState.overlay.context;
 Flushbar flush;
 
@@ -72,12 +133,12 @@ flush =  Flushbar(
             "DISMISS",
             style: themeData.textTheme.button,
           )),
-      backgroundColor:themeData.accentColor,
+      backgroundColor:themeData.primaryColor,
       flushbarPosition: FlushbarPosition.BOTTOM,
       padding: EdgeInsets.all(8),
       overlayBlur: 0.0001,
      // overlayColor: overlayColor,
-      borderRadius: 8,
+      borderRadius: 0,
       icon: Icon(
         Icons.info,
         color: themeData.primaryColor,

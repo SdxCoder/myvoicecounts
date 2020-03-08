@@ -9,14 +9,19 @@ class SplashService {
 
   User _currentUser;
   User get currentUser => _currentUser;
+  void setUser(User user){
+    _currentUser = user;
+  }
 
   Future signInAnonymously() async {
     try {
     
       var authResult = await _firebaseAuth.signInAnonymously();
 
-    
-      await createUser(User(id: authResult.user.uid));
+      await createUser(User(
+        id: authResult.user.uid,
+        integrity: 3
+        ));
 
       await _populateCurrentUser(authResult.user);
 

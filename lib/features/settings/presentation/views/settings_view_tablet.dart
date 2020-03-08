@@ -59,6 +59,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: Colors.cyan),
                           child: Text(
                             "State",
@@ -74,6 +77,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: Colors.cyan),
                           child: Text(
                             "City",
@@ -89,6 +95,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: Colors.cyan),
                           child: Text(
                             "Zip",
@@ -104,6 +113,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: themeData.accentColor),
                           child: Text(
                             "Age",
@@ -119,6 +131,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: themeData.accentColor),
                           child: Text(
                             "Ethnicity",
@@ -134,6 +149,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               borderRadius: BorderRadius.circular(20),
                               color: themeData.accentColor),
                           child: Text(
@@ -150,6 +168,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: themeData.primaryColor),
                           child: Text(
                             "Race",
@@ -165,6 +186,9 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                               border: Border.all(
+                                color: (widget.model.currentUser.state == null) ? Colors.red : Colors.transparent
+                              ),
                               color: themeData.primaryColor),
                           child: Text(
                             "Party",
@@ -192,7 +216,7 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                     widget.model.showIntegretyControl();
                   }),
                   Text(
-                    "Integrity Control:\nEdit 2 of 3 total before erase",
+                    "Integrity Control:\nEdit ${3 - widget.model.currentUser.integrity} of 3 total before erase",
                     style: themeData.textTheme.body1.copyWith(
                       color: themeData.primaryColorDark,
                       fontSize: sizingInfo.screenSize.width * 0.05,

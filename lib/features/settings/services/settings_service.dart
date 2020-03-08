@@ -1,21 +1,28 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/splash_screen/data/user.dart';
 
 class SettingsService{
 
   Firestore _instance = Firestore.instance;
+  final _userCollection = Firestore.instance.collection(Db.usersCollection);
+
+  User _currentUser;
+  User get currentUser => _currentUser;
 
 
 
-  Future updateUser(User user) async {
+
+  Future updateUser(Map<String, dynamic> map, String userId) async {
     try {
       await _instance.collection(Db.usersCollection)
-          .document(user.id)
-          .updateData(user.toJson());
+          .document(userId)
+          .updateData(map);
       return true;
     } catch (e) {
       // TODO: Find or create a way to repeat error handling without so much repeated code
@@ -26,4 +33,18 @@ class SettingsService{
       return e.toString();
     }
   }
+
+  Future deleteUser(String id) async {
+    await _userCollection.document(id).delete();
+  }
+
+   Future getUser(String uid) async {
+    try {
+      var userData = await _userCollection.document(uid).get();
+      return User.fromData(userData.data);
+    } catch (e) {
+      return e.message;
+    }
+  }
+
 }
