@@ -8,5 +8,6 @@ class Paths{
   static const String dataByPersonality = '/dataByPersonality';
   static const String dataByIssue = '/dataByIssue';
   static const String settings = '/settings';
+  static const String sfv = '/sfv';
   
 }

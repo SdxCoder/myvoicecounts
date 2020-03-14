@@ -124,6 +124,68 @@ Future<Map<String, dynamic>> showEthnicity(
   );
 }
 
+
+Future<Map<String, dynamic>> showAge(
+    context, SettingsViewModel model) async {
+  String title = "Select age";
+  return await showDialog<Map<String, dynamic>>(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 16),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "${model.currentUser.age ?? title}",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                Divider(),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: model.age.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: Text(model.age[index].toString()),
+                        onTap: () {
+                          print(model.age[index].toString());
+                          Map<String, dynamic> map = {
+                            "age": model.age[index].toString(),
+                          };
+                          return Modular.navigatorKey.currentState.pop(map);
+                        },
+                      );
+                    },
+                  ),
+                ),
+                Divider(),
+                Align(
+                    alignment: Alignment.center,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      elevation: 0,
+                      child: Text("Close"),
+                      onPressed: () {
+                        return Modular.navigatorKey.currentState
+                            .pop({"age": null});
+                      },
+                    )),
+              ]),
+        ),
+      );
+    },
+  );
+}
+
 Future<Map<String, dynamic>> showRace(context, SettingsViewModel model) async {
   String title = "Select race";
   return await showDialog<Map<String, dynamic>>(
@@ -142,6 +204,8 @@ Future<Map<String, dynamic>> showRace(context, SettingsViewModel model) async {
                     alignment: Alignment.center,
                     child: Text(
                       "${model.currentUser.race ?? title}",
+                      textAlign: TextAlign.center,
+                      
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )),
                 Divider(),
@@ -241,115 +305,196 @@ Future<Map<String, dynamic>> showParty(context, SettingsViewModel model) async {
     },
   );
 }
-  
-  Future<Map<String, dynamic>> showGender(
-      context, SettingsViewModel model) async {
-        String title = "Select Gender";
-   return await showDialog<Map<String, dynamic>>(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 16),
-                  Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "${model.currentUser.gender ?? title}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+
+Future<Map<String, dynamic>> showGender(
+    context, SettingsViewModel model) async {
+  String title = "Select Gender";
+  return await showDialog<Map<String, dynamic>>(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 16),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "${model.currentUser.gender ?? title}",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                Divider(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: model.gender.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: Text(model.gender[index]),
+                        onTap: () {
+                          print(model.gender[index]);
+                          Map<String, dynamic> map = {
+                            "gender": model.gender[index],
+                          };
+                          return Modular.navigatorKey.currentState.pop(map);
+                        },
+                      );
+                    },
+                  ),
+                ),
+                Divider(),
+                Align(
+                    alignment: Alignment.center,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      elevation: 0,
+                      child: Text("Close"),
+                      onPressed: () {
+                        return Modular.navigatorKey.currentState
+                            .pop({"gender": null});
+                      },
+                    )),
+              ]),
+        ),
+      );
+    },
+  );
+}
+
+Future<Map<String, dynamic>> showZip(context, SettingsViewModel model) async {
+  String title = "Enter your zip code";
+  final _zipController = TextEditingController();
+  return await showDialog<Map<String, dynamic>>(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 16),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "${model.currentUser.zip ?? title}",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                Divider(),
+                TextFormField(
+                  controller: _zipController,
+                  decoration: InputDecoration(
+                      hintText: "Enter zip code",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       )),
-                  Divider(),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: model.gender.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          title: Text(model.gender[index]),
-                          onTap: () {
-                            print(model.gender[index]);
-                            Map<String , dynamic> map = {
-                              "gender" : model.gender[index],
-                            };
-                            return Modular.navigatorKey.currentState.pop(map);
-                          },
-                        );
+                ),
+                Divider(),
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        "Close",
+                        style: themeData.textTheme.button
+                            .copyWith(color: themeData.accentColor),
+                      ),
+                      onPressed: () {
+                        return Modular.navigatorKey.currentState
+                            .pop({"zip": null});
                       },
                     ),
-                  ),
-                  Divider(),
-                  Align(
-                      alignment: Alignment.center,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        color: themeData.accentColor,
-                        elevation: 0,
-                        child: Text("Close"),
-                        onPressed: () {
-                          return Modular.navigatorKey.currentState.pop({
-                            "gender" : null
-                          });
-                        },
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      child: Text("Save"),
+                      onPressed: () {
+                        return Modular.navigatorKey.currentState
+                            .pop({"zip": _zipController.text});
+                      },
+                    ),
+                  ],
+                ),
+              ]),
+        ),
+      );
+    },
+  );
+}
+
+
+Future<Map<String, dynamic>> showCity(context, SettingsViewModel model) async {
+  String title = "Enter your city";
+  final _cityController = TextEditingController();
+  return await showDialog<Map<String, dynamic>>(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 16),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "${model.currentUser.city ?? title}",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                Divider(),
+                TextFormField(
+                  controller: _cityController,
+                  decoration: InputDecoration(
+                      hintText: "Enter city",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       )),
-                ]),
-          ),
-        );
-      },
-    );
-
-      }
-
-
- 
-  Future<Map<String, dynamic>> showZip(
-      context, SettingsViewModel model) async {
-        String title = "Enter your zip code";
-   return await showDialog<Map<String, dynamic>>(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 16),
-                  Align(
-                      alignment: Alignment.center,
+                ),
+                Divider(),
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                       child: Text(
-                        "${model.currentUser.zip ?? title}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )),
-                  Divider(),
-                // text
-                  Divider(),
-                  Align(
-                      alignment: Alignment.center,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        color: themeData.accentColor,
-                        elevation: 0,
-                        child: Text("Close"),
-                        onPressed: () {
-                          return Modular.navigatorKey.currentState.pop({
-                            "zip" : null
-                          });
-                        },
-                      )),
-                ]),
-          ),
-        );
-      },
-    );
-
-      }
-
-
+                        "Close",
+                        style: themeData.textTheme.button
+                            .copyWith(color: themeData.accentColor),
+                      ),
+                      onPressed: () {
+                        return Modular.navigatorKey.currentState
+                            .pop({"city": null});
+                      },
+                    ),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      child: Text("Save"),
+                      onPressed: () {
+                        return Modular.navigatorKey.currentState
+                            .pop({"city": _cityController.text});
+                      },
+                    ),
+                  ],
+                ),
+              ]),
+        ),
+      );
+    },
+  );
+}

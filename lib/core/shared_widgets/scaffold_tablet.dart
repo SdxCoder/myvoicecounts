@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/features/home/home.dart';
 
 import '../core.dart';
@@ -32,8 +33,7 @@ class ScaffoldTablet extends StatelessWidget {
                       size: 48,
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => HomeView()));
+                      Modular.to.pushReplacementNamed(Paths.home);
                     }),
                 Spacer(),
                 IconButton(
@@ -42,7 +42,9 @@ class ScaffoldTablet extends StatelessWidget {
                       color: Colors.white,
                       size: 48,
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                        Modular.to.pushReplacementNamed(Paths.settings);
+                    }),
               ]),
         ),
         Container(

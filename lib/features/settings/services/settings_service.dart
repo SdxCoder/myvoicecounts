@@ -34,9 +34,15 @@ class SettingsService{
     }
   }
 
-  Future deleteUser(String id) async {
-    await _userCollection.document(id).delete();
+  Future deleteUser(String id, FirebaseUser user) async {
+    await _userCollection.document(id).delete().then((value){
+      Firestore.instance.collection(Db.accountsDetails).document(id).setData({
+        "deletedAt": DateTime.now(),
+        "accountStatus" : "deleted"
+      });
+    });
   }
+
 
    Future getUser(String uid) async {
     try {

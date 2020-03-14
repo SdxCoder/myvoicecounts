@@ -31,7 +31,7 @@ class _SfvViewMobileState extends State<SfvViewMobile> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) => ScaffoldMobile(
-        title: Text("SFV"),
+        title: Text("SFV", style: themeData.textTheme.body1,),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
           child: Column(

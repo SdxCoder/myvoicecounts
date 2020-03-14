@@ -28,7 +28,7 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) => ScaffoldMobile(
         title: Text(
-          "How I Self-Identify ${widget.model.currentUser.age}",
+          "How I Self-Identify",
           style: themeData.textTheme.body1,
         ),
         body: Padding(
@@ -56,13 +56,11 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         onTap: () async {
                           Map<String, dynamic> map =
                               await showStates(context, widget.model);
-                          if(map["state"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                          if (map["state"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
-                         
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -81,13 +79,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () async{
-                           Map<String, dynamic> map =
-                              await showZip(context, widget.model);
-                          if(map["city"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showCity(context, widget.model);
+                          if (map["city"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -96,10 +93,9 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color:
-                                      (widget.model.currentUser.city == null)
-                                          ? Colors.red
-                                          : Colors.transparent),
+                                  color: (widget.model.currentUser.city == null)
+                                      ? Colors.red
+                                      : Colors.transparent),
                               color: Colors.cyan),
                           child: Text(
                             "City",
@@ -108,13 +104,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () async{
-                           Map<String, dynamic> map =
+                        onTap: () async {
+                          Map<String, dynamic> map =
                               await showZip(context, widget.model);
-                          if(map["zip"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                          if (map["zip"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -123,10 +118,9 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color:
-                                      (widget.model.currentUser.zip == null)
-                                          ? Colors.red
-                                          : Colors.transparent),
+                                  color: (widget.model.currentUser.zip == null)
+                                      ? Colors.red
+                                      : Colors.transparent),
                               color: Colors.cyan),
                           child: Text(
                             "Zip",
@@ -135,13 +129,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                         onTap: () async{
-                           Map<String, dynamic> map =
-                              await showZip(context, widget.model);
-                          if(map["age"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showAge(context, widget.model);
+                          if (map["age"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -150,10 +143,9 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color:
-                                      (widget.model.currentUser.age == null)
-                                          ? Colors.red
-                                          : Colors.transparent),
+                                  color: (widget.model.currentUser.age == null)
+                                      ? Colors.red
+                                      : Colors.transparent),
                               color: themeData.accentColor),
                           child: Text(
                             "Age",
@@ -163,13 +155,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                          onTap: () async{
-                           Map<String, dynamic> map =
+                        onTap: () async {
+                          Map<String, dynamic> map =
                               await showEthnicity(context, widget.model);
-                          if(map["ethnicity"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                          if (map["ethnicity"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -178,10 +169,10 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color:
-                                      (widget.model.currentUser.ethnicity== null)
-                                          ? Colors.red
-                                          : Colors.transparent),
+                                  color: (widget.model.currentUser.ethnicity ==
+                                          null)
+                                      ? Colors.red
+                                      : Colors.transparent),
                               color: themeData.accentColor),
                           child: Text(
                             "Ethnicity",
@@ -191,13 +182,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () async{
-                           Map<String, dynamic> map =
+                        onTap: () async {
+                          Map<String, dynamic> map =
                               await showGender(context, widget.model);
-                          if(map["gender"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                          if (map["gender"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -219,13 +209,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                         onTap: () async{
-                           Map<String, dynamic> map =
+                        onTap: () async {
+                          Map<String, dynamic> map =
                               await showRace(context, widget.model);
-                          if(map["race"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                          if (map["race"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -234,10 +223,9 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color:
-                                      (widget.model.currentUser.race == null)
-                                          ? Colors.red
-                                          : Colors.transparent),
+                                  color: (widget.model.currentUser.race == null)
+                                      ? Colors.red
+                                      : Colors.transparent),
                               color: themeData.primaryColor),
                           child: Text(
                             "Race",
@@ -247,13 +235,12 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () async{
-                           Map<String, dynamic> map =
+                        onTap: () async {
+                          Map<String, dynamic> map =
                               await showParty(context, widget.model);
-                          if(map["party"] != null){
-                             widget.model.updateUser(map);
-                          }
-                          else{
+                          if (map["party"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
                             print("closed");
                           }
                         },
@@ -291,15 +278,29 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
                         color: themeData.primaryColor,
                       ),
                       onPressed: () {
-                        widget.model.showIntegretyControl();
+                        (widget.model.showUpdateReminder() == false)
+                            ? widget.model.showIntegretyControl()
+                            : showInfoDialogBox(
+                                title: "Reminder",
+                                description:
+                                    "Please update all the parameters of your profile",
+                              );
                       }),
-                  Text(
-                    "Integrity Control:\nEdit ${3 - widget.model.currentUser.integrity} of 3 total before erase",
-                    style: themeData.textTheme.body1.copyWith(
-                      color: themeData.primaryColorDark,
-                      fontSize: sizingInfo.screenSize.width * 0.05,
-                    ),
-                  ),
+                  (widget.model.showUpdateReminder() == false)
+                      ? Text(
+                          "Integrity Control:\nEdit ${3 - widget.model.currentUser.integrity} of 3 total before erase",
+                          style: themeData.textTheme.body1.copyWith(
+                            color: themeData.primaryColorDark,
+                            fontSize: sizingInfo.screenSize.width * 0.05,
+                          ),
+                        )
+                      : Text(
+                          "Please complete your profile",
+                          style: themeData.textTheme.body1.copyWith(
+                            color: themeData.primaryColorDark,
+                            fontSize: sizingInfo.screenSize.width * 0.05,
+                          ),
+                        ),
                 ],
               )
             ],
@@ -308,5 +309,4 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
       ),
     );
   }
-
 }

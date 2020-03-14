@@ -3,6 +3,7 @@ import 'package:myvoicecounts/core/core.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 import '../view_models/settings_view_model.dart';
+import 'widgets/settings_dialogs.dart';
 
 class SettingsViewTablet extends StatefulWidget {
   final SettingsViewModel model;
@@ -54,7 +55,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                     mainAxisSpacing: 32,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () async{
+                           Map<String, dynamic> map =
+                              await showStates(context, widget.model);
+                          if (map["state"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -72,7 +81,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                       onTap: () async {
+                          Map<String, dynamic> map =
+                              await showCity(context, widget.model);
+                          if (map["city"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -90,7 +107,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showZip(context, widget.model);
+                          if (map["zip"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -108,7 +133,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showAge(context, widget.model);
+                          if (map["age"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -126,7 +159,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showEthnicity(context, widget.model);
+                          if (map["ethnicity"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -145,7 +186,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                         onTap: () async {
+                          Map<String, dynamic> map =
+                              await showGender(context, widget.model);
+                          if (map["gender"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -163,7 +212,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showRace(context, widget.model);
+                          if (map["race"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -181,7 +238,15 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          Map<String, dynamic> map =
+                              await showParty(context, widget.model);
+                          if (map["party"] != null) {
+                            widget.model.updateUser(map);
+                          } else {
+                            print("closed");
+                          }
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -210,20 +275,39 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
               SizedBox(
                 height: 16,
               ),
-               Row(
+                Row(
                 children: <Widget>[
-                  IconButton(icon: Icon(Icons.info, color: themeData.primaryColor,), onPressed: (){
-                    widget.model.showIntegretyControl();
-                  }),
-                  Text(
-                    "Integrity Control:\nEdit ${3 - widget.model.currentUser.integrity} of 3 total before erase",
-                    style: themeData.textTheme.body1.copyWith(
-                      color: themeData.primaryColorDark,
-                      fontSize: sizingInfo.screenSize.width * 0.05,
-                    ),
-                  )
+                  IconButton(
+                      icon: Icon(
+                        Icons.info,
+                        color: themeData.primaryColor,
+                      ),
+                      onPressed: () {
+                        (widget.model.showUpdateReminder() == false)
+                            ? widget.model.showIntegretyControl()
+                            : showInfoDialogBox(
+                                title: "Reminder",
+                                description:
+                                    "Please update all the parameters of your profile",
+                              );
+                      }),
+                  (widget.model.showUpdateReminder() == false)
+                      ? Text(
+                          "Integrity Control:\nEdit ${3 - widget.model.currentUser.integrity} of 3 total before erase",
+                          style: themeData.textTheme.body1.copyWith(
+                            color: themeData.primaryColorDark,
+                            fontSize: sizingInfo.screenSize.width * 0.05,
+                          ),
+                        )
+                      : Text(
+                          "Please complete your profile",
+                          style: themeData.textTheme.body1.copyWith(
+                            color: themeData.primaryColorDark,
+                            fontSize: sizingInfo.screenSize.width * 0.05,
+                          ),
+                        ),
                 ],
-              ),
+              )
             ],
           ),
         ),

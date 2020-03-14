@@ -7,4 +7,5 @@ class Db{
   static const String sfvCollection = 'sfvs';
   static const String issuesCollection = 'issues';
   static const String adminCollection = 'admins';
+  static const String accountsDetails = "accounts";
 }

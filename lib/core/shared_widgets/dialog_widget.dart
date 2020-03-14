@@ -58,7 +58,8 @@ Future<void> showInfoDialogBox({
 Future<void> showActionDialogBox({
   @required String title,
   @required String description,
-  Function onPressed,
+  Function onPressedYes,
+   Function onPressedNo,
   String buttonText = "Yes",
   String buttonTextCancel = "No"
 }) async {
@@ -69,22 +70,21 @@ Future<void> showActionDialogBox({
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         actions: <Widget>[
+           FlatButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                     
+      
+                      child: Text(buttonTextCancel, style: TextStyle(color: themeData.accentColor)),
+                      onPressed: onPressedNo
+                    ),
           RaisedButton(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       color: themeData.accentColor,
                       elevation: 0,
                       child: Text(buttonText),
-                      onPressed: onPressed
+                      onPressed: onPressedYes
                     ),
-          FlatButton(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      color: themeData.accentColor,
-                      
-                      child: Text(buttonTextCancel),
-                      onPressed: () {
-                        Modular.navigatorKey.currentState.pop();
-                      },
-                    )
+         
           
         ],
         content: Padding(

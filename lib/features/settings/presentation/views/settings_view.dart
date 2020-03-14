@@ -15,7 +15,7 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelProvider<SettingsViewModel>.withConsumer(
       viewModel: SettingsViewModel(),
-    //  onModelReady: (model) async => await model.showUpdateReminder(),
+      onModelReady: (model) async => await model.fetchUpdatedUser(),
       builder: (context, SettingsViewModel model, child)=>
            Scaffold(
         body: ScreenTypeLayout.builder(

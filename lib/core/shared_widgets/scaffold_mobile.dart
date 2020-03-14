@@ -34,8 +34,9 @@ class ScaffoldMobile extends StatelessWidget {
                   size: 24,
                 ),
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => HomeView()));
+                  Modular.to.pushReplacementNamed(Paths.home);
+                  // Navigator.pushReplacement(context,
+                  //     MaterialPageRoute(builder: (context) => HomeView()));
                 }),
             (Platform.isIOS)
                 ? Padding(
@@ -50,7 +51,7 @@ class ScaffoldMobile extends StatelessWidget {
                   size: 24,
                 ),
                 onPressed: () {
-                  Modular.to.pushNamed(Paths.settings);
+                  Modular.to.pushReplacementNamed(Paths.settings);
                 }),
           ]),
         ),

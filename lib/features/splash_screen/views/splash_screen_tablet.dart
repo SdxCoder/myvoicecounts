@@ -15,54 +15,58 @@ class SplashScreenTablet extends StatelessWidget {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
               child: Container(
                 height: sizingInfo.screenSize.width * 0.5,
                 width: sizingInfo.screenSize.width * 0.5,
                 decoration: BoxDecoration(
                     color: Theme.of(context).accentColor,
+                    image: DecorationImage(
+                        image: AssetImage('images/mvc_logo.png')),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(hexColor('f2f2f2')),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(16),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Image.asset('images/logo.png'),
-                    ),
-                  ),
-                ),
               ),
             ),
-            Text('Welcome to tablet', style: Theme.of(context).textTheme.display2),
-             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
+            
+            Text('Welcome to', style: Theme.of(context).textTheme.bodyText1.copyWith(color:Colors.white54)),
+            SizedBox(height: 10,),
+            Text('OPINION/8ED', style: Theme.of(context).textTheme.display1.copyWith(color:Colors.white70, fontWeight: FontWeight.bold)),
+           SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
               child: Container(
                 width: sizingInfo.screenSize.width * 0.7,
+                //padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                    color: themeData.accentColor,
-                    borderRadius: BorderRadius.circular(16)),
+                    border: Border.all(
+                      color: Colors.white54,
+                      width: 0.2,
+                    ),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(50)),
                 child: Center(
-                    child: Padding(
-                  padding: const EdgeInsets.only(top: 32, bottom: 32),
-                  child: Text(
-                    "MyVoiceCounts",
-                    style: themeData.textTheme.display4
-                        .copyWith(color: themeData.primaryColorDark),
+                    child: Container(
+                  width: sizingInfo.screenSize.width,
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white54),
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Center(
+                    child: Text(
+                      "Agree? Disagree? Undecided",
+                      style: themeData.textTheme.bodyText1.copyWith(
+                          color: Colors.white70, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                )
-                ),
+                )),
               ),
             ),
-            Text('A live sentiment map of how',style: themeData.textTheme.display2 ),
-            Text('Constituents Feel', style: themeData.textTheme.display2.copyWith(color : themeData.accentColor))
-          ],
+            Text('How people feel on issues\nand personalities. Open to all',
+                textAlign: TextAlign.center,
+                style: themeData.textTheme.bodyText1.copyWith(color:Colors.white54)),
+           ],
         )),
       );
     });
