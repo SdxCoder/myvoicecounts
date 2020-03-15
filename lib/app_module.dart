@@ -22,6 +22,7 @@ class AppModule extends MainModule {
      Bind((i) => SettingsService()),
      Bind((i) => CandidateService()),
        Bind((i) => IssuesService()),
+       Bind((i) => SfvService()),
   ];
 
   @override

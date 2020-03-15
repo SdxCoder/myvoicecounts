@@ -73,17 +73,13 @@ class SettingsViewModel extends BaseModel {
         _currentUser.party != null &&
         _currentUser.zip != null) {
       int integrity = _currentUser.integrity;
-      // if (integrity == 0) {
-      //   showActionDialogBox(
-      //       onPressedYes: () {
-      //         _settingsService.deleteUser(_currentUser.id);
-      //       },
-      //       title: "Warning",
-      //       description:
-      //           "You have no edits left, if you edit your all data will be lost");
-      // } else {
+     
         _settingsService.updateUser(
-            {'integrity': integrity - 1}, _currentUser.id).then((value) {
+            { 
+              'isComplete': true,
+              'integrity': integrity - 1,
+              
+            }, _currentUser.id).then((value) {
           fetchUpdatedUser();
         });
       //}

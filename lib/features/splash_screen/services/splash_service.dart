@@ -49,7 +49,10 @@ class SplashService {
     try {
       var authResult = await _firebaseAuth.signInAnonymously();
 
-      await createUser(User(id: authResult.user.uid, integrity: 3));
+      await createUser(User(
+        isComplete: false,
+        id: authResult.user.uid,
+         integrity: 3));
 
       await _populateCurrentUser(authResult.user);
 

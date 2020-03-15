@@ -22,7 +22,7 @@ class Candidate extends Equatable{
 
   Map<String, dynamic> toMap(String id){
     return {
-      'id': id,
+      'id': id, // document id
       'name' : this.name,
       'party' : this.party,
       'imageUrl' : this.imageUrl,

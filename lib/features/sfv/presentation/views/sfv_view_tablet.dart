@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_model.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 import '../widgets/video_player.dart';
 
 class SfvViewTablet extends StatefulWidget {
+  final SfvViewModel model;
+
+  const SfvViewTablet({Key key, this.model}) : super(key: key);
   @override
   _SfvViewTabletState createState() => _SfvViewTabletState();
 }

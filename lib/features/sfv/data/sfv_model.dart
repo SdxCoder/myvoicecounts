@@ -1,0 +1,47 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
+
+class Sfv extends Equatable{
+  final String title;
+  final String link;
+  final String videoUrl;
+  final String adminId;
+  final String _documentId;
+
+  String get documentId => _documentId;
+
+  Sfv({this.link, this.videoUrl, this.title, this.adminId, documentId}) : _documentId = documentId;
+
+  Sfv.fromMap(Map<String, dynamic> map,  DocumentSnapshot snapshot) :
+   
+   this.title = map['title'],
+   this.link = map['link'],
+   this.videoUrl = map['videoUrl'],
+   this.adminId = map['adminId'],
+   this._documentId = snapshot.documentID;
+
+  Map<String, dynamic> toMap(String id){
+    return {
+      'id': id,
+      'title' : this.title,
+      'link' : this.link,
+      'videoUrl' : this.videoUrl,
+      'adminId': this.adminId
+    };
+  }
+
+  @override
+  List<Object> get props => [
+    title, link, videoUrl, adminId, _documentId
+  ];
+}
+
+
+class CloudStorageVideoResult {
+  final String videoUrl;
+
+  CloudStorageVideoResult({this.videoUrl});
+
+  
+}

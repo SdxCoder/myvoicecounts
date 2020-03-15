@@ -11,9 +11,10 @@ class User {
   final String race;
   final String party;
   final int integrity;
+  final bool isComplete;
 
   User( {this.id, this.age, this.city, this.state, this.zip, this.ethnicity,
-      this.gender, this.race, this.party, this.integrity,});
+      this.gender, this.race, this.party, this.integrity,this.isComplete});
 
   User.fromData(Map<String, dynamic> data)
       : id = data['id'],
@@ -25,7 +26,8 @@ class User {
         gender = data['gender'],
         race = data['race'],
         party = data['party'],
-        integrity = data['integrity'];
+        integrity = data['integrity'],
+        isComplete = data['isComplete'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -38,7 +40,8 @@ class User {
       'gender':gender,
       'race':race,
       'party':party,
-      'integrity': integrity
+      'integrity': integrity,
+      'isComplete': isComplete
     };
   }
 }
