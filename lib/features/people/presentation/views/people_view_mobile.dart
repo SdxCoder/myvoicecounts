@@ -199,7 +199,9 @@ class PeopleViewMobile extends StatelessWidget {
                 ButtonBar(
                   children: <Widget>[
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          model.voteForPerson(candidate, 'agree');
+                        },
                         child: Icon(
                           FontAwesomeIcons.thumbsUp,
                           color: Colors.green,
@@ -207,7 +209,9 @@ class PeopleViewMobile extends StatelessWidget {
                         )),
                     SizedBox(width: 1),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                           model.voteForPerson(candidate, 'disagree');
+                        },
                         child: Icon(
                           FontAwesomeIcons.thumbsDown,
                           color: Colors.red,
@@ -215,7 +219,9 @@ class PeopleViewMobile extends StatelessWidget {
                         )),
                     SizedBox(width: 1),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                           model.voteForPerson(candidate, 'undecided');
+                        },
                         child: Icon(
                           FontAwesomeIcons.timesCircle,
                           color: Colors.grey,

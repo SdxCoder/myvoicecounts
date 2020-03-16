@@ -183,7 +183,9 @@ Widget _peopleItem(
         ButtonBar(
           children: <Widget>[
             InkWell(
-                onTap: () {},
+                onTap: () {
+                   model.voteForPerson(candidate, 'agree');
+                },
                 child: Icon(FontAwesomeIcons.thumbsUp,
                     color: Colors.green,
                     size: sizingInfo.screenSize.width * 0.04)),
@@ -191,7 +193,9 @@ Widget _peopleItem(
               width: 1,
             ),
             InkWell(
-                onTap: () {},
+                onTap: () {
+                   model.voteForPerson(candidate, 'disagree');
+                },
                 child: Icon(FontAwesomeIcons.thumbsDown,
                     color: Colors.red,
                     size: sizingInfo.screenSize.width * 0.04)),
@@ -199,7 +203,9 @@ Widget _peopleItem(
               width: 1,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                 model.voteForPerson(candidate, 'undecided');
+              },
               child: Icon(FontAwesomeIcons.timesCircle,
                   color: Colors.grey, size: sizingInfo.screenSize.width * 0.04),
             ),

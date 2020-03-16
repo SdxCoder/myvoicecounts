@@ -162,19 +162,25 @@ Widget _issueItem(
         ButtonBar(
           children: <Widget>[
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  model.voteForIssue(issue, 'agree');
+                },
                 child: Icon(FontAwesomeIcons.thumbsUp,
                     color: Colors.green,
                     size: sizingInfo.screenSize.width * 0.04)),
             SizedBox(width: 8),
             InkWell(
-                onTap: () {},
+                onTap: () {
+                   model.voteForIssue(issue, 'disagree');
+                },
                 child: Icon(FontAwesomeIcons.thumbsDown,
                     color: Colors.red,
                     size: sizingInfo.screenSize.width * 0.04)),
             SizedBox(width: 8),
             InkWell(
-                onTap: () {},
+                onTap: () {
+                   model.voteForIssue(issue, 'undecided');
+                },
                 child: Icon(FontAwesomeIcons.timesCircle,
                     color: Colors.grey,
                     size: sizingInfo.screenSize.width * 0.04)),

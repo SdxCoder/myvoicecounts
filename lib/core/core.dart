@@ -6,3 +6,5 @@ export './routes/paths.dart';
 export './contants/firestore_contants.dart';
 export './shared_widgets/dialog_widget.dart';
 export '../features/splash_screen/services/splash_service.dart';
+export '../core/shared_services/shared_prefs.dart';
+export '../core/extensions/extension.dart';

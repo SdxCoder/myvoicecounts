@@ -10,6 +10,7 @@ class IssueView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider.withConsumer(
+      onModelReady: (IssueViewModel model) => model.fetchUpdatedUser(),
       viewModel: IssueViewModel(),
       builder: (context, model, child) =>
            Scaffold(

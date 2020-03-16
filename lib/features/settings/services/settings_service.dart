@@ -15,9 +15,6 @@ class SettingsService{
   User _currentUser;
   User get currentUser => _currentUser;
 
-
-
-
   Future updateUser(Map<String, dynamic> map, String userId) async {
     try {
       await _instance.collection(Db.usersCollection)

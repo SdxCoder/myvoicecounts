@@ -66,6 +66,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
 
   /// Create series list with multiple series
   static List<charts.Series<OrdinalAdu, String>> _createTopAgeData() {
+   
     final agreed = [
       new OrdinalAdu('15-20', 5),
       new OrdinalAdu('21-35', 25),

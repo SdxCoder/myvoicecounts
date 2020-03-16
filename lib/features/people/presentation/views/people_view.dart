@@ -12,6 +12,7 @@ class PeopleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider.withConsumer(
+      onModelReady: (CandidateViewModel model) => model.fetchUpdatedUser(),
       viewModel: CandidateViewModel(),
       builder: (context, model, child)
           => Scaffold(

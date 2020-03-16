@@ -50,6 +50,7 @@ class SplashService {
       var authResult = await _firebaseAuth.signInAnonymously();
 
       await createUser(User(
+        voteIntegrity: 3,
         isComplete: false,
         id: authResult.user.uid,
          integrity: 3));
@@ -73,7 +74,9 @@ class SplashService {
     }
   }
 
-  Future _getUser(String uid) async {
+ 
+
+  Future getUser(String uid) async {
     try {
       var userData = await _userCollection.document(uid).get();
       return User.fromData(userData.data);
@@ -85,7 +88,7 @@ class SplashService {
   Future _populateCurrentUser(FirebaseUser user) async {
     if (user != null) {
       _firebaseUser = user;
-      _currentUser = await _getUser(user.uid);
+      _currentUser = await getUser(user.uid);
     }
   }
 }
