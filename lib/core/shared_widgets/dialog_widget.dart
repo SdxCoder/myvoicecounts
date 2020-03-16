@@ -55,6 +55,8 @@ Future<void> showInfoDialogBox({
 
 
 
+
+
 Future<void> showActionDialogBox({
   @required String title,
   @required String description,
@@ -113,6 +115,42 @@ Future<void> showActionDialogBox({
     },
   );
 }
+
+
+
+Future<void> showCustomDialogBox({
+  @required String title,
+  @required Widget content,
+  Function onPressedYes,
+  String buttonText = "Ok",
+}) async {
+  print("show dialog");
+  await showDialog<void>(
+    context: Modular.navigatorKey.currentState.overlay.context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        actions: <Widget>[
+          
+          RaisedButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      color: themeData.accentColor,
+                      elevation: 0,
+                      child: Text(buttonText),
+                      onPressed: onPressedYes
+                    ),
+         
+          
+        ],
+        content: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: content
+        ),
+      );
+    },
+  );
+}
+
 
 Future showSnackBarInfo({String desc}){
  var context = Modular.navigatorKey.currentState.overlay.context;

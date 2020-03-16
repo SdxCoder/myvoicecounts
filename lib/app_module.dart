@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/core.dart';
 import 'core/routes/paths.dart';
 import 'features/data/data.dart';
+import 'features/data/services/data_issue_service.dart';
 import 'features/data_by_candidate/data_cadidate.dart';
 import 'features/home/home.dart';
 import './features/splash_screen/splash_module.dart';
@@ -26,6 +27,7 @@ class AppModule extends MainModule {
         Bind((i) => CandidateService()),
         Bind((i) => IssuesService()),
         Bind((i) => SfvService()),
+        Bind((i) => DataIssueService())
         //Bind((i)  async => SharedPrefs(await SharedPreferences.getInstance()), singleton: true)
       ];
 

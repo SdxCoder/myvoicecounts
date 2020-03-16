@@ -6,8 +6,8 @@ class VoteIssue {
   final String issueId;
   final String issueName;
   final String adu;
-  final String date;
-  final String age;
+  final DateTime date;
+  final int age;
   final String ethnicity;
   final String gender;
   final String party;

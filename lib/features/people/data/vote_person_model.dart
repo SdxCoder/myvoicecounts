@@ -8,7 +8,7 @@ class VotePerson {
   final String personId;
   final String personName;
   final String adu;
-  final String date;
+  final DateTime date;
  
 
   VotePerson(

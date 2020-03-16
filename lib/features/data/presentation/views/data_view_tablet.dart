@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:myvoicecounts/features/data/presentation/views/legends.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
@@ -12,6 +13,9 @@ import '../widgets/grouped_age_graphs.dart';
 import '../widgets/widgets.dart';
 
 class DataViewTablet extends StatelessWidget {
+  final DataByIssueViewModel model;
+
+  const DataViewTablet({Key key, this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -29,7 +33,7 @@ class DataViewTablet extends StatelessWidget {
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   crossAxisSpacing: sizingInfo.screenSize.height * 0.02,
                   children: <Widget>[
-                    _buildGraphByTopAge(context, sizingInfo),
+                    _buildGraphByTopAge(context, sizingInfo, model),
                     _buildGraphByGender(context, sizingInfo),
                     _buildGraphByEthnicity(context, sizingInfo),
                     _buildGraphByRace(context, sizingInfo),
@@ -118,7 +122,7 @@ class DataViewTablet extends StatelessWidget {
     );
   }
 
-  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo) {
+  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo, model) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -133,7 +137,7 @@ class DataViewTablet extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedTopAgeGraph.withTopAgeData(sizingInfo),
+            child: GroupedTopAgeGraph.withTopAgeData(sizingInfo, createTopAgeData(model)),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,

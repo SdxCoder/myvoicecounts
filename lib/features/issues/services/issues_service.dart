@@ -13,7 +13,7 @@ class IssuesService {
 
   Future addVoteForIssue(VoteIssue vote, uid) async{
      try {
-        await _instance.collection('votesByIssue-${DateTime.now().getDate()}').document(uid).setData(vote.toMap());
+        await _instance.collection(Db.issueVotesCollection).document("$uid-${DateTime.now().getDate()}").setData(vote.toMap());
       } catch (e) {
         return e.message;
       }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class GroupedTopAgeGraph extends StatelessWidget {
@@ -8,16 +9,24 @@ class GroupedTopAgeGraph extends StatelessWidget {
   final bool animate;
   final SizingInformation sizingInfo;
 
-  GroupedTopAgeGraph(this.seriesList, {this.animate, this.sizingInfo});
+  GroupedTopAgeGraph(this.seriesList,
+      {this.animate, this.sizingInfo});
 
-  factory GroupedTopAgeGraph.withTopAgeData(sizingInfo) {
-    return new GroupedTopAgeGraph(
-      _createTopAgeData(),
-      // Disable animations for image tests.
-      sizingInfo: sizingInfo,
-      animate: false,
-    );
-  }
+  // factory GroupedTopAgeGraph.withTopAgeData(sizingInfo, model) {
+  //   return new GroupedTopAgeGraph(
+  //     _createTopAgeData(),
+  //     // Disable animations for image tests.
+  //     sizingInfo: sizingInfo,
+  //     model: model,
+  //     animate: false,
+  //   );
+  // }
+
+  GroupedTopAgeGraph.withTopAgeData(sizingInfo, seriesList)
+      : sizingInfo = sizingInfo,
+        animate = false,
+        seriesList = seriesList
+      ;
 
   @override
   Widget build(BuildContext context) {
@@ -25,39 +34,31 @@ class GroupedTopAgeGraph extends StatelessWidget {
       seriesList,
       animate: animate,
       barGroupingType: charts.BarGroupingType.grouped,
-      behaviors: [
-      
-
-     
-      ],
+      behaviors: [],
       primaryMeasureAxis: new charts.NumericAxisSpec(
         renderSpec: new charts.GridlineRendererSpec(
           // Tick and Label styling here.
 
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width <= 600) ? 
-              (sizingInfo.screenSize.width*0.02).toInt() :
-              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600)
+                  ? (sizingInfo.screenSize.width * 0.02).toInt()
+                  : (sizingInfo.screenSize.height * 0.02)
+                      .toInt(), // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
-
-      
-
-    
-
-       domainAxis: new charts.OrdinalAxisSpec(
+      domainAxis: new charts.OrdinalAxisSpec(
         renderSpec: new charts.SmallTickRendererSpec(
           // Tick and Label styling here.
-           lineStyle: charts.LineStyleSpec(
-            thickness: 0,
-            color: charts.ColorUtil.fromDartColor(Colors.white)
-          ),
-          labelOffsetFromAxisPx: 16, 
+          lineStyle: charts.LineStyleSpec(
+              thickness: 0,
+              color: charts.ColorUtil.fromDartColor(Colors.white)),
+          labelOffsetFromAxisPx: 16,
           labelStyle: new charts.TextStyleSpec(
-              fontSize: (sizingInfo.screenSize.width <= 600) ? 
-              (sizingInfo.screenSize.width*0.02).toInt() :
-              (sizingInfo.screenSize.height*0.02).toInt() , // size in Pts.
+              fontSize: (sizingInfo.screenSize.width <= 600)
+                  ? (sizingInfo.screenSize.width * 0.02).toInt()
+                  : (sizingInfo.screenSize.height * 0.02)
+                      .toInt(), // size in Pts.
               color: charts.MaterialPalette.black),
         ),
       ),
@@ -65,8 +66,9 @@ class GroupedTopAgeGraph extends StatelessWidget {
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<OrdinalAdu, String>> _createTopAgeData() {
-   
+}
+
+ List<charts.Series<OrdinalAdu, String>> createTopAgeData(DataByIssueViewModel model) {
     final agreed = [
       new OrdinalAdu('15-20', 5),
       new OrdinalAdu('21-35', 25),
@@ -120,7 +122,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
       ),
     ];
   }
-}
+
 
 /// Sample ordinal data type.
 class OrdinalAdu {

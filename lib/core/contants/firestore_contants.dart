@@ -8,6 +8,6 @@ class Db{
   static const String issuesCollection = 'issues';
   static const String adminCollection = 'admins';
   static const String accountsDetails = "accounts";
-  static const String issueVotes = "issueVotes";
-  static const String personVotes = "personVotes";
+  static const String issueVotesCollection = "issueVotes";
+  static const String personVotesCollection = "personVotes";
 }

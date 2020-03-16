@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:myvoicecounts/features/data/presentation/views/legends.dart';
+import 'package:myvoicecounts/features/data/presentation/widgets/date_picker.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
@@ -12,6 +15,9 @@ import '../widgets/grouped_age_graphs.dart';
 import '../widgets/widgets.dart';
 
 class DataViewMobile extends StatelessWidget {
+  final DataByIssueViewModel model;
+
+  const DataViewMobile({Key key, this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -28,12 +34,12 @@ class DataViewMobile extends StatelessWidget {
                   bottom: sizingInfo.screenSize.width * 0.2),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: GridView.count(
+                child:(model.buzy == true) ? Center(child: Text("No Data"),): GridView.count(
                   physics: BouncingScrollPhysics(),
                   crossAxisCount: 1,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   children: <Widget>[
-                    _buildGraphByTopAge(context, sizingInfo),
+                    _buildGraphByTopAge(context, sizingInfo, model),
                     _buildGraphByGender(context, sizingInfo),
                     _buildGraphByEthnicity(context, sizingInfo),
                     _buildGraphByRace(context, sizingInfo),
@@ -51,8 +57,7 @@ class DataViewMobile extends StatelessWidget {
                 child: Text(
                   "Regulate Fracking?",
                   style: themeData.textTheme.body1.copyWith(
-                      color: Colors.grey,
-                      fontSize: headlineSize(sizingInfo)),
+                      color: Colors.grey, fontSize: headlineSize(sizingInfo)),
                 ),
               ),
             ),
@@ -63,7 +68,21 @@ class DataViewMobile extends StatelessWidget {
                   backgroundColor: themeData.primaryColor,
                   foregroundColor: Colors.white,
                   tooltip: "Select Date",
-                  onPressed: () {},
+                  onPressed: () async {
+                    await showCustomDialogBox(
+                      title: "Select Date",
+                      onPressedYes: () {
+                        Modular.to.pop();
+                      },
+                      content: DateRangePicker(
+                        onNewRangeSelected: (period) {
+                          model.fetchPeriod(period);
+                          model.fetchAduByAgeGroups(period);
+                        },
+                      ),
+                    );
+                    print(model.selectedPeriod.end.day);
+                  },
                   child: Icon(
                     FontAwesomeIcons.calendarAlt,
                   )),
@@ -123,7 +142,7 @@ class DataViewMobile extends StatelessWidget {
     );
   }
 
-  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo) {
+  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo, model) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -138,7 +157,7 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedTopAgeGraph.withTopAgeData(sizingInfo),
+            child: GroupedTopAgeGraph.withTopAgeData(sizingInfo, createTopAgeData(model)),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,

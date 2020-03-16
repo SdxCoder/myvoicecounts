@@ -31,14 +31,14 @@ class IssueViewModel extends BaseModel{
     if(await _manageVoteIntegrity()) return;
   
     var result  = await _issueService.addVoteForIssue(VoteIssue(
-      documentId: _currentUser.id,
-       age: _currentUser.age,
+       documentId: _currentUser.id,
+       age: int.parse(_currentUser.age),
        ethnicity: _currentUser.ethnicity,
        gender: _currentUser.gender,
        party: _currentUser.party,
        race: _currentUser.race,
        adu: adu,
-       date: DateTime.now().getDate(),
+       date: DateTime.now(),
        issueId: issue.documentId,
        issueName: issue.issueName
     ), _currentUser.id);

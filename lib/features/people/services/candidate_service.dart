@@ -17,7 +17,7 @@ class CandidateService {
 
    Future addVoteForPerson(VotePerson vote, uid) async{
      try {
-        await _instance.collection('votesByPerson-${DateTime.now().getDate()}').document(uid).setData(vote.toMap());
+        await _instance.collection(Db.personVotesCollection).document("$uid-${DateTime.now().getDate()}").setData(vote.toMap());
       } catch (e) {
         return e.message;
       }
