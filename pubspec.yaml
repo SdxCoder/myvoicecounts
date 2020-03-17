@@ -38,6 +38,8 @@ dependencies:
   shared_preferences: ^0.5.6+3
   # date_range_picker: ^1.0.6
   flutter_date_pickers: ^0.0.6
+  flutter_map: ^0.8.2
+  latlong: ^0.6.1
   # device_id: ^0.2.0
 
 

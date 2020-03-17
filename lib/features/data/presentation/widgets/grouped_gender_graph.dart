@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class GroupedGenderGraph extends StatelessWidget {
@@ -12,16 +13,11 @@ class GroupedGenderGraph extends StatelessWidget {
 
  
 
-  factory GroupedGenderGraph.withGenderData(sizingInfo) {
-    return new GroupedGenderGraph(
-      _createGenderData(),
-      // Disable animations for image tests.
-      animate: false,
-      sizingInfo: sizingInfo,
-
-    );
-  }
-
+  GroupedGenderGraph.withGenderData(sizingInfo, seriesList)
+      : sizingInfo = sizingInfo,
+        animate = false,
+        seriesList = seriesList
+      ;
 
   @override
   Widget build(BuildContext context) {
@@ -60,23 +56,35 @@ class GroupedGenderGraph extends StatelessWidget {
 
     );
   }
+}
+    ///
+/// Sample ordinal data type.
 
-    /// Create series list with multiple series
-  static List<charts.Series<OrdinalAgeAdu, String>> _createGenderData() {
+
+class OrdinalAgeAdu{
+  final String gender;
+  final int adu;
+
+  OrdinalAgeAdu(this.gender, this.adu);
+
+}
+
+
+  List<charts.Series<OrdinalAgeAdu, String>> createGenderData(DataByIssueViewModel model) {
     final agreed = [
-      new OrdinalAgeAdu('Males', 5),
-      new OrdinalAgeAdu('Females', 25),
+      new OrdinalAgeAdu('Males',  model.data.agree.male),
+      new OrdinalAgeAdu('Females', model.data.agree.female),
      
     ];
 
     final disagreed = [
-     new OrdinalAgeAdu('Males', 35),
-      new OrdinalAgeAdu('Females', 100),
+     new OrdinalAgeAdu('Males', model.data.disagree.male),
+      new OrdinalAgeAdu('Females', model.data.disagree.female),
     ];
 
     final undecided = [
-       new OrdinalAgeAdu('Males', 25),
-      new OrdinalAgeAdu('Females', 75),
+       new OrdinalAgeAdu('Males', model.data.undecided.male),
+      new OrdinalAgeAdu('Females', model.data.undecided.female),
     ];
 
 
@@ -110,15 +118,3 @@ class GroupedGenderGraph extends StatelessWidget {
       ),
     ];
   }
-}
-
-/// Sample ordinal data type.
-
-
-class OrdinalAgeAdu{
-  final String gender;
-  final int adu;
-
-  OrdinalAgeAdu(this.gender, this.adu);
-
-}

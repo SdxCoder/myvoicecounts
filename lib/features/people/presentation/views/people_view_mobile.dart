@@ -169,7 +169,7 @@ class PeopleViewMobile extends StatelessWidget {
                       sizingInfo.screenSize.width < 400)
                   ? 40
                   : 60,
-              backgroundImage: AssetImage('images/donald.jpg'),
+              backgroundImage: NetworkImage(candidate.imageUrl),
             ),
           ),
           SizedBox(width: (sizingInfo.screenSize.width < 400) ? 20 : 40),

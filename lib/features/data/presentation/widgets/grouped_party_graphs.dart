@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class GroupedPartyGraph extends StatelessWidget {
@@ -10,14 +11,11 @@ class GroupedPartyGraph extends StatelessWidget {
 
   GroupedPartyGraph(this.seriesList, {this.animate, this.sizingInfo});
 
-  factory GroupedPartyGraph.withPartyData(sizingInfo) {
-    return new GroupedPartyGraph(
-      _createPartyData(),
-      // Disable animations for image tests.
-      sizingInfo: sizingInfo,
-      animate: false,
-    );
-  }
+ GroupedPartyGraph.withPartyData(sizingInfo, seriesList)
+      : sizingInfo = sizingInfo,
+        animate = false,
+        seriesList = seriesList
+      ;
 
   @override
   Widget build(BuildContext context) {
@@ -61,26 +59,38 @@ class GroupedPartyGraph extends StatelessWidget {
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<OrdinalPartyAdu, String>> _createPartyData() {
+}
+
+/// Sample ordinal data type.
+class OrdinalPartyAdu {
+  final String party;
+  final int adu;
+
+  OrdinalPartyAdu(this.party, this.adu);
+}
+
+
+
+List<charts.Series<OrdinalPartyAdu, String>> createPartyData(DataByIssueViewModel model) {
     final agreed = [
-      new OrdinalPartyAdu('Democrat', 5),
-      new OrdinalPartyAdu('Independent', 25),
-      new OrdinalPartyAdu('Republican', 100),
-      new OrdinalPartyAdu('Other', 75),
+      new OrdinalPartyAdu('Democrat', model.data.agree.democrat),
+      new OrdinalPartyAdu('Independent', model.data.agree.independent),
+      new OrdinalPartyAdu('Republican', model.data.agree.republic),
+      new OrdinalPartyAdu('Other', model.data.agree.other),
     ];
 
     final disagreed = [
-      new OrdinalPartyAdu('Democrat', 5),
-      new OrdinalPartyAdu('Independent', 25),
-      new OrdinalPartyAdu('Republican', 100),
-      new OrdinalPartyAdu('Other', 75),
+      new OrdinalPartyAdu('Democrat', model.data.disagree.democrat),
+      new OrdinalPartyAdu('Independent', model.data.disagree.independent),
+      new OrdinalPartyAdu('Republican', model.data.disagree.republic),
+      new OrdinalPartyAdu('Other', model.data.disagree.other),
     ];
 
     final undecided = [
-      new OrdinalPartyAdu('Democrat', 5),
-      new OrdinalPartyAdu('Independent', 25),
-      new OrdinalPartyAdu('Republican', 100),
-      new OrdinalPartyAdu('Other', 75),
+      new OrdinalPartyAdu('Democrat', model.data.undecided.democrat),
+      new OrdinalPartyAdu('Independent', model.data.undecided.independent),
+      new OrdinalPartyAdu('Republican', model.data.undecided.republic),
+      new OrdinalPartyAdu('Other', model.data.undecided.other),
     ];
 
     return [
@@ -115,12 +125,3 @@ class GroupedPartyGraph extends StatelessWidget {
       ),
     ];
   }
-}
-
-/// Sample ordinal data type.
-class OrdinalPartyAdu {
-  final String party;
-  final int adu;
-
-  OrdinalPartyAdu(this.party, this.adu);
-}

@@ -15,10 +15,10 @@ class SplashScreenMobile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
               child: Container(
-                height: sizingInfo.screenSize.width * 0.5,
-                width: sizingInfo.screenSize.width * 0.5,
+                height: sizingInfo.screenSize.width * 0.4,
+                width: sizingInfo.screenSize.width * 0.4,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
+                    color: Colors.transparent,
                     image: DecorationImage(
                         image: AssetImage('images/mvc_logo.png')),
                     borderRadius: BorderRadius.all(Radius.circular(20))),

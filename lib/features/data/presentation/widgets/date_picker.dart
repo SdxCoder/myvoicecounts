@@ -14,6 +14,7 @@ class DateRangePicker extends StatelessWidget {
         onModelReady: (DateRangePickerModel model) => model.initialize(),
         viewModel: DateRangePickerModel(),
         builder: (context, model, child) => Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildWeekDatePicker(model: model),
           ],

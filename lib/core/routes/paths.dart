@@ -9,5 +9,6 @@ class Paths{
   static const String dataByIssue = '/dataByIssue';
   static const String settings = '/settings';
   static const String sfv = '/sfv';
+  static const String sfvPlayer = '/player';
   
 }

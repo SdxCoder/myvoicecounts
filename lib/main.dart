@@ -11,10 +11,11 @@ import 'core/core.dart';
 
 void main() {
   runApp(
-    // DevicePreview(
-    //  builder: (context) =>
+     DevicePreview(
+       enabled: false,
+      builder: (context) =>
     ModularApp(module: AppModule()),
-    //),
+    ),
   );
 
    BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
@@ -69,6 +70,7 @@ class _AppState extends State<App> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+       builder: DevicePreview.appBuilder,
          initialRoute: '/',
          onGenerateRoute: Modular.generateRoute,
          navigatorKey: Modular.navigatorKey,

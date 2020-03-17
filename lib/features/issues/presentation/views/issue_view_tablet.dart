@@ -75,7 +75,7 @@ class IssueViewTablet extends StatelessWidget {
                             style: themeData.textTheme.display2
                                 .copyWith(color: Color(hexColor('f2f2f2')))),
                         onPressed: () {
-                          Modular.to.pushReplacementNamed(Paths.dataByIssue);
+                          model.navigateToData();
                           // Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
                         },
                         color: Colors.green,
@@ -150,7 +150,7 @@ Widget _issueItem(
         SizedBox(
           height: sizingInfo.screenSize.height * 0.2,
           child: Center(
-            child: Text("Enviornment",
+            child: Text(issue.issueName,
                 style: (sizingInfo.screenSize.height < 800)
                     ? themeData.textTheme.display3.copyWith(
                         color: Colors.black54, fontWeight: FontWeight.bold)

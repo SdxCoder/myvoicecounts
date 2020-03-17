@@ -3,7 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:myvoicecounts/features/data/presentation/views/legends.dart';
+import 'package:myvoicecounts/features/data/presentation/widgets/date_picker.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
+import 'package:myvoicecounts/features/issues/data/issue_model.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -14,8 +16,9 @@ import '../widgets/widgets.dart';
 
 class DataViewTablet extends StatelessWidget {
   final DataByIssueViewModel model;
+  final Issue issue;
 
-  const DataViewTablet({Key key, this.model}) : super(key: key);
+  const DataViewTablet({Key key, this.model, this.issue}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -23,17 +26,26 @@ class DataViewTablet extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: sizingInfo.screenSize.height*0.17,
+              margin: EdgeInsets.only(top: sizingInfo.screenSize.height*0.1,
               bottom: sizingInfo.screenSize.height*0.1),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-                child: GridView.count(
+                child:
+                 (model.buzy) ? Center(child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(themeData.primaryColor),
+                ),):
+                (model.noData == true)
+                    ? Center(
+                        child: Text("No Data"),
+                      )
+                    :
+                 GridView.count(
                   physics: BouncingScrollPhysics(),
                   crossAxisCount: 2,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   crossAxisSpacing: sizingInfo.screenSize.height * 0.02,
                   children: <Widget>[
-                    _buildGraphByTopAge(context, sizingInfo, model),
+                    _buildGraphByTopAge(context, sizingInfo),
                     _buildGraphByGender(context, sizingInfo),
                     _buildGraphByEthnicity(context, sizingInfo),
                     _buildGraphByRace(context, sizingInfo),
@@ -62,7 +74,20 @@ class DataViewTablet extends StatelessWidget {
                   backgroundColor: themeData.primaryColor,
                   foregroundColor: Colors.white,
                   tooltip: "Select Date",
-                  onPressed: () {},
+                  onPressed: () async{
+                     await showCalenderDialogBox(
+                      title: "Select Date",
+                      content: DateRangePicker(
+                        onNewRangeSelected: (period){
+                          model.fetchPeriod(period);
+                           model.fetchData(period, issue.documentId);
+                        },
+                      )
+                    );
+                   
+                    
+                    print("${model.selectedPeriod.start} - ${model.selectedPeriod.start}");
+                  },
                   child: Icon(
                     FontAwesomeIcons.calendarAlt,
                   )),
@@ -122,7 +147,7 @@ class DataViewTablet extends StatelessWidget {
     );
   }
 
-  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo, model) {
+  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -130,7 +155,7 @@ class DataViewTablet extends StatelessWidget {
           Text('TOP 5 AGE GROUPS',
               style: themeData.textTheme.body1.copyWith(
                 fontSize: sizingInfo.screenSize.height * 0.04,
-                fontWeight: FontWeight.bold,
+              //  fontWeight: FontWeight.light,
                 color: Colors.black54,
               )),
           SizedBox(
@@ -156,14 +181,14 @@ class DataViewTablet extends StatelessWidget {
           Text('GENDER',
               style: themeData.textTheme.body1.copyWith(
                 fontSize: sizingInfo.screenSize.height * 0.04,
-                fontWeight: FontWeight.bold,
+               // fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
           SizedBox(
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedGenderGraph.withGenderData(sizingInfo),
+            child: GroupedGenderGraph.withGenderData(sizingInfo, createGenderData(model)),
           ),
            SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -183,14 +208,14 @@ class DataViewTablet extends StatelessWidget {
           Text('ETHNICITY',
               style: themeData.textTheme.body1.copyWith(
                 fontSize: sizingInfo.screenSize.height * 0.04,
-                fontWeight: FontWeight.bold,
+             //   fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
           SizedBox(
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedEthnicityGraph.withEthnicityData(sizingInfo),
+            child: GroupedEthnicityGraph.withEthnicityData(sizingInfo, createEthnicityData(model)),
           ),
            SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -210,14 +235,14 @@ class DataViewTablet extends StatelessWidget {
           Text('PARTY',
               style: themeData.textTheme.body1.copyWith(
                 fontSize: sizingInfo.screenSize.height * 0.04,
-                fontWeight: FontWeight.bold,
+              //  fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
           SizedBox(
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedPartyGraph.withPartyData(sizingInfo),
+            child: GroupedPartyGraph.withPartyData(sizingInfo,createPartyData(model)),
           ),
            SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -238,14 +263,14 @@ class DataViewTablet extends StatelessWidget {
           Text('RACE',
               style: themeData.textTheme.body1.copyWith(
                 fontSize: sizingInfo.screenSize.height * 0.04,
-                fontWeight: FontWeight.bold,
+             //   fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
           SizedBox(
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedRaceGraph.withRaceData(sizingInfo),
+            child: GroupedRaceGraph.withRaceData(sizingInfo, createRaceData(model)),
           ),
            SizedBox(
             height: sizingInfo.screenSize.height * 0.03,

@@ -16,37 +16,40 @@ Future<void> showInfoDialogBox({
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 16),
-                Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      title,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
-                Divider(),
-                Wrap(
-                  direction: Axis.horizontal,
-                  children: <Widget>[
-                    Text(description),
-                  ],
-                ),
-                Divider(),
-                Align(
-                    alignment: Alignment.center,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      color: themeData.accentColor,
-                      elevation: 0,
-                      child: Text(buttonText),
-                      onPressed: () {
-                        Modular.navigatorKey.currentState.pop();
-                      },
-                    )),
-              ]),
+          child: Container(
+            width: 400,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 16),
+                  Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        title,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  Divider(),
+                  Wrap(
+                    direction: Axis.horizontal,
+                    children: <Widget>[
+                      Text(description),
+                    ],
+                  ),
+                  Divider(),
+                  Align(
+                      alignment: Alignment.center,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        color: themeData.accentColor,
+                        elevation: 0,
+                        child: Text(buttonText),
+                        onPressed: () {
+                          Modular.navigatorKey.currentState.pop();
+                        },
+                      )),
+                ]),
+          ),
         ),
       );
     },
@@ -91,25 +94,28 @@ Future<void> showActionDialogBox({
         ],
         content: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 16),
-                Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      title,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
-                Divider(),
-                Wrap(
-                  direction: Axis.horizontal,
-                  children: <Widget>[
-                    Text(description),
-                  ],
-                ),
-              ]),
+          child: Container(
+            width: 400,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 16),
+                  Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        title,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  Divider(),
+                  Wrap(
+                    direction: Axis.horizontal,
+                    children: <Widget>[
+                      Text(description),
+                    ],
+                  ),
+                ]),
+          ),
         ),
       );
     },
@@ -118,11 +124,12 @@ Future<void> showActionDialogBox({
 
 
 
-Future<void> showCustomDialogBox({
+Future<void> showCalenderDialogBox({
   @required String title,
   @required Widget content,
   Function onPressedYes,
   String buttonText = "Ok",
+  String buttonTextCancel = "No"
 }) async {
   print("show dialog");
   await showDialog<void>(
@@ -131,13 +138,24 @@ Future<void> showCustomDialogBox({
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         actions: <Widget>[
+            // FlatButton(
+            //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                     
+      
+            //           child: Text(buttonTextCancel, style: TextStyle(color: themeData.accentColor)),
+            //           onPressed: (){
+            //             return Modular.to.pop(false);
+            //           }
+            //         ),
           
           RaisedButton(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       color: themeData.accentColor,
                       elevation: 0,
                       child: Text(buttonText),
-                      onPressed: onPressedYes
+                      onPressed: (){
+                         Modular.to.pop();
+                      }
                     ),
          
           

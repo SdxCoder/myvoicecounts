@@ -2,6 +2,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data_by_candidate/presentation/view_models/data_person_view_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class PieChartGraph extends StatelessWidget {
@@ -12,14 +13,11 @@ class PieChartGraph extends StatelessWidget {
   PieChartGraph(this.seriesList, {this.animate, this.sizingInfo});
 
   /// Creates a [PieChart] with sample data and no transition.
-  factory PieChartGraph.withCandidateData(sizingInfo) {
-    return new PieChartGraph(
-      _createCandidateData(),
-      // Disable animations for image tests.
-      animate: false,
-      sizingInfo: sizingInfo,
-    );
-  }
+ PieChartGraph.withCandidateData(sizingInfo, seriesList)
+      : sizingInfo = sizingInfo,
+        animate = false,
+        seriesList = seriesList
+      ;
 
 
   @override
@@ -44,11 +42,22 @@ class PieChartGraph extends StatelessWidget {
   }
 
   /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, String>> _createCandidateData() {
+  
+}
+
+/// Sample linear data type.
+class LinearSales {
+  final String year;
+  final int sales;
+
+  LinearSales(this.year, this.sales);
+}
+
+ List<charts.Series<LinearSales, String>> createCandidateData(DataByPersonViewModel model) {
     final data = [
-      new LinearSales("Agreed", 100),
-      new LinearSales("Disagreed", 75),
-      new LinearSales("Undecided", 25),
+      new LinearSales("Agreed", 1),
+      new LinearSales("Disagreed",0),
+      new LinearSales("Undecided", 0),
     ];
 
     return [
@@ -70,12 +79,3 @@ class PieChartGraph extends StatelessWidget {
       ),
     ];
   }
-}
-
-/// Sample linear data type.
-class LinearSales {
-  final String year;
-  final int sales;
-
-  LinearSales(this.year, this.sales);
-}

@@ -37,7 +37,7 @@ class PeopleViewTablet extends StatelessWidget {
                 ),
               ),
               SizedBox(height: sizingInfo.screenSize.height * 0.05),
-              Expanded(child: _candidatesStream(context, model)),
+              Expanded(child: _candidatesStream(sizingInfo, model)),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(
@@ -72,9 +72,8 @@ class PeopleViewTablet extends StatelessWidget {
                             style: themeData.textTheme.display2
                                 .copyWith(color: Color(hexColor('f2f2f2')))),
                         onPressed: () {
-                          Modular.to
-                              .pushReplacementNamed(Paths.dataByPersonality);
-                          //  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataCandidateView()));
+                          model.navigateToData();
+                            //  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataCandidateView()));
                         },
                         color: Colors.green,
                       ),

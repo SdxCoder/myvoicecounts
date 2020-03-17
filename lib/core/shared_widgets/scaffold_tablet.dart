@@ -17,8 +17,9 @@ class ScaffoldTablet extends StatelessWidget {
       children: <Widget>[
         SafeArea(
           child: Container(
-            height: 120,
+            width: 120,
             decoration: BoxDecoration(color: themeData.primaryColorLight),
+            
           ),
         ),
         Padding(

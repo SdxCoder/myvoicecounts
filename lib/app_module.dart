@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/features/people/services/candidate_service.dart';
 import 'package:myvoicecounts/features/settings/services/settings_service.dart';
 import 'package:myvoicecounts/features/settings/settings.dart';
+import 'package:myvoicecounts/features/sfv/presentation/widgets/awesom_video_player.dart';
 import 'package:myvoicecounts/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/core.dart';
@@ -10,6 +11,7 @@ import 'core/routes/paths.dart';
 import 'features/data/data.dart';
 import 'features/data/services/data_issue_service.dart';
 import 'features/data_by_candidate/data_cadidate.dart';
+import 'features/data_by_candidate/services/data_person_service.dart';
 import 'features/home/home.dart';
 import './features/splash_screen/splash_module.dart';
 import 'features/issues/issues.dart';
@@ -27,7 +29,8 @@ class AppModule extends MainModule {
         Bind((i) => CandidateService()),
         Bind((i) => IssuesService()),
         Bind((i) => SfvService()),
-        Bind((i) => DataIssueService())
+        Bind((i) => DataIssueService()),
+         Bind((i) => DataPersonService())
         //Bind((i)  async => SharedPrefs(await SharedPreferences.getInstance()), singleton: true)
       ];
 
@@ -43,6 +46,7 @@ class AppModule extends MainModule {
         Router(Paths.dataByPersonality,
             child: (_, args) => DataCandidateView(candidate: args.data)),
         Router(Paths.sfv, child: (_, args) => SfvView()),
+        Router(Paths.sfvPlayer, child: (_, args) => PlaySfvWidget( sfv : args.data)),
       ];
 
   @override

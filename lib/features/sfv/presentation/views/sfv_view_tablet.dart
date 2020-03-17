@@ -1,76 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_model.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 import '../widgets/video_player.dart';
 
-class SfvViewTablet extends StatefulWidget {
+class SfvViewTablet extends StatelessWidget {
   final SfvViewModel model;
 
   const SfvViewTablet({Key key, this.model}) : super(key: key);
-  @override
-  _SfvViewTabletState createState() => _SfvViewTabletState();
-}
-
-class _SfvViewTabletState extends State<SfvViewTablet> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) => ScaffoldTablet(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 32),
-          child: _sfvList(context, sizingInfo),
-        ),
+        body: (model.buzy)
+            ? Center(child: CircularProgressIndicator())
+            : (model.sfvList.isEmpty)
+                ? Center(child: Text("No Sfvs"))
+                : Column(
+                    children: <Widget>[
+                      SizedBox(height: 20),
+                      Text(
+                        "SFVs",
+                        style: themeData.textTheme.body1.copyWith(
+                          color: Colors.grey,
+                          fontSize: headlineSize(sizingInfo)
+                        ),
+                      ),
+                      Expanded(child: _buildSfvsList(model, sizingInfo)),
+                    ],
+                  ),
       ),
     );
   }
-}
 
-Widget _sfvList(BuildContext context, SizingInformation sizingInfo) {
-  return ListView.builder(
-    physics: BouncingScrollPhysics(),
-    itemCount: 10,
-    itemBuilder: (BuildContext context, int index) {
-      return Column(
-        children: <Widget>[
-          InkWell(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return VideoApp(
-                  url:
-                      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-                  sizingInfo: sizingInfo,
-                );
-              }));
-            },
-            child: Row(
-              children: <Widget>[
-                Container(
-                  height: sizingInfo.screenSize.height * 0.4,
-                  width: sizingInfo.screenSize.width * 0.4,
-                  child: Image.asset('images/thumbnail.png'),
-                ),
-                SizedBox(
-                  width: sizingInfo.screenSize.width * 0.05,
-                ),
-                Text(
-                  "Video Title",
-                  style: themeData.textTheme.body1.copyWith(
-                      color: Colors.black54,
-                      fontSize: sizingInfo.screenSize.height * 0.04),
-                ),
-              ],
+  Widget _buildSfvsList(SfvViewModel model, SizingInformation sizingInfo) {
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: model.sfvList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
+          children: <Widget>[
+            ListTile(
+              leading: CircleAvatar(
+                  backgroundColor: themeData.primaryColor.withOpacity(0.1),
+                  maxRadius: 50,
+                  child: Icon(
+                    Icons.play_arrow,
+                    color: themeData.primaryColor,
+                  )),
+              title: Text(model.sfvList[index].title),
+              onTap: () {
+                Modular.to.pushNamed("player", arguments: model.sfvList[index]);
+              },
             ),
-          ),
-          SizedBox(height: sizingInfo.screenSize.height * 0.00),
-        ],
-      );
-    },
-  );
+            Divider()
+          ],
+        );
+      },
+    );
+  }
 }

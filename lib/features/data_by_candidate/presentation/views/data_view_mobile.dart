@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/widgets/date_picker.dart';
+import 'package:myvoicecounts/features/data_by_candidate/presentation/view_models/data_person_view_model.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
+import 'package:myvoicecounts/features/people/data/candidate.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../widgets/widgets.dart';
 
 class DataViewMobile extends StatelessWidget {
+  final DataByPersonViewModel model;
+  final Candidate candidate;
+
+  const DataViewMobile({Key key, this.model, this.candidate}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -23,7 +30,15 @@ class DataViewMobile extends StatelessWidget {
               bottom: sizingInfo.screenSize.width*0.2),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: GridView.count(
+                child: (model.buzy) ? Center(child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(themeData.primaryColor),
+                ),):
+                (model.noData == true)
+                    ? Center(
+                        child: Text("No Data"),
+                      )
+                    : 
+                GridView.count(
                   physics: BouncingScrollPhysics(),
                   crossAxisCount: 1,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
@@ -43,7 +58,7 @@ class DataViewMobile extends StatelessWidget {
                   "How am I doing?",
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey,
-                      fontSize:sizingInfo.screenSize.width*0.06),
+                      fontSize:headlineSize(sizingInfo),),
                 ),
               ),
             ),
@@ -54,7 +69,20 @@ class DataViewMobile extends StatelessWidget {
                   backgroundColor: themeData.primaryColor,
                   foregroundColor: Colors.white,
                   tooltip: "Select Date",
-                  onPressed: () {},
+                   onPressed: () async {
+                    await showCalenderDialogBox(
+                      title: "Select Date",
+                      content: DateRangePicker(
+                        onNewRangeSelected: (period){
+                          model.fetchPeriod(period);
+                           model.fetchData(period, candidate.documentId);
+                        },
+                      )
+                    );
+                   
+                    
+                    print("${model.selectedPeriod.start} - ${model.selectedPeriod.end}");
+                  },
                   child: Icon(
                     FontAwesomeIcons.calendarAlt,
                   )),
@@ -119,9 +147,9 @@ class DataViewMobile extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
-          Text('Sentiment on ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+          Text('Sentiment on ${model.selectedPeriod.start.getDate()} to ${model.selectedPeriod.end.getDate()}',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.05,
+                fontSize:headlineSize(sizingInfo),
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
@@ -129,7 +157,7 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: PieChartGraph.withCandidateData(sizingInfo),
+            child: PieChartGraph.withCandidateData(sizingInfo, createCandidateData(model)),
           )
         ],
       ),

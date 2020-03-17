@@ -10,7 +10,8 @@ class SplashViewModel extends BaseModel {
   final SplashService _splashService = Modular.get<SplashService>();
 
   Future handleStartUpLogic() async {
-     final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
+    
     var result = await _splashService.signInAnonymously();
 
     if (result is String) {
@@ -19,12 +20,11 @@ class SplashViewModel extends BaseModel {
         Modular.to.pushReplacementNamed(Paths.splash);
       });
     } else {
-      await _checkAccountStatus(result,prefs);
+      await _checkAccountStatus(result, prefs);
     }
   }
 
   Future _checkAccountStatus(user, prefs) async {
-    
     var result = await _splashService.checkAccountStatus(user);
 
     if (result is String) {
@@ -42,9 +42,14 @@ class SplashViewModel extends BaseModel {
             SystemChannels.platform.invokeMethod('SystemNavigator.pop');
           },
           onPressedYes: () async {
-            // final prefs = await SharedPreferences.getInstance();
-            //  await prefs.setString('uid', user.uid);
-            //   _splashService.addToAccounts(user);
+            if (prefs.containsKey('uid')) {
+              if (prefs.getString('uid') != user.uid) {
+                await prefs.remove('uid');
+                await prefs.setString('uid', user.uid);
+              }
+            } else {
+              await prefs.setString('uid', user.uid);
+            }
             Modular.to.pushReplacementNamed(Paths.home);
           },
           description:
@@ -52,9 +57,10 @@ class SplashViewModel extends BaseModel {
         );
       } else {
         _splashService.addToAccounts(user);
-       
+
         if (prefs.containsKey('uid')) {
           if (prefs.getString('uid') != user.uid) {
+            await prefs.remove('uid');
             await prefs.setString('uid', user.uid);
           }
         } else {

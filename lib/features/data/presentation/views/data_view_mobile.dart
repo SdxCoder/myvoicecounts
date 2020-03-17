@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_date_pickers/flutter_date_pickers.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
@@ -6,6 +7,7 @@ import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue
 import 'package:myvoicecounts/features/data/presentation/views/legends.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/date_picker.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
+import 'package:myvoicecounts/features/issues/data/issue_model.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -16,8 +18,9 @@ import '../widgets/widgets.dart';
 
 class DataViewMobile extends StatelessWidget {
   final DataByIssueViewModel model;
+  final Issue issue;
 
-  const DataViewMobile({Key key, this.model}) : super(key: key);
+  const DataViewMobile({Key key, this.model, this.issue}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -34,18 +37,26 @@ class DataViewMobile extends StatelessWidget {
                   bottom: sizingInfo.screenSize.width * 0.2),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child:(model.buzy == true) ? Center(child: Text("No Data"),): GridView.count(
-                  physics: BouncingScrollPhysics(),
-                  crossAxisCount: 1,
-                  mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
-                  children: <Widget>[
-                    _buildGraphByTopAge(context, sizingInfo, model),
-                    _buildGraphByGender(context, sizingInfo),
-                    _buildGraphByEthnicity(context, sizingInfo),
-                    _buildGraphByRace(context, sizingInfo),
-                    _buildGraphByParty(context, sizingInfo)
-                  ],
-                ),
+                child: 
+                (model.buzy) ? Center(child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(themeData.primaryColor),
+                ),):
+                (model.noData == true)
+                    ? Center(
+                        child: Text("No Data"),
+                      )
+                    : GridView.count(
+                        physics: BouncingScrollPhysics(),
+                        crossAxisCount: 1,
+                        mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
+                        children: <Widget>[
+                          _buildGraphByTopAge(context, sizingInfo),
+                          _buildGraphByGender(context, sizingInfo,),
+                          _buildGraphByEthnicity(context, sizingInfo),
+                          _buildGraphByRace(context, sizingInfo),
+                          _buildGraphByParty(context, sizingInfo)
+                        ],
+                      ),
               ),
             ),
             Align(
@@ -69,19 +80,18 @@ class DataViewMobile extends StatelessWidget {
                   foregroundColor: Colors.white,
                   tooltip: "Select Date",
                   onPressed: () async {
-                    await showCustomDialogBox(
+                    await showCalenderDialogBox(
                       title: "Select Date",
-                      onPressedYes: () {
-                        Modular.to.pop();
-                      },
                       content: DateRangePicker(
-                        onNewRangeSelected: (period) {
+                        onNewRangeSelected: (period){
                           model.fetchPeriod(period);
-                          model.fetchAduByAgeGroups(period);
+                           model.fetchData(period, issue.documentId);
                         },
-                      ),
+                      )
                     );
-                    print(model.selectedPeriod.end.day);
+                   
+                    
+                    print("${model.selectedPeriod.start} - ${model.selectedPeriod.start}");
                   },
                   child: Icon(
                     FontAwesomeIcons.calendarAlt,
@@ -142,7 +152,7 @@ class DataViewMobile extends StatelessWidget {
     );
   }
 
-  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo, model) {
+  Widget _buildGraphByTopAge(context, SizingInformation sizingInfo) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -157,7 +167,8 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedTopAgeGraph.withTopAgeData(sizingInfo, createTopAgeData(model)),
+            child: GroupedTopAgeGraph.withTopAgeData(
+                sizingInfo, createTopAgeData(model)),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -183,7 +194,7 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedGenderGraph.withGenderData(sizingInfo),
+            child: GroupedGenderGraph.withGenderData(sizingInfo, createGenderData(model)),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -209,7 +220,7 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedEthnicityGraph.withEthnicityData(sizingInfo),
+            child: GroupedEthnicityGraph.withEthnicityData( sizingInfo,createEthnicityData(model) ),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -235,7 +246,7 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedPartyGraph.withPartyData(sizingInfo),
+            child: GroupedPartyGraph.withPartyData(sizingInfo, createPartyData(model)),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
@@ -261,7 +272,7 @@ class DataViewMobile extends StatelessWidget {
             height: sizingInfo.screenSize.width * 0.05,
           ),
           Expanded(
-            child: GroupedRaceGraph.withRaceData(sizingInfo),
+            child: GroupedRaceGraph.withRaceData(sizingInfo, createRaceData(model)),
           ),
           SizedBox(
             height: sizingInfo.screenSize.height * 0.03,

@@ -38,7 +38,7 @@ class IssueViewModel extends BaseModel{
        party: _currentUser.party,
        race: _currentUser.race,
        adu: adu,
-       date: DateTime.now(),
+       date: DateTime.now().toUtc(),
        issueId: issue.documentId,
        issueName: issue.issueName
     ), _currentUser.id);

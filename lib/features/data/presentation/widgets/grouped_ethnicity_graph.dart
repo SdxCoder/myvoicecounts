@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue_view_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class GroupedEthnicityGraph extends StatelessWidget {
@@ -12,16 +13,11 @@ class GroupedEthnicityGraph extends StatelessWidget {
 
  
 
-  factory GroupedEthnicityGraph.withEthnicityData(sizingInfo) {
-    return new GroupedEthnicityGraph(
-      _createEthnicityData(),
-      // Disable animations for image tests.
-      animate: false,
-      sizingInfo: sizingInfo,
-
-    );
-  }
-
+ GroupedEthnicityGraph.withEthnicityData(sizingInfo, seriesList)
+      : sizingInfo = sizingInfo,
+        animate = false,
+        seriesList = seriesList
+      ;
 
   @override
   Widget build(BuildContext context) {
@@ -61,22 +57,34 @@ class GroupedEthnicityGraph extends StatelessWidget {
     );
   }
 
-    /// Create series list with multiple series
-  static List<charts.Series<OrdinalEthnicityAdu, String>> _createEthnicityData() {
+   }   /// Create series list with multiple series
+ 
+/// Sample ordinal data type.
+
+
+class OrdinalEthnicityAdu{
+  final String ethnicity;
+  final int adu;
+
+  OrdinalEthnicityAdu(this.ethnicity, this.adu);
+
+}
+
+  List<charts.Series<OrdinalEthnicityAdu, String>> createEthnicityData(DataByIssueViewModel model) {
     final agreed = [
-      new OrdinalEthnicityAdu('Hispanic\nLatino', 5),
-      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', 25),
+      new OrdinalEthnicityAdu('Hispanic\nLatino', model.data.agree.hisp),
+      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', model.data.agree.notHisp),
      
     ];
 
     final disagreed = [
-     new OrdinalEthnicityAdu('Hispanic\nLatino', 35),
-      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', 100),
+     new OrdinalEthnicityAdu('Hispanic\nLatino', model.data.disagree.hisp),
+      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', model.data.disagree.notHisp),
     ];
 
     final undecided = [
-       new OrdinalEthnicityAdu('Hispanic\nLatino', 25),
-      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', 75),
+       new OrdinalEthnicityAdu('Hispanic\nLatino', model.data.undecided.hisp),
+      new OrdinalEthnicityAdu('Not-Hispanic\nLatino', model.data.undecided.notHisp),
     ];
 
 
@@ -110,15 +118,4 @@ class GroupedEthnicityGraph extends StatelessWidget {
       ),
     ];
   }
-}
 
-/// Sample ordinal data type.
-
-
-class OrdinalEthnicityAdu{
-  final String ethnicity;
-  final int adu;
-
-  OrdinalEthnicityAdu(this.ethnicity, this.adu);
-
-}

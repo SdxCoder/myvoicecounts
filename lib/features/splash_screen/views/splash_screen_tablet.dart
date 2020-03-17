@@ -21,7 +21,7 @@ class SplashScreenTablet extends StatelessWidget {
                 height: sizingInfo.screenSize.width * 0.5,
                 width: sizingInfo.screenSize.width * 0.5,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
+                    color: Colors.transparent,
                     image: DecorationImage(
                         image: AssetImage('images/mvc_logo.png')),
                     borderRadius: BorderRadius.all(Radius.circular(20))),

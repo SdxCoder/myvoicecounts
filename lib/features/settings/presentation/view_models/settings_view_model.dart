@@ -150,7 +150,7 @@ class SettingsViewModel extends BaseModel {
 
   List<String> party = ["Democrat", "Independent", "Republican", "Other"];
   List<String> gender = ["Male", "Female"];
-  List<int> age = List<int>.generate(85, (index) => index + 15);
+  List<int> age = List<int>.generate(51, (index) => index + 15);
 
   List<String> allStates = [
     "Alabama",

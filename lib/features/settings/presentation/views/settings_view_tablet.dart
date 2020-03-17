@@ -37,7 +37,7 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                 "How this works",
                 style: themeData.textTheme.body1.copyWith(
                     color: Colors.black54,
-                    fontSize: sizingInfo.screenSize.height * 0.08),
+                    fontSize: headlineSize(sizingInfo)),
               ),
               SizedBox(
                 height: 16,
@@ -278,9 +278,11 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                 Row(
                 children: <Widget>[
                   IconButton(
+                    iconSize: 48,
                       icon: Icon(
                         Icons.info,
                         color: themeData.primaryColor,
+                       
                       ),
                       onPressed: () {
                         (widget.model.showUpdateReminder() == false)
@@ -291,19 +293,20 @@ class _SettingsViewTabletState extends State<SettingsViewTablet> {
                                     "Please update all the parameters of your profile",
                               );
                       }),
+                    SizedBox(width: 20),
                   (widget.model.showUpdateReminder() == false)
                       ? Text(
                           "Integrity Control:\nEdit ${3 - widget.model.currentUser.integrity} of 3 total before erase",
                           style: themeData.textTheme.body1.copyWith(
                             color: themeData.primaryColorDark,
-                            fontSize: sizingInfo.screenSize.width * 0.05,
+                            fontSize: headlineSize(sizingInfo)
                           ),
                         )
                       : Text(
                           "Please complete your profile",
                           style: themeData.textTheme.body1.copyWith(
                             color: themeData.primaryColorDark,
-                            fontSize: sizingInfo.screenSize.width * 0.05,
+                            fontSize:headlineSize(sizingInfo),
                           ),
                         ),
                 ],

@@ -70,24 +70,24 @@ class GroupedTopAgeGraph extends StatelessWidget {
 
  List<charts.Series<OrdinalAdu, String>> createTopAgeData(DataByIssueViewModel model) {
     final agreed = [
-      new OrdinalAdu('15-20', 5),
-      new OrdinalAdu('21-35', 25),
-      new OrdinalAdu('36-50', 100),
-      new OrdinalAdu('51-65', 75),
+      new OrdinalAdu('15-20', model.data.agree.groupA),
+      new OrdinalAdu('21-35', model.data.agree.groupB),
+      new OrdinalAdu('36-50', model.data.agree.groupC),
+      new OrdinalAdu('51-65', model.data.agree.groupD),
     ];
 
     final disagreed = [
-      new OrdinalAdu('15-20', 25),
-      new OrdinalAdu('21-35', 50),
-      new OrdinalAdu('36-50', 10),
-      new OrdinalAdu('51-65', 20),
+      new OrdinalAdu('15-20', model.data.disagree.groupA),
+      new OrdinalAdu('21-35',  model.data.disagree.groupB),
+      new OrdinalAdu('36-50',  model.data.disagree.groupC),
+      new OrdinalAdu('51-65',  model.data.disagree.groupD),
     ];
 
     final undecided = [
-      new OrdinalAdu('15-20', 45),
-      new OrdinalAdu('21-35', 15),
-      new OrdinalAdu('36-50', 25),
-      new OrdinalAdu('51-65', 45),
+      new OrdinalAdu('15-20',  model.data.undecided.groupA),
+      new OrdinalAdu('21-35', model.data.undecided.groupB),
+      new OrdinalAdu('36-50', model.data.undecided.groupC),
+      new OrdinalAdu('51-65', model.data.undecided.groupD),
     ];
 
     return [

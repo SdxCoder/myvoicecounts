@@ -85,26 +85,26 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                       },
                     ),
                   ),
-                  SizedBox(height: sizingInfo.screenSize.width * 0.03),
-                  SizedBox(
-                    width: sizingInfo.screenSize.width * 0.2,
-                    height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
-                    child: RaisedButton(
-                      color: Colors.green,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      elevation: 0,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: Text(
-                        "DATA",
-                        style: themeData.textTheme.body1,
-                      ),
-                      onPressed: () {
-                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
-                      },
-                    ),
-                  ),
+                  // SizedBox(height: sizingInfo.screenSize.width * 0.03),
+                  // SizedBox(
+                  //   width: sizingInfo.screenSize.width * 0.2,
+                  //   height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
+                  //   child: RaisedButton(
+                  //     color: Colors.green,
+                  //     shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(16)),
+                  //     elevation: 0,
+                  //     padding:
+                  //         EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  //     child: Text(
+                  //       "DATA",
+                  //       style: themeData.textTheme.body1,
+                  //     ),
+                  //     onPressed: () {
+                  //        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DataView()));
+                  //     },
+                  //   ),
+                  // ),
                    SizedBox(height: sizingInfo.screenSize.width * 0.03),
                   SizedBox(
                     width: sizingInfo.screenSize.width * 0.2,
