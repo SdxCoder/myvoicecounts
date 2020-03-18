@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/home/presentation/view_models/home_view_model.dart';
 import 'package:myvoicecounts/features/home/presentation/widget/map.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
@@ -12,10 +13,13 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 
 
-import '../../../data/data.dart';
+  
 
 
 class HomeViewMobile extends StatefulWidget {
+  final HomeViewModel model;
+
+  const HomeViewMobile({Key key, this.model}) : super(key: key);
   @override
   _HomeViewMobileState createState() => _HomeViewMobileState();
 }
@@ -45,16 +49,16 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                 children: <Widget>[
                   Container(
                     // Put Map here
-               
-                    height: sizingInfo.screenSize.height * 0.3,
-                   // child: MapView(),
+                    
+                    height: sizingInfo.screenSize.height * 0.49,
+                    child:(widget.model.buzy) ? Center(child: Text('Loading...')) : MapView(dataList: widget.model.data,),
 
                   ),
                   Positioned(
                       top: 0,
                       right: 16,
-                      child: Text(
-                        "Total Votes\n45,67,800",
+                      child:(widget.model.buzy) ? Text('') : Text(
+                        "Total Votes\n${widget.model.partyData.total}",
                         textAlign: TextAlign.right,
                         style: themeData.textTheme.body1
                             .copyWith(color: themeData.primaryColorLight),
@@ -62,16 +66,27 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 16.0, left: 16, right: 16),
-                child: Row(
+                padding: const EdgeInsets.only(top: 8,bottom: 8.0, left: 16, right: 16),
+                child: (widget.model.buzy) ? Offstage() : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CircleAvatar(
                       backgroundColor: Colors.blue,
                       minRadius: sizingInfo.screenSize.width * 0.07,
-                      child: Text(
-                        "48%",
+                      child:(widget.model.buzy) ? Text('') : Text(
+                        "${widget.model.partyData.independent}%",
                         style: themeData.textTheme.body1,
+                      ),
+                    ),
+                    SizedBox(width: sizingInfo.screenSize.width * 0.03),
+                    CircleAvatar(
+                      backgroundColor: Colors.yellow,
+                      minRadius: sizingInfo.screenSize.width * 0.07,
+                      child: Text(
+                        "${widget.model.partyData.republic}%",
+                        style: themeData.textTheme.body1.copyWith(
+                          color: Colors.black54
+                        ),
                       ),
                     ),
                     SizedBox(width: sizingInfo.screenSize.width * 0.03),
@@ -79,16 +94,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                       backgroundColor: Colors.red,
                       minRadius: sizingInfo.screenSize.width * 0.07,
                       child: Text(
-                        "22%",
-                        style: themeData.textTheme.body1,
-                      ),
-                    ),
-                    SizedBox(width: sizingInfo.screenSize.width * 0.03),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      minRadius: sizingInfo.screenSize.width * 0.07,
-                      child: Text(
-                        "25%",
+                        "${widget.model.partyData.democrat}%",
                         style: themeData.textTheme.body1
                             .copyWith(color: Colors.black),
                       ),
@@ -98,7 +104,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                       backgroundColor: Colors.grey,
                       minRadius: sizingInfo.screenSize.width * 0.07,
                       child: Text(
-                        "25%",
+                        "${widget.model.partyData.other}%",
                         style: themeData.textTheme.body1
                             .copyWith(color: Colors.black),
                       ),
@@ -106,7 +112,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                   ],
                 ),
               ),
-              SizedBox(height: sizingInfo.screenSize.width * 0.03),
+              SizedBox(height: sizingInfo.screenSize.width * 0.02),
               Column(
                 children: <Widget>[
                   SizedBox(
@@ -194,7 +200,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                       },
                     ),
                   ),
-                  SizedBox(height: 16)
+                  SizedBox(height: 8)
                 ],
               ),
             ],

@@ -4,7 +4,7 @@ import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_model.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
-import '../widgets/video_player.dart';
+
 
 class SfvViewTablet extends StatelessWidget {
   final SfvViewModel model;

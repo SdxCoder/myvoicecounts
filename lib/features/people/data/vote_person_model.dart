@@ -9,6 +9,8 @@ class VotePerson {
   final String personName;
   final String adu;
   final DateTime date;
+  final String state;
+  final String party;
  
 
   VotePerson(
@@ -17,6 +19,8 @@ class VotePerson {
     this.personName,
     this.adu,
     this.date,
+    this.state,
+    this.party,
     documentId}
   ) : this.documentId = documentId;
 
@@ -25,7 +29,8 @@ class VotePerson {
     personName = map['personName'],
     adu = map['adu'],
     date = map['date'],
-   
+    state = map['state'],
+    party = map['party'],
     documentId = map['id'];
 
 
@@ -35,7 +40,9 @@ class VotePerson {
       'personName' : personName,
       'adu' : adu,
       'date' : date,
-      'id': documentId
+      'id': documentId,
+      'state' : state,
+      'party':party
     };
   }
 }

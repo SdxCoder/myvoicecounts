@@ -32,6 +32,8 @@ class CandidateViewModel extends BaseModel{
   
     var result  = await _candidateService.addVoteForPerson(VotePerson(
       documentId: _currentUser.id,
+       state:  _currentUser.state,
+       party: _currentUser.party,
        adu: adu,
        date: DateTime.now(),
        personId: candidate.documentId,

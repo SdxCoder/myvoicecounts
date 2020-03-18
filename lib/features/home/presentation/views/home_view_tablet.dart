@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myvoicecounts/core/core.dart';
+import 'package:myvoicecounts/features/home/presentation/view_models/home_view_model.dart';
+import 'package:myvoicecounts/features/home/presentation/widget/map.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
 import 'package:myvoicecounts/features/sfv/sfv.dart';
@@ -12,6 +14,10 @@ import 'package:responsive_builder/responsive_builder.dart';
 import '../../../data/data.dart';
 
 class HomeViewTablet extends StatefulWidget {
+  final HomeViewModel model;
+
+  const HomeViewTablet({Key key, this.model}) : super(key: key);
+  
   @override
   _HomeViewTabletState createState() => _HomeViewTabletState();
 }
@@ -141,6 +147,7 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                       height: sizingInfo.screenSize.height * 0.7,
 
                       // Put Map here
+                       child:(widget.model.buzy) ? Center(child: Text('Loading...')) : MapView(dataList: widget.model.data,),
                     ),
                     SizedBox(
                       height: 16,
@@ -151,8 +158,8 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                         CircleAvatar(
                           backgroundColor: Colors.blue,
                           minRadius: sizingInfo.screenSize.width * 0.04,
-                          child: Text(
-                            "48%",
+                          child: (widget.model.buzy) ? Text('') : Text(
+                        "${widget.model.partyData.independent}%",
                             style: themeData.textTheme.display2,
                           ),
                         ),
@@ -161,16 +168,16 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                           backgroundColor: Colors.red,
                           minRadius: sizingInfo.screenSize.width * 0.04,
                           child: Text(
-                            "22%",
+                            "${widget.model.partyData.democrat}%",
                             style: themeData.textTheme.display2,
                           ),
                         ),
                         SizedBox(width: sizingInfo.screenSize.width * 0.02),
                         CircleAvatar(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Colors.yellow,
                           minRadius: sizingInfo.screenSize.width * 0.04,
                           child: Text(
-                            "25%",
+                            "${widget.model.partyData.republic}%",
                             style: themeData.textTheme.display2
                                 .copyWith(color: Colors.black),
                           ),
@@ -180,14 +187,14 @@ class _HomeViewTabletState extends State<HomeViewTablet> {
                           backgroundColor: Colors.grey,
                           minRadius: sizingInfo.screenSize.width * 0.04,
                           child: Text(
-                            "25%",
+                             "${widget.model.partyData.other}%",
                             style: themeData.textTheme.display2
                                 .copyWith(color: Colors.black),
                           ),
                         ),
                         Spacer(),
-                        Text(
-                          "Total Votes\n45,67,800",
+                        (widget.model.buzy) ? Text('') : Text(
+                        "Total Votes\n${widget.model.partyData.total}",
                           textAlign: TextAlign.right,
                           style: themeData.textTheme.display3
                               .copyWith(color: themeData.primaryColorLight),

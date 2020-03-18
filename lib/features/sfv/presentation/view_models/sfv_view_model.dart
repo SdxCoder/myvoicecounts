@@ -45,4 +45,15 @@ class SfvViewModel extends BaseModel {
     setBuzy(false);
     _selectedSfv = _sfvList.first;
   }
+
+  Future updateSfv(Map<String, dynamic> map, String sfvId) async {
+    var result = await _sfvService.updateSfv(map, sfvId);
+
+    if(result is String){
+      await showInfoDialogBox(title: "Error", description: result);
+    }
+    else{
+      showSnackBarInfo(desc : "Your vote has been submitted");
+    }
+  }
 }

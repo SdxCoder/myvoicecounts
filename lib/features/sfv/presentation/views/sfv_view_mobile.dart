@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_model.dart';
+import 'package:myvoicecounts/features/sfv/presentation/widgets/awesom_video_player.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SfvViewMobile extends StatelessWidget {
@@ -46,7 +47,10 @@ class SfvViewMobile extends StatelessWidget {
               title: Text(model.sfvList[index].title),
               onTap: () {
               
-               Modular.to.pushNamed("player", arguments: model.sfvList[index]);
+             //  Modular.to.pushNamed("player", arguments: model);
+               Navigator.push(context, MaterialPageRoute(
+                 builder: (context) => PlaySfvWidget(model : model, sfv : model.sfvList[index])
+               ));
                
               },
             ),

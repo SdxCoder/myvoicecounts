@@ -10,9 +10,10 @@ import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_mod
 import 'package:responsive_builder/responsive_builder.dart';
 
 class PlaySfvWidget extends StatelessWidget {
+  final SfvViewModel model;
   final Sfv sfv;
 
-  const PlaySfvWidget({Key key, this.sfv}) : super(key: key);
+  const PlaySfvWidget({Key key, this.model, this.sfv}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,46 +155,58 @@ class PlaySfvWidget extends StatelessWidget {
                                             color: Colors.black54,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          InkWell(
-                                              onTap: () {},
-                                              child: Icon(
-                                                FontAwesomeIcons.thumbsUp,
-                                                color: Colors.green,
-                                                size: (sizingInfo.screenSize.width <
-                                                        400)
-                                                    ? 24
-                                                    : 32,
-                                              )),
-                                          SizedBox(width: 8),
-                                          InkWell(
-                                              onTap: () {},
-                                              child: Icon(
-                                                FontAwesomeIcons.thumbsDown,
-                                                color: Colors.red,
-                                                size: (sizingInfo.screenSize.width <
-                                                        400)
-                                                    ? 24
-                                                    : 32,
-                                              )),
-                                          SizedBox(width: 8),
-                                          InkWell(
-                                            onTap: () {},
-                                            child: Icon(
-                                              FontAwesomeIcons.timesCircle,
-                                              color: Colors.grey,
-                                              size: (sizingInfo.screenSize.width <
-                                                      400)
-                                                  ? 24
-                                                  : 32,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                      // Row(
+                                      //   mainAxisAlignment: MainAxisAlignment.end,
+                                      //   crossAxisAlignment:
+                                      //       CrossAxisAlignment.start,
+                                      //   children: <Widget>[
+                                      //     InkWell(
+                                      //         onTap: () async {
+                                      //           await model.updateSfv({
+                                      //             'agree' : 1
+                                      //           }, sfv.documentId);
+                                      //         },
+                                      //         child: Icon(
+                                      //           FontAwesomeIcons.thumbsUp,
+                                      //           color: Colors.green,
+                                      //           size: (sizingInfo.screenSize.width <
+                                      //                   400)
+                                      //               ? 24
+                                      //               : 32,
+                                      //         )),
+                                      //     SizedBox(width: 8),
+                                      //     InkWell(
+                                      //          onTap: () async {
+                                      //           await model.updateSfv({
+                                      //             'disagree' : 1
+                                      //           }, sfv.documentId);
+                                      //         },
+                                      //         child: Icon(
+                                      //           FontAwesomeIcons.thumbsDown,
+                                      //           color: Colors.red,
+                                      //           size: (sizingInfo.screenSize.width <
+                                      //                   400)
+                                      //               ? 24
+                                      //               : 32,
+                                      //         )),
+                                      //     SizedBox(width: 8),
+                                      //     InkWell(
+                                      //        onTap: () async {
+                                      //           await model.updateSfv({
+                                      //             'agree' : 1
+                                      //           }, sfv.documentId);
+                                      //         },
+                                      //       child: Icon(
+                                      //         FontAwesomeIcons.timesCircle,
+                                      //         color: Colors.grey,
+                                      //         size: (sizingInfo.screenSize.width <
+                                      //                 400)
+                                      //             ? 24
+                                      //             : 32,
+                                      //       ),
+                                      //     ),
+                                      //   ],
+                                      // ),
                                     ],
                                   ),
                                 ),
