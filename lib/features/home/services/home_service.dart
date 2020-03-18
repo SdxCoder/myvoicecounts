@@ -7,7 +7,7 @@ class HomeService {
   Firestore _instance = Firestore.instance;
 
   List<MapData> dataList = List<MapData>();
-  List<MapData> filteredList = List<MapData>();
+  List<String> filteredList = List<String>();
   List<MapData> chosenList = List<MapData>();
   PartyData partyData;
 
@@ -51,57 +51,58 @@ class HomeService {
 
         for (var item in dataList) {
           print("filtered");
-          if (filteredList.contains(item)) {
+          if (filteredList.contains(item.state)) {
             continue;
           } else {
-            filteredList.add(item);
+            filteredList.add(item.state);
           }
         }
         print(filteredList.length);
       }
 
       List<List<MapData>> listSet = [];
-      List<MapData> list = [];
-      for (var item in dataList) {
-        for (var f in filteredList) {
-          if (item == f) {
+      
+      for (var f in filteredList) {
+        List<MapData> list = [];
+        for (var item in dataList) {
+          if (item.state == f) {
             list.add(item);
-            listSet.add(list);
           }
         }
+        listSet.add(list);
       }
 
-      print("list set ${listSet.length}");
+      print("list set ${listSet[1].length}");
 
       List<DominantParty> party = [
-        DominantParty(),
-        DominantParty(),
-        DominantParty(),
-        DominantParty()
+        DominantParty(data: MapData()),
+        DominantParty(data: MapData()),
+        DominantParty(data: MapData()),
+        DominantParty(data: MapData())
       ];
       int max = 0;
       int maxIndex = 0;
 
       for (var eachList in listSet) {
         for (int i = 0; i < eachList.length; i++) {
-          if (eachList[i].party == 'Independent' &&
-              filteredList.contains(eachList[i])) {
+          if (eachList[i].party == 'Independent') {
             party[0].counter = party[0].counter + 1;
+            party[0].data = eachList[i];
           }
 
-          if (eachList[i].party == 'Republican' &&
-              filteredList.contains(eachList[i])) {
-            party[0].counter = party[0].counter + 1;
+          if (eachList[i].party == 'Republican') {
+            party[1].counter = party[1].counter + 1;
+            party[1].data = eachList[i];
           }
 
-          if (eachList[i].party == 'Democrat' &&
-              filteredList.contains(eachList[i])) {
-            party[0].counter = party[0].counter + 1;
+          if (eachList[i].party == 'Democrat') {
+            party[2].counter = party[2].counter + 1;
+            party[2].data = eachList[i];
           }
 
-          if (eachList[i].party == 'Other' &&
-              filteredList.contains(eachList[i])) {
-            party[0].counter = party[0].counter + 1;
+          if (eachList[i].party == 'Other') {
+            party[3].counter = party[3].counter + 1;
+            party[3].data = eachList[i];
           }
 
           for (int i = 0; i < party.length; i++) {
@@ -110,9 +111,6 @@ class HomeService {
               maxIndex = i;
             }
           }
-
-          
-
         }
 
         chosenList.add(party[maxIndex].data);
@@ -183,7 +181,7 @@ class HomeService {
       //   data.color = Colors.grey;
       // }
       print("Chosen list ${chosenList.length}");
-      return dataList;
+      return chosenList;
     } catch (e) {
       print(e);
       return e.toString();

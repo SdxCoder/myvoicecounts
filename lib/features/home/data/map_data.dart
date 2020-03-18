@@ -7,7 +7,7 @@ class DominantParty{
   MapData data;
   int counter;
 
-  DominantParty({this.data, this.counter = 0});
+  DominantParty({this.data , this.counter = 0});
 }
 
 class MapData extends Equatable{
