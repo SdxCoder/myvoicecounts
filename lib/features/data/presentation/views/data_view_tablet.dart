@@ -60,7 +60,7 @@ class DataViewTablet extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Text(
-                  "Regulate Fracking?",
+                  issue.issueName,
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey,
                       fontSize:sizingInfo.screenSize.height*0.06),

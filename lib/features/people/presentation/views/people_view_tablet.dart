@@ -60,7 +60,7 @@ class PeopleViewTablet extends StatelessWidget {
                         color: themeData.accentColor,
                       ),
                     ),
-                    SizedBox(width: sizingInfo.screenSize.width * 0.05),
+                    SizedBox(width: sizingInfo.screenSize.width * 0.1),
                     SizedBox(
                       width: sizingInfo.screenSize.width * 0.3,
                       height: (sizingInfo.screenSize.height < 600) ? 40 : 70,

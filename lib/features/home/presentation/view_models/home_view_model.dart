@@ -14,6 +14,7 @@ class HomeViewModel extends BaseModel {
   bool get noData => _noData;
 
   Future fetchData() async {
+    data = [];
     setBuzy(true);
     var result = await _service.fetchAllVotes();
     if (result is String) {

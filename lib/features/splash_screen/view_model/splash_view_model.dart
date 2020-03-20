@@ -20,7 +20,8 @@ class SplashViewModel extends BaseModel {
         Modular.to.pushReplacementNamed(Paths.splash);
       });
     } else {
-      await _checkAccountStatus(result, prefs);
+      print("check status");
+            await _checkAccountStatus(result, prefs);
     }
   }
 
@@ -57,6 +58,9 @@ class SplashViewModel extends BaseModel {
         );
       } else {
         _splashService.addToAccounts(user);
+        _splashService.updateUser({
+          'lastActive' : DateTime.now().toUtc()
+        }, user.uid);
 
         if (prefs.containsKey('uid')) {
           if (prefs.getString('uid') != user.uid) {

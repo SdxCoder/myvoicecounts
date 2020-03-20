@@ -416,6 +416,7 @@ Future<Map<String, dynamic>> showZip(context, SettingsViewModel model) async {
                       )),
                   Divider(),
                   TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: _zipController,
                     decoration: InputDecoration(
                         hintText: "Enter zip code",

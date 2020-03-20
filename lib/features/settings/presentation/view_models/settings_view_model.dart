@@ -118,6 +118,11 @@ class SettingsViewModel extends BaseModel {
         showSnackBarInfo(desc: "Please enter zip code");
         return true;
       }
+
+       if (!isNumeric(zip)) {
+        showSnackBarInfo(desc: "Only alphabets are allowed");
+        return true;
+      }
     }
 
     if (map.containsKey('city')) {

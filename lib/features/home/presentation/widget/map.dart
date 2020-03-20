@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:myvoicecounts/features/home/data/map_data.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class MapView extends StatelessWidget {
 
   final List<MapData> dataList;
+  
 
   const MapView({Key key, this.dataList}) : super(key: key);
   
@@ -30,35 +32,38 @@ class MapView extends StatelessWidget {
      
     ];
 
-    return Scaffold(
-      body: Column(
-        children: [
-          Flexible(
-            child: FlutterMap(
+    print("Markers : ${markers.length}");
+    return ResponsiveBuilder(
+      builder : (context, sizingInfo) =>
+          Scaffold(
+        body: Column(
+          children: [
+            Flexible(
+              child: FlutterMap(
 
-              options: MapOptions(
-                interactive: true,
-                maxZoom: 5,
-                minZoom: 3.5,
-                rotation: 20,
-                center: LatLng(41.00, -100.00),
-                zoom: 3.5,
-              ),
-              layers: [
-                TileLayerOptions(
-                  urlTemplate:
-                      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  subdomains: ['a', 'b', 'c'],
-                  // For example purposes. It is recommended to use
-                  // TileProvider with a caching and retry strategy, like
-                  // NetworkTileProvider or CachedNetworkTileProvider
-                  tileProvider: NonCachingNetworkTileProvider(),
+                options: MapOptions(
+                  interactive: true,
+                 // maxZoom: 5,
+                 // minZoom: 3.5,
+                  center: (sizingInfo.screenSize.width < 600) ? LatLng(52.00, -107.00) : LatLng(48.00, -107.00),
+                  zoom: (sizingInfo.screenSize.width < 600) ? 2 : 2.5
                 ),
-                MarkerLayerOptions(markers: markers)
-              ],
+                layers: [
+                  TileLayerOptions(
+                    urlTemplate:
+                        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    subdomains: ['a', 'b', 'c'],
+                    // For example purposes. It is recommended to use
+                    // TileProvider with a caching and retry strategy, like
+                    // NetworkTileProvider or CachedNetworkTileProvider
+                   // tileProvider: NonCachingNetworkTileProvider(),
+                  ),
+                  MarkerLayerOptions(markers: markers)
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

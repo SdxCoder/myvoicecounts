@@ -27,21 +27,21 @@ class IssueViewMobile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 24),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Bernie Sanders",
-                      style: themeData.textTheme.body1.copyWith(
-                          color: Colors.grey,
-                          fontSize:
-                              (sizingInfo.screenSize.height < 600) ? 20 : 26),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Divider(
-                    height: 0,
-                  ),
+                  // SizedBox(height: 24),
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child: Text(
+                  //     "Bernie Sanders",
+                  //     style: themeData.textTheme.body1.copyWith(
+                  //         color: Colors.grey,
+                  //         fontSize:
+                  //             (sizingInfo.screenSize.height < 600) ? 20 : 26),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 16),
+                  // Divider(
+                  //   height: 0,
+                  // ),
                   Expanded(child: _issuesStream(sizingInfo, model)),
                   Divider(
                     color: themeData.primaryColorDark,
@@ -54,7 +54,7 @@ class IssueViewMobile extends StatelessWidget {
                         SizedBox(
                           width: sizingInfo.screenSize.width * 0.3,
                           height:
-                              (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                              (sizingInfo.screenSize.width < 600) ? 40 : 70,
                           child: RaisedButton(
                             elevation: 0,
                             shape: RoundedRectangleBorder(
@@ -69,11 +69,12 @@ class IssueViewMobile extends StatelessWidget {
                             color: Colors.yellow,
                           ),
                         ),
-                        SizedBox(width: sizingInfo.screenSize.width * 0.05),
+                        SizedBox(width: sizingInfo.screenSize.width * 0.1),
+                       // Spacer(),
                         SizedBox(
                           width: sizingInfo.screenSize.width * 0.3,
                           height:
-                              (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                              (sizingInfo.screenSize.width < 600) ? 40 : 70,
                           child: RaisedButton(
                             elevation: 0,
                             shape: RoundedRectangleBorder(

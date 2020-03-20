@@ -66,7 +66,7 @@ class DataViewMobile extends StatelessWidget {
                   top: 20,
                 ),
                 child: Text(
-                  "Regulate Fracking?",
+                  issue.issueName,
                   style: themeData.textTheme.body1.copyWith(
                       color: Colors.grey, fontSize: headlineSize(sizingInfo)),
                 ),

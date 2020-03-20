@@ -23,7 +23,7 @@ class SfvViewTablet extends StatelessWidget {
                     children: <Widget>[
                       SizedBox(height: 20),
                       Text(
-                        "SFVs",
+                        "Videos",
                         style: themeData.textTheme.body1.copyWith(
                           color: Colors.grey,
                           fontSize: headlineSize(sizingInfo)

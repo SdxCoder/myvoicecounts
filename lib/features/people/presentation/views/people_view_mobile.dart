@@ -51,7 +51,7 @@ class PeopleViewMobile extends StatelessWidget {
                         SizedBox(
                           width: sizingInfo.screenSize.width * 0.3,
                           height:
-                              (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                              (sizingInfo.screenSize.width < 600) ? 40 : 70,
                           child: RaisedButton(
                             elevation: 0,
                             shape: RoundedRectangleBorder(
@@ -66,11 +66,11 @@ class PeopleViewMobile extends StatelessWidget {
                             color: themeData.accentColor,
                           ),
                         ),
-                        SizedBox(width: sizingInfo.screenSize.width * 0.05),
+                        SizedBox(width: sizingInfo.screenSize.width * 0.1),
                         SizedBox(
                           width: sizingInfo.screenSize.width * 0.3,
                           height:
-                              (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                              (sizingInfo.screenSize.width < 600) ? 40 : 70,
                           child: RaisedButton(
                             elevation: 0,
                             shape: RoundedRectangleBorder(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class User {
@@ -13,8 +14,9 @@ class User {
   final int integrity;
   final bool isComplete;
   final voteIntegrity;
+  final DateTime lastActive;
 
-  User( {this.id, this.age, this.city, this.state, this.zip, this.ethnicity,
+  User( {this.lastActive, this.id, this.age, this.city, this.state, this.zip, this.ethnicity,
       this.gender, this.race, this.party, this.integrity,this.isComplete, this.voteIntegrity});
 
   User.fromData(Map<String, dynamic> data)
@@ -29,9 +31,11 @@ class User {
         party = data['party'],
         integrity = data['integrity'],
         isComplete = data['isComplete'],
+        lastActive= data['lastActive'].toDate(),
         voteIntegrity = data['voteIntegrity'];
 
   Map<String, dynamic> toJson() {
+   
     return {
       'id': id,
       'age':age,
@@ -44,7 +48,10 @@ class User {
       'party':party,
       'integrity': integrity,
       'isComplete': isComplete,
-      'voteIntegrity': voteIntegrity
+      'voteIntegrity': voteIntegrity,
+      'lastActive' : lastActive.toUtc()
     };
+
+    
   }
 }

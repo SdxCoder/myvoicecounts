@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:myvoicecounts/core/core.dart';
 import '../data/user.dart';
 
@@ -49,7 +50,9 @@ class SplashService {
     try {
       var authResult = await _firebaseAuth.signInAnonymously();
 
-      await createUser(User(
+      await createUser(
+        User(
+        lastActive: DateTime.now().toUtc(),
         voteIntegrity: 3,
         isComplete: false,
         id: authResult.user.uid,
@@ -74,11 +77,29 @@ class SplashService {
     }
   }
 
+  
+  Future updateUser(Map<String, dynamic> map, String userId) async {
+    try {
+      await _userCollection
+          .document(userId)
+          .updateData(map);
+      return true;
+    } catch (e) {
+      // TODO: Find or create a way to repeat error handling without so much repeated code
+      if (e is PlatformException) {
+        return e.message;
+      }
+
+      return e.toString();
+    }
+  }
+
  
 
   Future getUser(String uid) async {
     try {
       var userData = await _userCollection.document(uid).get();
+      print(userData.exists);
       return User.fromData(userData.data);
     } catch (e) {
       return e.message;

@@ -71,7 +71,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CircleAvatar(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.green,
                       minRadius: sizingInfo.screenSize.width * 0.07,
                       child:(widget.model.buzy) ? Text('') : Text(
                         "${widget.model.partyData.independent}%",
@@ -80,7 +80,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                     ),
                     SizedBox(width: sizingInfo.screenSize.width * 0.03),
                     CircleAvatar(
-                      backgroundColor: Colors.yellow,
+                      backgroundColor: Colors.red,
                       minRadius: sizingInfo.screenSize.width * 0.07,
                       child: Text(
                         "${widget.model.partyData.republic}%",
@@ -91,7 +91,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                     ),
                     SizedBox(width: sizingInfo.screenSize.width * 0.03),
                     CircleAvatar(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.blue,
                       minRadius: sizingInfo.screenSize.width * 0.07,
                       child: Text(
                         "${widget.model.partyData.democrat}%",
@@ -117,7 +117,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                 children: <Widget>[
                   SizedBox(
                     width: sizingInfo.screenSize.width * 0.4,
-                    height: (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                    height: (sizingInfo.screenSize.width < 600) ? 40 : 70,
                     child: RaisedButton(
                       color: Colors.yellow,
                       shape: RoundedRectangleBorder(
@@ -140,7 +140,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                   SizedBox(height: sizingInfo.screenSize.width * 0.03),
                   SizedBox(
                     width: sizingInfo.screenSize.width * 0.4,
-                    height: (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                    height: (sizingInfo.screenSize.width < 600) ? 40 : 70,
                     child: RaisedButton(
                       color: themeData.accentColor,
                       shape: RoundedRectangleBorder(
@@ -181,7 +181,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                   //  SizedBox(height: sizingInfo.screenSize.width * 0.03),
                   SizedBox(
                     width: sizingInfo.screenSize.width * 0.4,
-                    height: (sizingInfo.screenSize.height < 600) ? 40 : 48,
+                    height: (sizingInfo.screenSize.width < 600) ? 40 : 70,
                     child: RaisedButton(
                       color: Colors.cyan,
                       shape: RoundedRectangleBorder(

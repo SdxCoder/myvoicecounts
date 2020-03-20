@@ -15,7 +15,7 @@ class SfvViewMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldMobile(
-      title: Text("SFV's", style: themeData.textTheme.body1,),
+      title: Text("Videos", style: themeData.textTheme.body1,),
           body: ResponsiveBuilder(
         builder: (context, sizingInfo) => (model.buzy)
             ? Center(child: CircularProgressIndicator())

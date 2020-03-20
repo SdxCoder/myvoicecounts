@@ -12,7 +12,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider.withConsumer(
-      onModelReady: (model) => model.fetchData(),
+      onModelReady: (model){
+        
+        model.fetchData();
+      } ,
       viewModel: HomeViewModel(),
       builder:(context, model, child) => Scaffold(
         body: ScreenTypeLayout.builder(

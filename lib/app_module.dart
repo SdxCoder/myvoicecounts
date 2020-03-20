@@ -14,6 +14,7 @@ import 'features/data_by_candidate/data_cadidate.dart';
 import 'features/data_by_candidate/services/data_person_service.dart';
 import 'features/home/home.dart';
 import './features/splash_screen/splash_module.dart';
+import 'features/home/home_module.dart';
 import 'features/home/services/home_service.dart';
 import 'features/issues/issues.dart';
 import 'features/issues/services/issues_service.dart';
@@ -32,14 +33,15 @@ class AppModule extends MainModule {
         Bind((i) => SfvService()),
         Bind((i) => DataIssueService()),
          Bind((i) => DataPersonService()),
-         Bind((i) => HomeService())
+        
         //Bind((i)  async => SharedPrefs(await SharedPreferences.getInstance()), singleton: true)
       ];
 
   @override
   List<Router> get routers => [
         Router('/', child: (_, args) => SplashView()),
-        Router(Paths.home, child: (_, args) => HomeView()),
+      //  Router(Paths.home, child: (_, args) => HomeView()),
+       Router(Paths.home , module : HomeModule()),
         Router(Paths.settings, child: (_, args) => SettingsView()),
         Router(Paths.people, child: (_, args) => PeopleView()),
         Router(Paths.issues, child: (_, args) => IssueView()),

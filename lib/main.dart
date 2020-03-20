@@ -11,8 +11,8 @@ import 'core/core.dart';
 
 void main() {
   runApp(
-     DevicePreview(
-       enabled: false,
+    DevicePreview(
+      enabled: true,
       builder: (context) =>
     ModularApp(module: AppModule()),
     ),

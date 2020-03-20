@@ -12,6 +12,10 @@ class HomeService {
   PartyData partyData;
 
   Future fetchAllVotes() async {
+    chosenList = [];
+    dataList = [];
+    filteredList = [];
+    partyData = PartyData();
     try {
       QuerySnapshot snapshot =
           await _instance.collection(Db.personVotesCollection).getDocuments();
@@ -26,21 +30,21 @@ class HomeService {
         data.party = snapshot.documents[index].data['party'];
 
         for (int stateIndex = 0; stateIndex < states.length; stateIndex++) {
-          if (snapshot.documents[index].data['state'] == states[stateIndex]) {
+          if (data.state == states[stateIndex]) {
             data.point = statesLatlng[stateIndex];
           }
         }
 
         if (snapshot.documents[index].data['party'] == 'Democrat') {
-          data.color = Colors.red;
-        }
-
-        if (snapshot.documents[index].data['party'] == 'Independent') {
           data.color = Colors.blue;
         }
 
+        if (snapshot.documents[index].data['party'] == 'Independent') {
+          data.color = Colors.green;
+        }
+
         if (snapshot.documents[index].data['party'] == 'Republican') {
-          data.color = Colors.yellow;
+          data.color = Colors.red;
         }
 
         if (snapshot.documents[index].data['party'] == 'Other') {
@@ -50,7 +54,7 @@ class HomeService {
         dataList.add(data);
 
         for (var item in dataList) {
-          print("filtered");
+          print("-----> ${item.state} - ${item.party}");
           if (filteredList.contains(item.state)) {
             continue;
           } else {
@@ -61,8 +65,9 @@ class HomeService {
       }
 
       List<List<MapData>> listSet = [];
-      
+
       for (var f in filteredList) {
+        print(f);
         List<MapData> list = [];
         for (var item in dataList) {
           if (item.state == f) {
@@ -72,18 +77,23 @@ class HomeService {
         listSet.add(list);
       }
 
-      print("list set ${listSet[1].length}");
+      for (var l in listSet) {
+        for (var i in l) {
+          print("${l.length} - ${i.state}");
+        }
+      }
 
-      List<DominantParty> party = [
-        DominantParty(data: MapData()),
-        DominantParty(data: MapData()),
-        DominantParty(data: MapData()),
-        DominantParty(data: MapData())
-      ];
-      int max = 0;
-      int maxIndex = 0;
+      print("list set ${listSet.length}");
 
       for (var eachList in listSet) {
+        int max = 0;
+        int maxIndex = 0;
+        List<DominantParty> party = [
+          DominantParty(data: MapData()),
+          DominantParty(data: MapData()),
+          DominantParty(data: MapData()),
+          DominantParty(data: MapData())
+        ];
         for (int i = 0; i < eachList.length; i++) {
           if (eachList[i].party == 'Independent') {
             party[0].counter = party[0].counter + 1;
@@ -104,82 +114,18 @@ class HomeService {
             party[3].counter = party[3].counter + 1;
             party[3].data = eachList[i];
           }
+        }
 
-          for (int i = 0; i < party.length; i++) {
-            if (party[i].counter > max) {
-              max = party[i].counter;
-              maxIndex = i;
-            }
+        for (int i = 0; i < party.length; i++) {
+          if (party[i].counter > max) {
+            max = party[i].counter;
+            maxIndex = i;
           }
         }
 
         chosenList.add(party[maxIndex].data);
       }
 
-      // List<DominantParty> party = [
-      //   DominantParty(),
-      //   DominantParty(),
-      //   DominantParty(),
-      //   DominantParty()
-      // ];
-      // int max = 0;
-      // int maxIndex = 0;
-      // for (var filter in filteredList) {
-      //   for (int i; i < dataList.length; i++) {
-      //     if (dataList[i].party == 'Independent' &&
-      //         filteredList.contains(dataList[i])) {
-      //       party[0].counter = party[0].counter + 1;
-      //     }
-
-      //     if (dataList[i].party == 'Republican' &&
-      //         filteredList.contains(dataList[i])) {
-      //       party[0].counter = party[0].counter + 1;
-      //     }
-
-      //     if (dataList[i].party == 'Democrat' &&
-      //         filteredList.contains(dataList[i])) {
-      //       party[0].counter = party[0].counter + 1;
-      //     }
-
-      //     if (dataList[i].party == 'Other' &&
-      //         filteredList.contains(dataList[i])) {
-      //       party[0].counter = party[0].counter + 1;
-      //     }
-      //   }
-
-      //   for (int i = 0; i < party.length; i++) {
-      //     if (party[i].counter > max) {
-      //       max = party[i].counter;
-      //       maxIndex = i;
-      //     }
-      //   }
-      // }
-
-      // for (var d in filteredList) {
-      //   chosenList.add(party[maxIndex].data);
-      // }
-
-      // if (maxIndex == 0) {
-
-      //   chosenList.add(MapData(
-      //     party: 'Independent',
-      //     color: Colors.blue,
-      //     point: filteredList.contains('Independent') ?
-      //   ));
-      //   data.color = Colors.blue;
-      // }
-
-      // if (maxIndex == 1) {
-      //   data.color = Colors.yellow;
-      // }
-
-      // if (maxIndex == 2) {
-      //   data.color = Colors.red;
-      // }
-
-      // if (maxIndex == 3) {
-      //   data.color = Colors.grey;
-      // }
       print("Chosen list ${chosenList.length}");
       return chosenList;
     } catch (e) {
