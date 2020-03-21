@@ -20,7 +20,7 @@ class SfvViewMobile extends StatelessWidget {
         builder: (context, sizingInfo) => (model.buzy)
             ? Center(child: CircularProgressIndicator())
             : (model.sfvList.isEmpty)
-                ? Center(child: Text("No Sfvs"))
+                ? Center(child: Text("No Videos today.\n\nPlease check again later"))
                 : Column(
                     children: <Widget>[
                        Expanded(child: _buildSfvsList(model, sizingInfo)),

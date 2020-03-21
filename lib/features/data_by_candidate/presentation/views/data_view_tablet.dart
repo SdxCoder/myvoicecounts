@@ -151,12 +151,12 @@ class DataViewTablet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('Sentiment on ${model.selectedPeriod.start.getDate()} to ${model.selectedPeriod.end.getDate()}',
-                style: themeData.textTheme.body1.copyWith(
-                  fontSize:20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black54,
-                )),
+            // Text('Sentiment on ${model.selectedPeriod.start.getDate()} to ${model.selectedPeriod.end.getDate()}',
+            //     style: themeData.textTheme.body1.copyWith(
+            //       fontSize:20,
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.black54,
+            //     )),
             SizedBox(
               height: sizingInfo.screenSize.width * 0.05,
             ),

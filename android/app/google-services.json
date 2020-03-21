@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "1006500866934",
-    "firebase_url": "https://myvoicecounts-60c77.firebaseio.com",
-    "project_id": "myvoicecounts-60c77",
-    "storage_bucket": "myvoicecounts-60c77.appspot.com"
+    "project_number": "246232077854",
+    "firebase_url": "https://app-opinion8edv1.firebaseio.com",
+    "project_id": "app-opinion8edv1",
+    "storage_bucket": "app-opinion8edv1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1006500866934:android:32c0adf281433ec190a857",
+        "mobilesdk_app_id": "1:246232077854:android:af1cd839c3bb9662a3000f",
         "android_client_info": {
-          "package_name": "myvoicecounts.sdx"
+          "package_name": "opinionated.edv"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1006500866934-dhn2d0f4tlsdral6dk5493imo5nvnoh6.apps.googleusercontent.com",
+          "client_id": "246232077854-0noume0o898toadcl38euhvgvvg1va13.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC95FFctmmSPKMn_tAnPI7nMUot2nN_TXk"
+          "current_key": "AIzaSyCm-yF_PndQxMxfhkn-dGE3ARV85CF9tLA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1006500866934-dhn2d0f4tlsdral6dk5493imo5nvnoh6.apps.googleusercontent.com",
+              "client_id": "246232077854-0noume0o898toadcl38euhvgvvg1va13.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

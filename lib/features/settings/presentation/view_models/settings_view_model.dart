@@ -120,7 +120,7 @@ class SettingsViewModel extends BaseModel {
       }
 
        if (!isNumeric(zip)) {
-        showSnackBarInfo(desc: "Only alphabets are allowed");
+        showSnackBarInfo(desc: "Only digits are allowed");
         return true;
       }
     }

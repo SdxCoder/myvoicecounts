@@ -48,7 +48,10 @@ class HomeViewModel extends BaseModel {
     } else {
       if (result is PartyData) {
         partyData = result;
-        partyData.calculatePercent(partyData.total);
+        if(partyData.total != 0){
+          partyData.calculatePercent(partyData.total);
+        }
+       
       }
     }
     setBuzy(false);

@@ -26,19 +26,19 @@ class IssueViewTablet extends StatelessWidget {
           child: Column(
             children: <Widget>[
               SizedBox(height: sizingInfo.screenSize.height * 0.05),
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Bernie Sanders",
-                  style: themeData.textTheme.display4.copyWith(
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              SizedBox(height: sizingInfo.screenSize.height * 0.05),
-              Divider(
-                height: 0,
-              ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: Text(
+              //     "Bernie Sanders",
+              //     style: themeData.textTheme.display4.copyWith(
+              //       color: Colors.grey,
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: sizingInfo.screenSize.height * 0.05),
+              // Divider(
+              //   height: 0,
+              // ),
               Expanded(child: _issuesStream( sizingInfo, model)),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),

@@ -20,7 +20,7 @@ class DataViewMobile extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) => ScaffoldMobile(
         title: Text(
-          "Demographics By Issue",
+          "Demographics By Personality",
           style: themeData.textTheme.body1,
         ),
         body: Stack(
@@ -147,12 +147,12 @@ class DataViewMobile extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
-          Text('Sentiment on ${model.selectedPeriod.start.getDate()} to ${model.selectedPeriod.end.getDate()}',
-              style: themeData.textTheme.body1.copyWith(
-                fontSize:headlineSize(sizingInfo),
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
-              )),
+          // Text('Sentiment on ${model.selectedPeriod.start.getDate()} to ${model.selectedPeriod.end.getDate()}',
+          //     style: themeData.textTheme.body1.copyWith(
+          //       fontSize:headlineSize(sizingInfo),
+          //       fontWeight: FontWeight.bold,
+          //       color: Colors.black54,
+          //     )),
           SizedBox(
             height: sizingInfo.screenSize.width * 0.05,
           ),

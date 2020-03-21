@@ -19,8 +19,8 @@ class HomeService {
     try {
       QuerySnapshot snapshot =
           await _instance.collection(Db.personVotesCollection).getDocuments();
-
-      // if (snapshot.documents.isEmpty) {
+      print(snapshot.documents);
+      // if (snapshot.documents == null) {
       //   return false;
       // }
 

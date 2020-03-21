@@ -18,7 +18,7 @@ class SfvViewTablet extends StatelessWidget {
         body: (model.buzy)
             ? Center(child: CircularProgressIndicator())
             : (model.sfvList.isEmpty)
-                ? Center(child: Text("No Sfvs"))
+                ? Center(child: Text("No Videos today.\n\nPlease check again later"))
                 : Column(
                     children: <Widget>[
                       SizedBox(height: 20),

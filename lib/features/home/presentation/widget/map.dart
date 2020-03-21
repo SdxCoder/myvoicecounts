@@ -40,9 +40,8 @@ class MapView extends StatelessWidget {
           children: [
             Flexible(
               child: FlutterMap(
-
                 options: MapOptions(
-                  interactive: true,
+                  interactive: false,
                  // maxZoom: 5,
                  // minZoom: 3.5,
                   center: (sizingInfo.screenSize.width < 600) ? LatLng(52.00, -107.00) : LatLng(48.00, -107.00),
