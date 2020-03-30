@@ -27,17 +27,17 @@ class PeopleViewMobile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 24),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Would I Vote for You Today?",
-                      style: themeData.textTheme.body1.copyWith(
-                          color: Colors.grey,
-                          fontSize: headlineSize(sizingInfo)),
-                    ),
-                  ),
-                  SizedBox(height: 16),
+                  // SizedBox(height: 24),
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child: Text(
+                  //     "Would I Vote for You Today?",
+                  //     style: themeData.textTheme.body1.copyWith(
+                  //         color: Colors.grey,
+                  //         fontSize: headlineSize(sizingInfo)),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 16),
                   Expanded(child: _candidatesStream(sizingInfo, model)),
                   Divider(
                     height: 0,

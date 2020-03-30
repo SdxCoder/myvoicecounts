@@ -18,7 +18,7 @@ class PeopleView extends StatelessWidget {
           => Scaffold(
             body: ScreenTypeLayout.builder(
           mobile: (context) => PeopleViewMobile(model:model),
-          tablet: (context) => PeopleViewTablet(model: model),
+         // tablet: (context) => PeopleViewTablet(model: model),
         ),
       ),
     );

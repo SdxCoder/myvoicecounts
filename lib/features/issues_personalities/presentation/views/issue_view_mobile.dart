@@ -22,7 +22,7 @@ class IssueViewMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) => ScaffoldMobile(
-          title: Text('Core Issues', style: themeData.textTheme.body1),
+          title: Text('Personality on Core Issues', style: themeData.textTheme.body1),
           body: SizedBox(
             width: sizingInfo.screenSize.width,
             height: sizingInfo.screenSize.height,

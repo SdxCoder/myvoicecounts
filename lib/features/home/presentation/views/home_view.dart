@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
       builder:(context, model, child) => Scaffold(
         body: ScreenTypeLayout.builder(
           mobile: (context) => HomeViewMobile(model : model),
-          tablet: (context) => HomeViewTablet(model : model),
+         // tablet: (context) => HomeViewTablet(model : model),
         ),
       ),
     );

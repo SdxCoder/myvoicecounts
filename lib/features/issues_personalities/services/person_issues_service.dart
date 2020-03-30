@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:myvoicecounts/core/core.dart';
@@ -7,23 +6,52 @@ import '../data/vote_person_issue_model.dart';
 class PersonIssuesService {
   final _instance = Firestore.instance;
 
-   Stream<QuerySnapshot> getIssuesStream(){
+  Stream<QuerySnapshot> getIssuesStream() {
     return _instance.collection(Db.issuesCollection).snapshots();
   }
 
-  Future addVoteForPersonIssue(VotePersonIssue vote, uid) async{
-     try {
-        await _instance.collection(Db.personIssuesVotesCollection).document("$uid-${DateTime.now().getDate()}").setData(vote.toMap());
+  Future addVoteForPersonIssue(VotePersonIssue vote) async {
+    DocumentSnapshot snapshot = await _instance
+        .collection(Db.personIssuesVotesCollection)
+        .document(
+            "${vote.personId}-${vote.issueId}-${DateTime.now().getDate()}")
+        .get();
+
+    if (snapshot.exists == false) {
+      try {
+        await _instance
+            .collection(Db.personIssuesVotesCollection)
+            .document("${vote.personId}-${vote.issueId}-${DateTime.now().getDate()}")
+            .setData(vote.toMap());
       } catch (e) {
         return e.message;
       }
+    }else{
+       int voteIntegrity = await getPersonIssueVoteIntegrityByDay(vote.personId, vote.issueId);
+      await updatePersonIssueVote({
+        'personId': vote.personId,
+        'personName':vote.personName,
+        'issueId': vote.issueId,
+        'issueName': vote.issueName,
+        'adu': vote.adu,
+        'date': vote.date,
+        'ethnicity': vote.ethnicity,
+        'age': vote.age,
+        'gender': vote.gender,
+        'party': vote.party,
+        'race': vote.race,
+        'state': vote.state,
+        'id': vote.documentId,
+        'voteIntegrity': voteIntegrity - 1
+      }, vote.issueId, vote.personId);
+    }
   }
 
-
-  Future updateUser(Map<String, dynamic> map, String userId) async {
+  Future updatePersonIssueVote(Map<String, dynamic> map, String issueId, String personId) async {
     try {
-      await _instance.collection(Db.usersCollection)
-          .document(userId)
+      await _instance
+          .collection(Db.personIssuesVotesCollection)
+          .document("$personId-$issueId-${DateTime.now().getDate()}")
           .updateData(map);
       return true;
     } catch (e) {
@@ -36,5 +64,35 @@ class PersonIssuesService {
     }
   }
 
+  Future<int> getPersonIssueVoteIntegrityByDay(String personId, String issueId) async {
+    int voteIntegrity = 1;
+    DocumentSnapshot snapshot = await _instance
+        .collection(Db.personIssuesVotesCollection)
+        .document("$personId-$issueId-${DateTime.now().getDate()}")
+        .get();
 
+    if (snapshot.exists) {
+      voteIntegrity = snapshot.data['voteIntegrity'];
+      return voteIntegrity;
+    } else {
+      return voteIntegrity;
+    }
+  }
+
+  Future updateUser(Map<String, dynamic> map, String userId) async {
+    try {
+      await _instance
+          .collection(Db.usersCollection)
+          .document(userId)
+          .updateData(map);
+      return true;
+    } catch (e) {
+      // TODO: Find or create a way to repeat error handling without so much repeated code
+      if (e is PlatformException) {
+        return e.message;
+      }
+
+      return e.toString();
+    }
+  }
 }

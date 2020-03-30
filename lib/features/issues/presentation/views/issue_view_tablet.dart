@@ -46,7 +46,7 @@ class IssueViewTablet extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      width: sizingInfo.screenSize.width * 0.3,
+                      width: sizingInfo.screenSize.width * 0.2,
                       height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
                       child: RaisedButton(
                         elevation: 0,
@@ -65,7 +65,7 @@ class IssueViewTablet extends StatelessWidget {
                     ),
                     SizedBox(width: sizingInfo.screenSize.width * 0.1),
                     SizedBox(
-                      width: sizingInfo.screenSize.width * 0.3,
+                      width: sizingInfo.screenSize.width * 0.2,
                       height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
                       child: RaisedButton(
                         elevation: 0,
@@ -150,12 +150,16 @@ Widget _issueItem(
         SizedBox(
           height: sizingInfo.screenSize.height * 0.2,
           child: Center(
-            child: Text(issue.issueName,
-                style: (sizingInfo.screenSize.height < 800)
-                    ? themeData.textTheme.display3.copyWith(
-                        color: Colors.black54, fontWeight: FontWeight.bold)
-                    : themeData.textTheme.display4.copyWith(
-                        color: Colors.black54, fontWeight: FontWeight.bold)),
+            child: Container(
+             //  padding: EdgeInsets.symmetric(horizontal:8),
+                width: sizingInfo.screenSize.width - 600,
+              child: Text(issue.issueName,
+                  style: (sizingInfo.screenSize.height < 800)
+                      ? themeData.textTheme.display3.copyWith(
+                          color: Colors.black54, fontWeight: FontWeight.bold)
+                      : themeData.textTheme.display4.copyWith(
+                          color: Colors.black54, fontWeight: FontWeight.bold)),
+            ),
           ),
         ),
         Spacer(),
@@ -168,7 +172,7 @@ Widget _issueItem(
                 child: Icon(FontAwesomeIcons.thumbsUp,
                     color: Colors.green,
                     size: sizingInfo.screenSize.width * 0.04)),
-            SizedBox(width: 8),
+            SizedBox(width: 16),
             InkWell(
                 onTap: () {
                    model.voteForIssue(issue, 'disagree');
@@ -176,7 +180,7 @@ Widget _issueItem(
                 child: Icon(FontAwesomeIcons.thumbsDown,
                     color: Colors.red,
                     size: sizingInfo.screenSize.width * 0.04)),
-            SizedBox(width: 8),
+            SizedBox(width: 16),
             InkWell(
                 onTap: () {
                    model.voteForIssue(issue, 'undecided');

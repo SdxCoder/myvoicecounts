@@ -25,7 +25,7 @@ class DataCandidateView extends StatelessWidget {
            Scaffold(
         body: ScreenTypeLayout.builder(
           mobile: (context) => DataViewMobile(model : model, candidate : candidate),
-          tablet: (context) => DataViewTablet(model : model, candidate : candidate),
+         // tablet: (context) => DataViewTablet(model : model, candidate : candidate),
         ),
       ),
     );

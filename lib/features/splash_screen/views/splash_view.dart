@@ -38,7 +38,7 @@ class _SplashViewState extends State<SplashView> {
           Scaffold(
           body: ScreenTypeLayout.builder(
             mobile: (context) => SplashScreenMobile(),
-            tablet: (context) => SplashScreenTablet(),
+         //   tablet: (context) => SplashScreenTablet(),
           ),
         ),
     );

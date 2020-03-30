@@ -29,7 +29,7 @@ class DataViewTablet extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(
-                  top: sizingInfo.screenSize.height * 0.1,
+                  top: sizingInfo.screenSize.height * 0.2,
                   bottom: sizingInfo.screenSize.height * 0.1),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
@@ -65,13 +65,90 @@ class DataViewTablet extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Text(
-                  personIssueObject.issue.issueName,
-                  style: themeData.textTheme.body1.copyWith(
-                      color: Colors.grey,
-                      fontSize: sizingInfo.screenSize.height * 0.06),
-                ),
+                padding: const EdgeInsets.only(top: 0, left: 32, right:32),
+                child:   Container(
+               
+                 child: Row(
+                   mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(
+                          height: (sizingInfo.screenSize.height < 600 ||
+                                  sizingInfo.screenSize.width < 400)
+                              ? 40
+                              : 120,
+                          child: (personIssueObject.candidate.imageUrl == null ||
+                                  personIssueObject.candidate.imageUrl.isEmpty)
+                              ? CircleAvatar(
+                                  minRadius:
+                                      (sizingInfo.screenSize.height < 600 ||
+                                              sizingInfo.screenSize.width < 400)
+                                          ? 20
+                                          : 60,
+                                  backgroundColor:
+                                      themeData.primaryColor.withOpacity(0.4),
+                                  child: Icon(Icons.person,
+                                      size: 50, color: themeData.primaryColor),
+                                )
+                              : CircleAvatar(
+                                  minRadius:
+                                      (sizingInfo.screenSize.height < 600 ||
+                                              sizingInfo.screenSize.width < 400)
+                                          ? 20
+                                          : 60,
+                                  backgroundImage:
+                                      NetworkImage(personIssueObject.candidate.imageUrl),
+                                ),
+                        ),
+                        SizedBox(
+                            width: (sizingInfo.screenSize.width < 400) ? 20 : 40),
+                        SizedBox(
+                          width: sizingInfo.screenSize.width - 400,
+                          height: (sizingInfo.screenSize.height < 600 ||
+                                  sizingInfo.screenSize.width < 400)
+                              ? 100
+                              : 150,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(personIssueObject.candidate.party,
+                                  style: themeData.textTheme.body1.copyWith(
+                                    color: Colors.black38,
+                                    fontSize: (sizingInfo.screenSize.width < 400)
+                                        ? 14
+                                        : 26,
+                                  )),
+                              Text(personIssueObject.candidate.name,
+                                  style: themeData.textTheme.body1.copyWith(
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: (sizingInfo.screenSize.width < 400)
+                                        ? 16
+                                        : 32,
+                                  )),
+                               Container(
+                                 width: sizingInfo.screenSize.width - 100,
+                                 child: Text(personIssueObject.issue.issueName,
+                                    style: themeData.textTheme.body1.copyWith(
+                                      color: Colors.black54,
+                                  
+                                      fontSize: (sizingInfo.screenSize.width < 400)
+                                          ? 16
+                                          : 26,
+                                    )),
+                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+               ),
               ),
             ),
             Positioned(
@@ -112,7 +189,7 @@ class DataViewTablet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                        width: sizingInfo.screenSize.height * 0.2,
+                        width: sizingInfo.screenSize.width * 0.2,
                         height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
                         child: RaisedButton(
                           elevation: 0,
@@ -299,8 +376,8 @@ class DataViewTablet extends StatelessWidget {
         children: <Widget>[
           Text('TOP STATES',
               style: themeData.textTheme.body1.copyWith(
-                fontSize: sizingInfo.screenSize.width * 0.04,
-                fontWeight: FontWeight.bold,
+                fontSize: sizingInfo.screenSize.height * 0.04,
+              //  fontWeight: FontWeight.bold,
                 color: Colors.black54,
               )),
           SizedBox(

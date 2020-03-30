@@ -104,7 +104,7 @@ class DataViewTablet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                        width: sizingInfo.screenSize.height * 0.2,
+                        width: sizingInfo.screenSize.width * 0.2,
                         height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
                         child: RaisedButton(
                           elevation: 0,

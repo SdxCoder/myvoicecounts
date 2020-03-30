@@ -29,7 +29,7 @@ class DataByIssuePersonView extends StatelessWidget {
           Scaffold(
         body: ScreenTypeLayout.builder(
           mobile: (context) => DataViewMobile(model : model, personIssueObject : personIssueObject),
-         tablet: (context) => DataViewTablet(model : model, personIssueObject : personIssueObject),
+        // tablet: (context) => DataViewTablet(model : model, personIssueObject : personIssueObject),
         ),
       ),
     );

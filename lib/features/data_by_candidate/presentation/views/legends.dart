@@ -12,8 +12,8 @@ class LegendWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(
-          width: 10,
-          height: 10,
+          width: (sizingInfo.screenSize.width <= 600) ? 10 : 15,
+          height:  (sizingInfo.screenSize.width <= 600) ? 10 : 15,
           child: Container(
             color: themeData.primaryColor,
           ),
@@ -22,13 +22,13 @@ class LegendWidget extends StatelessWidget {
         Text("Agreed", style: themeData.textTheme.body1.copyWith(
           color: Colors.black54,
           fontSize: (sizingInfo.screenSize.width <= 600) ? sizingInfo.screenSize.width*0.035 :
-           sizingInfo.screenSize.height*0.035
+           sizingInfo.screenSize.height*0.03
         ),
         ),
         SizedBox(width: 8),
          SizedBox(
-          width: 10,
-          height: 10,
+           width: (sizingInfo.screenSize.width <= 600) ? 10 : 15,
+          height:  (sizingInfo.screenSize.width <= 600) ? 10 : 15,
           child: Container(
             color: themeData.accentColor,
           ),
@@ -37,12 +37,12 @@ class LegendWidget extends StatelessWidget {
         Text("Disagreed", style: themeData.textTheme.body1.copyWith(
           color: Colors.black54,
           fontSize: (sizingInfo.screenSize.width <= 600) ? sizingInfo.screenSize.width*0.035 :
-           sizingInfo.screenSize.height*0.035
+           sizingInfo.screenSize.height*0.03
         ),),
         SizedBox(width: 8),
          SizedBox(
-          width: 10,
-          height: 10,
+           width: (sizingInfo.screenSize.width <= 600) ? 10 : 15,
+          height:  (sizingInfo.screenSize.width <= 600) ? 10 : 15,
           child: Container(
             color: Colors.white,
           ),
@@ -51,7 +51,7 @@ class LegendWidget extends StatelessWidget {
         Text("Undecided", style: themeData.textTheme.body1.copyWith(
           color: Colors.black54,
           fontSize: (sizingInfo.screenSize.width <= 600) ? sizingInfo.screenSize.width*0.035 :
-           sizingInfo.screenSize.height*0.035
+           sizingInfo.screenSize.height*0.03
         ),),
       ],
     );

@@ -27,12 +27,12 @@ class SplashScreenMobile extends StatelessWidget {
             
             Text('Welcome to', style: Theme.of(context).textTheme.bodyText1.copyWith(color:Colors.white54)),
             SizedBox(height: 10,),
-            Text('OPINION/8ED', style: Theme.of(context).textTheme.display1.copyWith(color:Colors.white70, fontWeight: FontWeight.bold)),
+            Text('OPINION8ED', style: Theme.of(context).textTheme.display1.copyWith(color:Colors.white70, fontWeight: FontWeight.bold)),
            SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
               child: Container(
-                width: sizingInfo.screenSize.width * 0.7,
+                width: sizingInfo.screenSize.width * 0.9,
                 //padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     border: Border.all(
@@ -52,8 +52,9 @@ class SplashScreenMobile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50)),
                   child: Center(
                     child: Text(
-                      "Agree? Disagree? Undecided",
+                      "Agree? Disagree? Undecided?",
                       style: themeData.textTheme.bodyText1.copyWith(
+                        fontSize: 20,
                           color: Colors.white70, fontWeight: FontWeight.bold),
                     ),
                   ),

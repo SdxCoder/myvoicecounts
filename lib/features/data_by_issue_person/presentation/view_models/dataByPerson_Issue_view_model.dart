@@ -49,6 +49,7 @@ class DataByPersonIssueViewModel extends BaseModel{
    setBuzy(false);
 
    if(data != null){
+     print("------------------------ > PERSON ISSUE < -------------------------");
       print("Group A - ${data.agree.groupA} - ${data.disagree.groupA} - ${data.undecided.groupA}");
    print("Group B - ${data.agree.groupB} - ${data.disagree.groupB} - ${data.undecided.groupB}");
    print("Group C - ${data.agree.groupC} - ${data.disagree.groupC} - ${data.undecided.groupC}");

@@ -179,6 +179,7 @@ class DataPersonService {
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '15-20')
+        .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'disagree')
         .getDocuments();
 
@@ -265,7 +266,7 @@ class DataPersonService {
         .collection(Db.personVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'agree')
         .getDocuments();
@@ -276,7 +277,7 @@ class DataPersonService {
         .collection(Db.personVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'disagree')
         .getDocuments();
@@ -287,7 +288,7 @@ class DataPersonService {
         .collection(Db.personVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'undecided')
         .getDocuments();

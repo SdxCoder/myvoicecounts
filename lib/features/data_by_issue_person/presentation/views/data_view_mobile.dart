@@ -26,14 +26,14 @@ class DataViewMobile extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) => ScaffoldMobile(
         title: Text(
-          "Demographics By Issue",
+          "Demographics By Personality",
           style: themeData.textTheme.body1,
         ),
         body: Stack(
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(
-                  top: sizingInfo.screenSize.width * 0.2,
+                  top: sizingInfo.screenSize.width * 0.3,
                   bottom: sizingInfo.screenSize.width * 0.2),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
@@ -64,19 +64,105 @@ class DataViewMobile extends StatelessWidget {
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: const EdgeInsets.only(
-                  top: 20,
+                  top: 0,
                   right: 16,
                   left: 16
                 ),
-                child: Text(
-                  personIssueObject.issue.issueName,
-                  style: themeData.textTheme.body1.copyWith(
-                      color: Colors.grey, fontSize: headlineSize(sizingInfo)),
-                ),
+                child: 
+               Container(
+                 
+                 child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          height: (sizingInfo.screenSize.height < 600 ||
+                                  sizingInfo.screenSize.width < 400)
+                              ? 40
+                              : 80,
+                          child: (personIssueObject.candidate.imageUrl == null ||
+                                  personIssueObject.candidate.imageUrl.isEmpty)
+                              ? CircleAvatar(
+                                  minRadius:
+                                      (sizingInfo.screenSize.height < 600 ||
+                                              sizingInfo.screenSize.width < 400)
+                                          ? 20
+                                          : 40,
+                                  backgroundColor:
+                                      themeData.primaryColor.withOpacity(0.4),
+                                  child: Icon(Icons.person,
+                                      size: 50, color: themeData.primaryColor),
+                                )
+                              : CircleAvatar(
+                                  minRadius:
+                                      (sizingInfo.screenSize.height < 600 ||
+                                              sizingInfo.screenSize.width < 400)
+                                          ? 20
+                                          : 40,
+                                  backgroundImage:
+                                      NetworkImage(personIssueObject.candidate.imageUrl),
+                                ),
+                        ),
+                        SizedBox(
+                            width: (sizingInfo.screenSize.width < 400) ? 20 : 40),
+                        SizedBox(
+                          height: (sizingInfo.screenSize.height < 600 ||
+                                  sizingInfo.screenSize.width < 400)
+                              ? 100
+                              : 150,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(personIssueObject.candidate.party,
+                                  style: themeData.textTheme.body1.copyWith(
+                                    color: Colors.black38,
+                                    fontSize: (sizingInfo.screenSize.width < 400)
+                                        ? 14
+                                        : 16,
+                                  )),
+                              Text(personIssueObject.candidate.name,
+                                  style: themeData.textTheme.body1.copyWith(
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: (sizingInfo.screenSize.width < 400)
+                                        ? 16
+                                        : 20,
+                                  )),
+                               Container(
+                                 width: sizingInfo.screenSize.width - 100,
+                                 child: Text("${personIssueObject.issue.issueName}",
+                                    style: themeData.textTheme.body1.copyWith(
+                                      color: Colors.black54,
+                                  
+                                      fontSize: (sizingInfo.screenSize.width < 400)
+                                          ? 16
+                                          : 20,
+                                    )),
+                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+               ),
+                  // Divider(
+                  //   color: themeData.primaryColorDark,
+                  //   height: 0,
+                  // ),
+                // Text(
+                //   personIssueObject.issue.issueName,
+                //   style: themeData.textTheme.body1.copyWith(
+                //       color: Colors.grey, fontSize: headlineSize(sizingInfo)),
+                // ),
               ),
             ),
             Positioned(
-              top: sizingInfo.screenSize.width * 0.17,
+              top: sizingInfo.screenSize.width * 0.20,
               right: 16,
               child: FloatingActionButton(
                   backgroundColor: themeData.primaryColor,

@@ -15,6 +15,7 @@ class VotePersonIssue {
   final String party;
   final String race;
   final String state;
+  final int voteIntegrity;
 
   VotePersonIssue(
     {this.issueId,
@@ -29,6 +30,7 @@ class VotePersonIssue {
     this.party,
     this.race,
     this.state,
+    this.voteIntegrity,
     documentId}
   ) : this.documentId = documentId;
 
@@ -45,6 +47,7 @@ class VotePersonIssue {
     party = map['party'],
     race = map['race'],
     state = map['state'],
+    voteIntegrity  = map['voteIntegrity'],
     documentId = map['id'];
 
 
@@ -62,6 +65,7 @@ class VotePersonIssue {
       'party' : party,
       'race' : race,
       'state' : state,
+      'voteIntegrity' : voteIntegrity,
       'id': documentId
     };
   }

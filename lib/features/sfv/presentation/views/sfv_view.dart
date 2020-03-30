@@ -29,7 +29,7 @@ class SfvView extends StatelessWidget {
             ),
           child: ScreenTypeLayout.builder(
             mobile : (context) => SfvViewMobile(model : model),
-            tablet: (context) => SfvViewTablet(model : model),
+         //   tablet: (context) => SfvViewTablet(model : model),
           ),
         )
       ),

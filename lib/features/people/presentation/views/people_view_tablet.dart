@@ -44,7 +44,7 @@ class PeopleViewTablet extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      width: sizingInfo.screenSize.width * 0.3,
+                      width: sizingInfo.screenSize.width * 0.2,
                       height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
                       child: RaisedButton(
                         elevation: 0,
@@ -63,7 +63,7 @@ class PeopleViewTablet extends StatelessWidget {
                     ),
                     SizedBox(width: sizingInfo.screenSize.width * 0.1),
                     SizedBox(
-                      width: sizingInfo.screenSize.width * 0.3,
+                      width: sizingInfo.screenSize.width * 0.2,
                       height: (sizingInfo.screenSize.height < 600) ? 40 : 70,
                       child: RaisedButton(
                         elevation: 0,

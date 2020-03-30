@@ -16,7 +16,7 @@ class IssueView extends StatelessWidget {
            Scaffold(
         body: ScreenTypeLayout.builder(
           mobile :(context) => IssueViewMobile(model:model),
-          tablet:(context) => IssueViewTablet(model:model)
+         // tablet:(context) => IssueViewTablet(model:model)
         ),
       ),
     );

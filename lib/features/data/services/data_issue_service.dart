@@ -180,6 +180,7 @@ class DataIssueService {
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '15-20')
+         .where('issueId', isEqualTo: issueId)
         .where('adu', isEqualTo: 'disagree')
         .getDocuments();
 
@@ -266,7 +267,7 @@ class DataIssueService {
         .collection(Db.issueVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('issueId', isEqualTo: issueId)
         .where('adu', isEqualTo: 'agree')
         .getDocuments();
@@ -277,7 +278,7 @@ class DataIssueService {
         .collection(Db.issueVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('issueId', isEqualTo: issueId)
         .where('adu', isEqualTo: 'disagree')
         .getDocuments();
@@ -288,7 +289,7 @@ class DataIssueService {
         .collection(Db.issueVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('issueId', isEqualTo: issueId)
         .where('adu', isEqualTo: 'undecided')
         .getDocuments();

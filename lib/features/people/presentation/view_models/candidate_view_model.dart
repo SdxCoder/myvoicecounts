@@ -28,7 +28,7 @@ class CandidateViewModel extends BaseModel{
    void voteForPerson(Candidate candidate, String adu) async{
 
     if(await _manageProfile()) return;
-    if(await _manageVoteIntegrity()) return;
+    if(await _manageVoteIntegrity(candidate)) return;
   
     var result  = await _candidateService.addVoteForPerson(VotePerson(
       documentId: _currentUser.id,
@@ -41,19 +41,15 @@ class CandidateViewModel extends BaseModel{
        adu: adu,
        date: DateTime.now(),
        personId: candidate.documentId,
-       personName: candidate.name
-    ), _currentUser.id);
+       personName: candidate.name,
+       voteIntegrity: 1
+    ),);
 
     if(result is String){
       await showInfoDialogBox(title: "Error", description: result);
     }
     else{
-      
-      _candidateService.updateUser({
-        'voteIntegrity' : _currentUser.voteIntegrity - 1,
-      }, _currentUser.id).then((value) {
-        fetchUpdatedUser();
-      });
+     
      await showInfoDialogBox(title: "Success", description : "Your Opinion has been recorded");
     }
   }
@@ -61,13 +57,15 @@ class CandidateViewModel extends BaseModel{
   Future fetchUpdatedUser() async {
     _currentUser = await _splashService.getUser(_currentUser.id);
     _splashService.setUser(_currentUser);
-    //_currentUser = _updatedUser;
     notifyListeners();
   }
 
-  Future<bool> _manageVoteIntegrity() async{
-    if(_currentUser.voteIntegrity <= 0){
-      await showInfoDialogBox(title: "Reminder", description: "You have already voted ${3 - _currentUser.voteIntegrity} times.\n\n You can vote again tomorrow");
+  Future<bool> _manageVoteIntegrity(Candidate candidate) async{
+    int currentVoteIntegrity =
+        await _candidateService.getPersonVoteIntegrityByDay(candidate.documentId);
+    
+    if(currentVoteIntegrity <= 0){
+      await showInfoDialogBox(title: "Reminder", description: "You have already voted 2 times.\n\n You can vote again tomorrow");
       return true;
     }
     else{

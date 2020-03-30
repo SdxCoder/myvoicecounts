@@ -19,18 +19,19 @@ class SfvViewModel extends BaseModel {
 
   void selectSfv(sfv) {
     _selectedSfv = sfv;
-    _swapSfv(sfv);
+    
+ //   _swapSfv(sfv);
     notifyListeners();
   }
 
-  void _swapSfv(sfv) {
-    for (int i = 0; i < _sfvList.length; i++) {
-      if (sfv == _sfvList[i]) {
-        _sfvList[i] = _sfvList.first;
-        _sfvList.first = sfv;
-      }
-    }
-  }
+  // void _swapSfv(sfv) {
+  //   for (int i = 0; i < _sfvList.length; i++) {
+  //     if (sfv == _sfvList[i]) {
+  //       _sfvList[i] = _sfvList.first;
+  //       _sfvList.first = sfv;
+  //     }
+  //   }
+  // }
 
   Future getSfvSnapshots() async {
     setBuzy(true);
@@ -43,7 +44,10 @@ class SfvViewModel extends BaseModel {
 
     print("get snapshots");
     setBuzy(false);
-    _selectedSfv = _sfvList.first;
+    if(_sfvList.isNotEmpty){
+      _selectedSfv = _sfvList.first;
+    }
+    
   }
 
   Future updateSfv(Map<String, dynamic> map, String sfvId) async {

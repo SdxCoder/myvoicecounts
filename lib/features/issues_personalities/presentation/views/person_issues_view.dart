@@ -25,7 +25,7 @@ class PersonIssueView extends StatelessWidget {
            Scaffold(
         body: ScreenTypeLayout.builder(
           mobile :(context) => IssueViewMobile(model:model, candidate : candidate),
-          tablet:(context) => IssueViewTablet(model:model, candidate : candidate)
+         // tablet:(context) => IssueViewTablet(model:model, candidate : candidate)
         ),
       ),
     );

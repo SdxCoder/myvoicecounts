@@ -37,7 +37,7 @@ class PersonIssueViewModel extends BaseModel{
   void voteForPersonIssue(Issue issue, Candidate candidate, String adu) async{
 
     if(await _manageProfile()) return;
-    if(await _manageVoteIntegrity()) return;
+    if(await _manageVoteIntegrity(candidate, issue)) return;
   
     var result  = await _personIssueService.addVoteForPersonIssue(VotePersonIssue(
        documentId: _currentUser.id,
@@ -52,19 +52,20 @@ class PersonIssueViewModel extends BaseModel{
        issueId: issue.documentId,
        issueName: issue.issueName,
        personId: candidate.documentId,
-       personName: candidate.name
-    ), _currentUser.id);
+       personName: candidate.name,
+       voteIntegrity: 1
+    ),);
 
     if(result is String){
       await showInfoDialogBox(title: "Error", description: result);
     }
     else{
       
-      _personIssueService.updateUser({
-        'voteIntegrity' : _currentUser.voteIntegrity - 1,
-      }, _currentUser.id).then((value) {
-        fetchUpdatedUser();
-      });
+      // _personIssueService.updateUser({
+      //   'voteIntegrity' : _currentUser.voteIntegrity - 1,
+      // }, _currentUser.id).then((value) {
+      //   fetchUpdatedUser();
+      // });
       await showInfoDialogBox(title: "Success", description : "Your Opinion has been recorded");
     }
   }
@@ -76,9 +77,12 @@ class PersonIssueViewModel extends BaseModel{
     notifyListeners();
   }
 
-  Future<bool> _manageVoteIntegrity() async{
-    if(_currentUser.voteIntegrity <= 0){
-      await showInfoDialogBox(title: "Reminder", description: "You have already voted ${3 - _currentUser.voteIntegrity} times.\n\n You can vote again tomorrow");
+  Future<bool> _manageVoteIntegrity(candidate, issue) async{
+     int currentVoteIntegrity =
+        await _personIssueService.getPersonIssueVoteIntegrityByDay( candidate.documentId,issue.documentId);
+    
+    if(currentVoteIntegrity <= 0){
+      await showInfoDialogBox(title: "Reminder", description: "You have already voted 2 times.\n\n You can vote again tomorrow");
       return true;
     }
     else{
@@ -100,7 +104,7 @@ class PersonIssueViewModel extends BaseModel{
     if(_selectedIssue == null){
       await showInfoDialogBox(title: "Reminder", description: "Please, First select an issue for which you want to see the demographics for selected personality");
     }else{
-      Modular.to.pushReplacementNamed(Paths.dataByPersonIssue, arguments : PersonIssueObject(
+      Modular.to.pushNamed(Paths.dataByPersonIssue, arguments : PersonIssueObject(
         issue : _selectedIssue,
         candidate : _selectedCandidate
       ));

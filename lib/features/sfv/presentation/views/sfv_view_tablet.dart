@@ -45,13 +45,21 @@ class SfvViewTablet extends StatelessWidget {
         return Column(
           children: <Widget>[
             ListTile(
-              leading: CircleAvatar(
-                  backgroundColor: themeData.primaryColor.withOpacity(0.1),
-                  maxRadius: 50,
-                  child: Icon(
-                    Icons.play_arrow,
-                    color: themeData.primaryColor,
-                  )),
+              leading:Container(
+                height: 60,
+                width: 100,
+                
+                decoration: BoxDecoration(
+                  
+                  borderRadius : BorderRadius.circular(10),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('images/bernie.jpg')
+                  ),
+                  color: Colors.red
+                ),
+               child: Icon(Icons.play_arrow, color: Colors.white, size: 24,),
+              ),
               title: Text(model.sfvList[index].title),
               onTap: () {
                // Modular.to.pushNamed("player", arguments: model.sfvList[index]);

@@ -20,7 +20,7 @@ class SettingsView extends StatelessWidget {
            Scaffold(
         body: ScreenTypeLayout.builder(
           mobile : (context) => SettingsViewMobile(model : model),
-          tablet: (context) => SettingsViewTablet(model : model),
+         // tablet: (context) => SettingsViewTablet(model : model),
         )
       ),
     );

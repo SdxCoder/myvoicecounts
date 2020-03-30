@@ -16,11 +16,11 @@ class DataPersonIssueService {
 
     try {
       QuerySnapshot snapshot0 = await _instance
-          .collection(Db.issueVotesCollection)
+          .collection(Db.personIssuesVotesCollection)
           .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
           .where('date', isLessThanOrEqualTo: period.end.toUtc())
           .where('issueId', isEqualTo: issueId)
-        .where('personId', isEqualTo: personId)
+          .where('personId', isEqualTo: personId)
           .getDocuments();
 
       if (snapshot0.documents.isEmpty) {
@@ -51,7 +51,7 @@ class DataPersonIssueService {
     List<StateData> statesDataList = [];
 
     QuerySnapshot snapshot = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -74,7 +74,7 @@ class DataPersonIssueService {
       StateData stateData = StateData(totalAdu: 0, state: "s");
 
       QuerySnapshot snapshotAgree = await _instance
-          .collection(Db.issueVotesCollection)
+          .collection(Db.personIssuesVotesCollection)
           .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
           .where('date', isLessThan: period.end.toUtc())
           .where('state', isEqualTo: state)
@@ -84,7 +84,7 @@ class DataPersonIssueService {
           .getDocuments();
 
       QuerySnapshot snapshotDisAgree = await _instance
-          .collection(Db.issueVotesCollection)
+          .collection(Db.personIssuesVotesCollection)
           .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
           .where('date', isLessThan: period.end.toUtc())
           .where('state', isEqualTo: state)
@@ -94,7 +94,7 @@ class DataPersonIssueService {
           .getDocuments();
 
       QuerySnapshot snapshotUnd = await _instance
-          .collection(Db.issueVotesCollection)
+          .collection(Db.personIssuesVotesCollection)
           .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
           .where('date', isLessThan: period.end.toUtc())
           .where('state', isEqualTo: state)
@@ -125,7 +125,7 @@ class DataPersonIssueService {
             break;
           }
         QuerySnapshot snapshot = await _instance
-            .collection(Db.issueVotesCollection)
+            .collection(Db.personIssuesVotesCollection)
             .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
             .where('date', isLessThan: period.end.toUtc())
             .where('state', isEqualTo: state.state)
@@ -137,7 +137,7 @@ class DataPersonIssueService {
         data.agree.states.add(StateData(totalAdu: snapshot.documents.length.toDouble(), state: state.state));
 
         QuerySnapshot snapshot1 = await _instance
-            .collection(Db.issueVotesCollection)
+            .collection(Db.personIssuesVotesCollection)
             .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
             .where('date', isLessThan: period.end.toUtc())
             .where('state', isEqualTo: state.state)
@@ -150,7 +150,7 @@ class DataPersonIssueService {
 
 
         QuerySnapshot snapshot2 = await _instance
-            .collection(Db.issueVotesCollection)
+            .collection(Db.personIssuesVotesCollection)
             .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
             .where('date', isLessThan: period.end.toUtc())
             .where('state', isEqualTo: state.state)
@@ -173,7 +173,7 @@ class DataPersonIssueService {
 
   Future fetchByAgeGroups(DatePeriod period, String issueId, String personId) async {
     QuerySnapshot snapshot = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '15-20')
@@ -185,17 +185,19 @@ class DataPersonIssueService {
     data.agree.groupA = snapshot.documents.length.toDouble();
 
     QuerySnapshot snapshot1 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '15-20')
+        .where('issueId', isEqualTo: issueId)
+        .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'disagree')
         .getDocuments();
 
     data.disagree.groupA = snapshot1.documents.length.toDouble();
 
     QuerySnapshot snapshot2 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '15-20')
@@ -207,7 +209,7 @@ class DataPersonIssueService {
     data.undecided.groupA = snapshot2.documents.length.toDouble();
 
     QuerySnapshot snapshot3 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '21-35')
@@ -219,7 +221,7 @@ class DataPersonIssueService {
     data.agree.groupB = snapshot3.documents.length.toDouble();
 
     QuerySnapshot snapshot4 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '21-35')
@@ -231,7 +233,7 @@ class DataPersonIssueService {
     data.disagree.groupB = snapshot4.documents.length.toDouble();
 
     QuerySnapshot snapshot5 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '21-35')
@@ -243,7 +245,7 @@ class DataPersonIssueService {
     data.undecided.groupB = snapshot5.documents.length.toDouble();
 
     QuerySnapshot snapshot6 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '36-50')
@@ -255,7 +257,7 @@ class DataPersonIssueService {
     data.agree.groupC = snapshot6.documents.length.toDouble();
 
     QuerySnapshot snapshot7 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '36-50')
@@ -267,7 +269,7 @@ class DataPersonIssueService {
     data.disagree.groupC = snapshot7.documents.length.toDouble();
 
     QuerySnapshot snapshot8 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '36-50')
@@ -279,10 +281,10 @@ class DataPersonIssueService {
     data.undecided.groupC = snapshot8.documents.length.toDouble();
 
     QuerySnapshot snapshot9 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('issueId', isEqualTo: issueId)
         .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'agree')
@@ -291,10 +293,10 @@ class DataPersonIssueService {
     data.agree.groupD = snapshot9.documents.length.toDouble();
 
     QuerySnapshot snapshot10 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('issueId', isEqualTo: issueId)
         .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'disagree')
@@ -303,10 +305,10 @@ class DataPersonIssueService {
     data.disagree.groupD = snapshot10.documents.length.toDouble();
 
     QuerySnapshot snapshot11 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
-        .where('age', isEqualTo: '50-65')
+        .where('age', isEqualTo: '51-65')
         .where('issueId', isEqualTo: issueId)
         .where('personId', isEqualTo: personId)
         .where('adu', isEqualTo: 'undecided')
@@ -315,7 +317,7 @@ class DataPersonIssueService {
     data.undecided.groupD = snapshot11.documents.length.toDouble();
 
     QuerySnapshot snapshot12 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '66-Older')
@@ -327,7 +329,7 @@ class DataPersonIssueService {
     data.agree.groupE = snapshot12.documents.length.toDouble();
 
     QuerySnapshot snapshot13 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '66-Older')
@@ -339,7 +341,7 @@ class DataPersonIssueService {
     data.disagree.groupE = snapshot13.documents.length.toDouble();
 
     QuerySnapshot snapshot14 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('age', isEqualTo: '66-Older')
@@ -353,7 +355,7 @@ class DataPersonIssueService {
 
   Future fetchByEthnicity(DatePeriod period, String issueId, String personId) async {
     QuerySnapshot snapshot = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -365,7 +367,7 @@ class DataPersonIssueService {
     data.agree.notHisp = snapshot.documents.length.toDouble();
 
     QuerySnapshot snapshot1 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -377,7 +379,7 @@ class DataPersonIssueService {
     data.agree.hisp = snapshot1.documents.length.toDouble();
 
     QuerySnapshot snapshot2 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -389,7 +391,7 @@ class DataPersonIssueService {
     data.disagree.notHisp = snapshot2.documents.length.toDouble();
 
     QuerySnapshot snapshot3 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -401,7 +403,7 @@ class DataPersonIssueService {
     data.disagree.hisp = snapshot3.documents.length.toDouble();
 
     QuerySnapshot snapshot4 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -413,7 +415,7 @@ class DataPersonIssueService {
     data.undecided.notHisp = snapshot4.documents.length.toDouble();
 
     QuerySnapshot snapshot5 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -429,7 +431,7 @@ class DataPersonIssueService {
 
   Future fetchByGender(DatePeriod period, String issueId, String personId) async {
     QuerySnapshot snapshot = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -441,7 +443,7 @@ class DataPersonIssueService {
     data.agree.male = snapshot.documents.length.toDouble();
 
     QuerySnapshot snapshot1 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -453,7 +455,7 @@ class DataPersonIssueService {
     data.agree.female = snapshot1.documents.length.toDouble();
 
     QuerySnapshot snapshot2 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -465,7 +467,7 @@ class DataPersonIssueService {
     data.disagree.male = snapshot2.documents.length.toDouble();
 
     QuerySnapshot snapshot3 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -477,7 +479,7 @@ class DataPersonIssueService {
     data.disagree.female = snapshot3.documents.length.toDouble();
 
     QuerySnapshot snapshot4 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -489,7 +491,7 @@ class DataPersonIssueService {
     data.undecided.male = snapshot4.documents.length.toDouble();
 
     QuerySnapshot snapshot5 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -505,7 +507,7 @@ class DataPersonIssueService {
 
   Future fetchByRace(DatePeriod period, String issueId, String personId) async {
     QuerySnapshot snapshot = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -517,7 +519,7 @@ class DataPersonIssueService {
     data.agree.american = snapshot.documents.length.toDouble();
 
     QuerySnapshot snapshot1 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -529,7 +531,7 @@ class DataPersonIssueService {
     data.disagree.american = snapshot1.documents.length.toDouble();
 
     QuerySnapshot snapshot2 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -541,7 +543,7 @@ class DataPersonIssueService {
     data.undecided.american = snapshot2.documents.length.toDouble();
 
     QuerySnapshot snapshot3 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -553,7 +555,7 @@ class DataPersonIssueService {
     data.agree.asian = snapshot3.documents.length.toDouble();
 
     QuerySnapshot snapshot4 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -565,7 +567,7 @@ class DataPersonIssueService {
     data.disagree.asian = snapshot4.documents.length.toDouble();
 
     QuerySnapshot snapshot5 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -577,7 +579,7 @@ class DataPersonIssueService {
     data.undecided.asian = snapshot5.documents.length.toDouble();
 
     QuerySnapshot snapshot6 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -589,7 +591,7 @@ class DataPersonIssueService {
     data.agree.african = snapshot6.documents.length.toDouble();
 
     QuerySnapshot snapshot7 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -601,7 +603,7 @@ class DataPersonIssueService {
     data.disagree.african = snapshot7.documents.length.toDouble();
 
     QuerySnapshot snapshot8 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -613,7 +615,7 @@ class DataPersonIssueService {
     data.undecided.african = snapshot8.documents.length.toDouble();
 
     QuerySnapshot snapshot9 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -625,7 +627,7 @@ class DataPersonIssueService {
     data.agree.hawaian = snapshot9.documents.length.toDouble();
 
     QuerySnapshot snapshot10 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -637,7 +639,7 @@ class DataPersonIssueService {
     data.disagree.hawaian = snapshot10.documents.length.toDouble();
 
     QuerySnapshot snapshot11 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -649,7 +651,7 @@ class DataPersonIssueService {
     data.undecided.hawaian = snapshot11.documents.length.toDouble();
 
     QuerySnapshot snapshot12 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -661,7 +663,7 @@ class DataPersonIssueService {
     data.agree.white = snapshot12.documents.length.toDouble();
 
     QuerySnapshot snapshot13 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -673,7 +675,7 @@ class DataPersonIssueService {
     data.disagree.white = snapshot13.documents.length.toDouble();
 
     QuerySnapshot snapshot14 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -689,7 +691,7 @@ class DataPersonIssueService {
 
   Future fetchByParty(DatePeriod period, String issueId, String personId) async {
     QuerySnapshot snapshot = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -701,7 +703,7 @@ class DataPersonIssueService {
     data.agree.democrat = snapshot.documents.length.toDouble();
 
     QuerySnapshot snapshot1 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -713,7 +715,7 @@ class DataPersonIssueService {
     data.disagree.democrat = snapshot1.documents.length.toDouble();
 
     QuerySnapshot snapshot2 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -725,7 +727,7 @@ class DataPersonIssueService {
     data.undecided.democrat = snapshot2.documents.length.toDouble();
 
     QuerySnapshot snapshot3 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -737,7 +739,7 @@ class DataPersonIssueService {
     data.agree.independent = snapshot3.documents.length.toDouble();
 
     QuerySnapshot snapshot4 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -749,7 +751,7 @@ class DataPersonIssueService {
     data.disagree.independent = snapshot4.documents.length.toDouble();
 
     QuerySnapshot snapshot5 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -761,7 +763,7 @@ class DataPersonIssueService {
     data.undecided.independent = snapshot5.documents.length.toDouble();
 
     QuerySnapshot snapshot6 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -773,7 +775,7 @@ class DataPersonIssueService {
     data.agree.republic = snapshot6.documents.length.toDouble();
 
     QuerySnapshot snapshot7 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -785,7 +787,7 @@ class DataPersonIssueService {
     data.disagree.republic = snapshot7.documents.length.toDouble();
 
     QuerySnapshot snapshot8 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -797,7 +799,7 @@ class DataPersonIssueService {
     data.undecided.republic = snapshot8.documents.length.toDouble();
 
     QuerySnapshot snapshot9 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -809,7 +811,7 @@ class DataPersonIssueService {
     data.agree.other = snapshot9.documents.length.toDouble();
 
     QuerySnapshot snapshot10 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
@@ -821,7 +823,7 @@ class DataPersonIssueService {
     data.disagree.other = snapshot10.documents.length.toDouble();
 
     QuerySnapshot snapshot11 = await _instance
-        .collection(Db.issueVotesCollection)
+        .collection(Db.personIssuesVotesCollection)
         .where('date', isGreaterThanOrEqualTo: period.start.toUtc())
         .where('date', isLessThan: period.end.toUtc())
         .where('issueId', isEqualTo: issueId)
