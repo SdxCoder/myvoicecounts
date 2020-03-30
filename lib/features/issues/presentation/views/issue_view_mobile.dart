@@ -171,12 +171,18 @@ Widget _issueItem(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(issue.issueName,
-                  style: themeData.textTheme.body1.copyWith(
-                    color:  Colors.black54,
-                    fontWeight: (model.selectedIssue == issue) ? FontWeight.w900 : FontWeight.bold,
-                    fontSize: (sizingInfo.screenSize.width < 400) ? 20 : 26,
-                  )),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal:8),
+                width: sizingInfo.screenSize.width - 60,
+                child: Text(issue.issueName,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                    style: themeData.textTheme.body1.copyWith(
+                      color:  Colors.black54,
+                      fontWeight: (model.selectedIssue == issue) ? FontWeight.w900 : FontWeight.bold,
+                      fontSize: (sizingInfo.screenSize.width < 400) ? 20 : 26,
+                    )),
+              ),
               SizedBox(height: sizingInfo.screenSize.height * 0.01),
               ButtonBar(
                 children: <Widget>[
@@ -187,9 +193,9 @@ Widget _issueItem(
                       child: Icon(
                         FontAwesomeIcons.thumbsUp,
                         color: Colors.green,
-                        size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
+                        size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                       )),
-                  SizedBox(width: 1),
+                  SizedBox(width: 4),
                   InkWell(
                       onTap: () {
                         model.voteForIssue(issue, "disagree");
@@ -197,9 +203,9 @@ Widget _issueItem(
                       child: Icon(
                         FontAwesomeIcons.thumbsDown,
                         color: Colors.red,
-                        size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
+                        size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                       )),
-                  SizedBox(width: 1),
+                  SizedBox(width: 4),
                   InkWell(
                       onTap: () {
                         model.voteForIssue(issue, "undecided");
@@ -207,7 +213,7 @@ Widget _issueItem(
                       child: Icon(
                         FontAwesomeIcons.timesCircle,
                         color: Colors.grey,
-                        size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
+                        size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                       )),
                 ],
               ),

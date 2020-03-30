@@ -12,13 +12,18 @@ import 'features/data/data.dart';
 import 'features/data/services/data_issue_service.dart';
 import 'features/data_by_candidate/data_cadidate.dart';
 import 'features/data_by_candidate/services/data_person_service.dart';
+import 'features/data_by_issue_person/presentation/views/data_by_issue_person_view.dart';
+import 'features/data_by_issue_person/services/data_person_issue_service.dart';
 import 'features/home/home.dart';
 import './features/splash_screen/splash_module.dart';
 import 'features/home/home_module.dart';
 import 'features/home/services/home_service.dart';
 import 'features/issues/issues.dart';
 import 'features/issues/services/issues_service.dart';
+import 'features/issues_personalities/presentation/views/person_issues_view.dart';
+import 'features/issues_personalities/services/person_issues_service.dart';
 import 'features/people/people.dart';
+import 'features/sfv/presentation/widgets/youtube_player.dart';
 import 'features/sfv/sfv.dart';
 import 'features/splash_screen/services/splash_service.dart';
 import 'features/splash_screen/views/splash_view.dart';
@@ -33,6 +38,8 @@ class AppModule extends MainModule {
         Bind((i) => SfvService()),
         Bind((i) => DataIssueService()),
          Bind((i) => DataPersonService()),
+          Bind((i) => DataPersonIssueService()),
+          Bind((i) => PersonIssuesService()),
         
         //Bind((i)  async => SharedPrefs(await SharedPreferences.getInstance()), singleton: true)
       ];
@@ -45,10 +52,13 @@ class AppModule extends MainModule {
         Router(Paths.settings, child: (_, args) => SettingsView()),
         Router(Paths.people, child: (_, args) => PeopleView()),
         Router(Paths.issues, child: (_, args) => IssueView()),
+        Router(Paths.personIssues, child: (_, args) => PersonIssueView(candidate: args.data,)),
         Router(Paths.dataByIssue,
             child: (_, args) => DataView(issue: args.data)),
         Router(Paths.dataByPersonality,
             child: (_, args) => DataCandidateView(candidate: args.data)),
+         Router(Paths.dataByPersonIssue,
+            child: (_, args) => DataByIssuePersonView(personIssueObject: args.data)),
         Router(Paths.sfv, child: (_, args) => SfvView()),
         Router(Paths.sfvPlayer, child: (_, args) => PlaySfvWidget( model : args.data)),
       ];

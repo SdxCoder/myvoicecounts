@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_model.dart';
+import 'package:myvoicecounts/features/sfv/presentation/widgets/youtube_player.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -53,7 +54,10 @@ class SfvViewTablet extends StatelessWidget {
                   )),
               title: Text(model.sfvList[index].title),
               onTap: () {
-                Modular.to.pushNamed("player", arguments: model.sfvList[index]);
+               // Modular.to.pushNamed("player", arguments: model.sfvList[index]);
+                Navigator.push(context, MaterialPageRoute(
+                 builder: (context) => PlaySfvWidget(model : model, sfv : model.sfvList[index])
+               ));
               },
             ),
             Divider()

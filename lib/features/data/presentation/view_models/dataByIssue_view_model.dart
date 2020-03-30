@@ -38,12 +38,12 @@ class DataByIssueViewModel extends BaseModel{
 
       if(result is QueryData){ 
          data = result;
-        // data.agree.calculatePercent(data.total);
-        // data.disagree.calculatePercent(data.total);
-        // data.undecided.calculatePercent(data.total);
+
+         data.agree.calculatePercent(data.total);
+         data.disagree.calculatePercent(data.total);
+        data.undecided.calculatePercent(data.total);
          _noData = false;  
       }
-      
     }
    setBuzy(false);
 
@@ -67,9 +67,49 @@ class DataByIssueViewModel extends BaseModel{
     print("Party independent- ${data.agree.independent} - ${data.disagree.independent} - ${data.undecided.independent}");
      print("Party other- ${data.agree.other} - ${data.disagree.other} - ${data.undecided.other}");
 
+    for (var state in data.agree.states){
+      print("State agree - ${state.state} - ${state.totalAdu}");
+    }
+
+    for (var state in data.disagree.states){
+      print("State disagree - ${state.state} - ${state.totalAdu}");
+    }
+
+    for (var state in data.undecided.states){
+      print("State undecided - ${state.state} - ${state.totalAdu}");
+    }
+
    }
    
   
+  }
+
+  void _calculateDisagree(int total){
+    List<double> totalAduList = [];
+     for(var state in data.disagree.states){
+      int index = 0;
+      if(index >= data.disagree.states.length){
+        break;
+      }
+      print("total : $total");
+      print("Calculate disagree : ${data.disagree.states.map((e) => e.totalAdu)}");
+      double val =  (data.disagree.states[index].totalAdu/total);
+      print(val);
+      totalAduList.add(val);
+      index++;
+    }
+
+    for(var adu in totalAduList){
+      int index = 0;
+      if(index >= totalAduList.length){
+        break;
+      }
+      print(adu);
+      data.disagree.states[index].totalAdu = adu;
+      index++;
+    }
+
+     print("Calculate - -${totalAduList.map((e) => e)}");
   }
 
  

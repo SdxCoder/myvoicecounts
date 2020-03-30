@@ -11,11 +11,11 @@ import 'core/core.dart';
 
 void main() {
   runApp(
-   // DevicePreview(
-     // enabled: false,
-     // builder: (context) =>
+   DevicePreview(
+     enabled: false,
+     builder: (context) =>
     ModularApp(module: AppModule()),
-    //),
+    ),
   );
 
    BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);

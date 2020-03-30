@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/sfv/presentation/view_models/sfv_view_model.dart';
 import 'package:myvoicecounts/features/sfv/presentation/widgets/awesom_video_player.dart';
+import 'package:myvoicecounts/features/sfv/presentation/widgets/youtube_player.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SfvViewMobile extends StatelessWidget {

@@ -64,7 +64,7 @@ class GroupedEthnicityGraph extends StatelessWidget {
 
 class OrdinalEthnicityAdu{
   final String ethnicity;
-  final int adu;
+  final double adu;
 
   OrdinalEthnicityAdu(this.ethnicity, this.adu);
 

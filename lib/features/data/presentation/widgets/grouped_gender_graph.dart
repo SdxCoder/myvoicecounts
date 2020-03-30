@@ -63,7 +63,7 @@ class GroupedGenderGraph extends StatelessWidget {
 
 class OrdinalAgeAdu{
   final String gender;
-  final int adu;
+  final double adu;
 
   OrdinalAgeAdu(this.gender, this.adu);
 

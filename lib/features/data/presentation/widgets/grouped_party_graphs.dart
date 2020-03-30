@@ -64,7 +64,7 @@ class GroupedPartyGraph extends StatelessWidget {
 /// Sample ordinal data type.
 class OrdinalPartyAdu {
   final String party;
-  final int adu;
+  final double adu;
 
   OrdinalPartyAdu(this.party, this.adu);
 }

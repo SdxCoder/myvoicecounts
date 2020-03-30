@@ -5,6 +5,7 @@ import 'package:myvoicecounts/features/data/presentation/view_models/dataByIssue
 import 'package:myvoicecounts/features/data/presentation/views/legends.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/date_picker.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/grouped_gender_graph.dart';
+import 'package:myvoicecounts/features/data/presentation/widgets/grouped_state_graph.dart';
 import 'package:myvoicecounts/features/issues/data/issue_model.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/people.dart';
@@ -49,7 +50,8 @@ class DataViewTablet extends StatelessWidget {
                     _buildGraphByGender(context, sizingInfo),
                     _buildGraphByEthnicity(context, sizingInfo),
                     _buildGraphByRace(context, sizingInfo),
-                    _buildGraphByParty(context, sizingInfo)
+                    _buildGraphByParty(context, sizingInfo),
+                    _buildGraphByState(context, sizingInfo)
                     
                   ],
                 ),
@@ -273,6 +275,32 @@ class DataViewTablet extends StatelessWidget {
             child: GroupedRaceGraph.withRaceData(sizingInfo, createRaceData(model)),
           ),
            SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphByState(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('TOP STATES',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedTopStateGraph.withTopStateData(sizingInfo, createTopStateData(model)),
+          ),
+          SizedBox(
             height: sizingInfo.screenSize.height * 0.03,
           ),
           LegendWidget(sizingInfo)

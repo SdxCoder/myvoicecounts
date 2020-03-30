@@ -60,7 +60,8 @@ class PeopleViewMobile extends StatelessWidget {
                                 style: themeData.textTheme.body1
                                     .copyWith(color: Colors.white)),
                             onPressed: () {
-                              Modular.to.pushReplacementNamed(Paths.issues);
+                            //  Modular.to.pushReplacementNamed(Paths.issues);
+                              model.navigateToPersonIssue();
                               //  Navigator.of(context).push(MaterialPageRoute(builder: (context) => IssueView()));
                             },
                             color: themeData.accentColor,
@@ -164,7 +165,16 @@ class PeopleViewMobile extends StatelessWidget {
                     sizingInfo.screenSize.width < 400)
                 ? 80
                 : 120,
-            child: CircleAvatar(
+            child:(candidate.imageUrl == null || candidate.imageUrl.isEmpty) ?
+             CircleAvatar(
+              minRadius: (sizingInfo.screenSize.height < 600 ||
+                      sizingInfo.screenSize.width < 400)
+                  ? 40
+                  : 60,
+             backgroundColor: themeData.primaryColor.withOpacity(0.4),
+             child: Icon(Icons.person, size: 50, color:themeData.primaryColor),
+            ):
+            CircleAvatar(
               minRadius: (sizingInfo.screenSize.height < 600 ||
                       sizingInfo.screenSize.width < 400)
                   ? 40
@@ -197,17 +207,20 @@ class PeopleViewMobile extends StatelessWidget {
                       fontSize: (sizingInfo.screenSize.width < 400) ? 20 : 26,
                     )),
                 ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                 
                   children: <Widget>[
                     InkWell(
+                      
                         onTap: () {
                           model.voteForPerson(candidate, 'agree');
                         },
                         child: Icon(
                           FontAwesomeIcons.thumbsUp,
                           color: Colors.green,
-                          size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
+                          size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                         )),
-                    SizedBox(width: 1),
+                    SizedBox(width: 4),
                     InkWell(
                         onTap: () {
                            model.voteForPerson(candidate, 'disagree');
@@ -215,17 +228,17 @@ class PeopleViewMobile extends StatelessWidget {
                         child: Icon(
                           FontAwesomeIcons.thumbsDown,
                           color: Colors.red,
-                          size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
+                          size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                         )),
-                    SizedBox(width: 1),
+                    SizedBox(width: 4),
                     InkWell(
                         onTap: () {
                            model.voteForPerson(candidate, 'undecided');
                         },
                         child: Icon(
-                          FontAwesomeIcons.timesCircle,
+                          FontAwesomeIcons.questionCircle,
                           color: Colors.grey,
-                          size: (sizingInfo.screenSize.width < 400) ? 24 : 32,
+                          size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                         )),
                   ],
                 ),

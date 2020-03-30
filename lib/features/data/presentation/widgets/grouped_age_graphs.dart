@@ -74,6 +74,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
       new OrdinalAdu('21-35', model.data.agree.groupB),
       new OrdinalAdu('36-50', model.data.agree.groupC),
       new OrdinalAdu('51-65', model.data.agree.groupD),
+       new OrdinalAdu('66-Older', model.data.agree.groupE),
     ];
 
     final disagreed = [
@@ -81,6 +82,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
       new OrdinalAdu('21-35',  model.data.disagree.groupB),
       new OrdinalAdu('36-50',  model.data.disagree.groupC),
       new OrdinalAdu('51-65',  model.data.disagree.groupD),
+      new OrdinalAdu('66-Older', model.data.disagree.groupE),
     ];
 
     final undecided = [
@@ -88,6 +90,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
       new OrdinalAdu('21-35', model.data.undecided.groupB),
       new OrdinalAdu('36-50', model.data.undecided.groupC),
       new OrdinalAdu('51-65', model.data.undecided.groupD),
+      new OrdinalAdu('66-Older', model.data.undecided.groupE),
     ];
 
     return [
@@ -127,7 +130,7 @@ class GroupedTopAgeGraph extends StatelessWidget {
 /// Sample ordinal data type.
 class OrdinalAdu {
   final String age;
-  final int adu;
+  final double adu;
 
   OrdinalAdu(this.age, this.adu);
 }

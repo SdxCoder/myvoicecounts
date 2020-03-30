@@ -54,7 +54,8 @@ class PeopleViewTablet extends StatelessWidget {
                             style: themeData.textTheme.display2
                                 .copyWith(color: Colors.white)),
                         onPressed: () {
-                          Modular.to.pushReplacementNamed(Paths.issues);
+                            model.navigateToPersonIssue();
+                         // Modular.to.pushReplacementNamed(Paths.issues);
                           //  Navigator.of(context).push(MaterialPageRoute(builder: (context) => IssueView()));
                         },
                         color: themeData.accentColor,
@@ -149,9 +150,17 @@ Widget _peopleItem(
       children: <Widget>[
         SizedBox(
           height: sizingInfo.screenSize.height * 0.2,
-          child: CircleAvatar(
+          child:(candidate.imageUrl == null || candidate.imageUrl.isEmpty) ?
+             CircleAvatar(
+              minRadius: (sizingInfo.screenSize.height < 600 ||
+                      sizingInfo.screenSize.width < 400)
+                  ? 40
+                  : 60,
+             backgroundColor: themeData.primaryColor.withOpacity(0.4),
+             child: Icon(Icons.person, size: 50, color:themeData.primaryColor),
+            ): CircleAvatar(
             minRadius: sizingInfo.screenSize.height * 0.1,
-            backgroundImage: AssetImage('images/donald.jpg'),
+            backgroundImage: NetworkImage(candidate.imageUrl),
           ),
         ),
         SizedBox(width: sizingInfo.screenSize.height * 0.1),
@@ -161,7 +170,7 @@ Widget _peopleItem(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Republican Party",
+              Text(candidate.party,
                   style: (sizingInfo.screenSize.height < 800)
                       ? themeData.textTheme.display2.copyWith(
                           color: Colors.black38,
@@ -169,7 +178,7 @@ Widget _peopleItem(
                       : themeData.textTheme.display3.copyWith(
                           color: Colors.black38,
                         )),
-              Text("Donald Trump",
+              Text(candidate.name,
                   style: (sizingInfo.screenSize.height < 800)
                       ? themeData.textTheme.display3.copyWith(
                           color: Colors.black54, fontWeight: FontWeight.bold)
@@ -189,7 +198,7 @@ Widget _peopleItem(
                     color: Colors.green,
                     size: sizingInfo.screenSize.width * 0.04)),
             SizedBox(
-              width: 1,
+              width: 4,
             ),
             InkWell(
                 onTap: () {
@@ -199,13 +208,13 @@ Widget _peopleItem(
                     color: Colors.red,
                     size: sizingInfo.screenSize.width * 0.04)),
             SizedBox(
-              width: 1,
+              width: 4,
             ),
             InkWell(
               onTap: () {
                  model.voteForPerson(candidate, 'undecided');
               },
-              child: Icon(FontAwesomeIcons.timesCircle,
+              child: Icon(FontAwesomeIcons.questionCircle,
                   color: Colors.grey, size: sizingInfo.screenSize.width * 0.04),
             ),
           ],

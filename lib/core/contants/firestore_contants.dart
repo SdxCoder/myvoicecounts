@@ -10,4 +10,6 @@ class Db{
   static const String accountsDetails = "accounts";
   static const String issueVotesCollection = "issueVotes";
   static const String personVotesCollection = "personVotes";
+  static const String personIssuesVotesCollection = "personIssueVotes";
+  static const String topStates = "topStates";
 }

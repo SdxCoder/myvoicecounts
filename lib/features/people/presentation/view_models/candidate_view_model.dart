@@ -32,8 +32,12 @@ class CandidateViewModel extends BaseModel{
   
     var result  = await _candidateService.addVoteForPerson(VotePerson(
       documentId: _currentUser.id,
-       state:  _currentUser.state,
+       age: _currentUser.age,
+       ethnicity: _currentUser.ethnicity,
+       gender: _currentUser.gender,
        party: _currentUser.party,
+       race: _currentUser.race,
+       state: _currentUser.state,
        adu: adu,
        date: DateTime.now(),
        personId: candidate.documentId,
@@ -50,7 +54,7 @@ class CandidateViewModel extends BaseModel{
       }, _currentUser.id).then((value) {
         fetchUpdatedUser();
       });
-      showSnackBarInfo(desc : "Your vote has been submitted");
+     await showInfoDialogBox(title: "Success", description : "Your Opinion has been recorded");
     }
   }
   
@@ -87,6 +91,15 @@ class CandidateViewModel extends BaseModel{
       await showInfoDialogBox(title: "Reminder", description: "Please, First select a personality for which you want to see the demographics");
     }else{
       Modular.to.pushReplacementNamed(Paths.dataByPersonality, arguments : _selectedCandidate);
+    }
+   
+  }
+
+   void navigateToPersonIssue() async{
+    if(_selectedCandidate == null){
+      await showInfoDialogBox(title: "Reminder", description: "Please, First select a personality for which you want to give opinion against issues");
+    }else{
+      Modular.to.pushReplacementNamed(Paths.personIssues, arguments : _selectedCandidate);
     }
    
   }

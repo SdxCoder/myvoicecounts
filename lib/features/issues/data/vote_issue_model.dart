@@ -7,11 +7,12 @@ class VoteIssue {
   final String issueName;
   final String adu;
   final DateTime date;
-  final int age;
+  final String age;
   final String ethnicity;
   final String gender;
   final String party;
   final String race;
+  final String state;
 
   VoteIssue(
     {this.issueId,
@@ -23,6 +24,7 @@ class VoteIssue {
     this.gender,
     this.party,
     this.race,
+    this.state,
     documentId}
   ) : this.documentId = documentId;
 
@@ -36,6 +38,7 @@ class VoteIssue {
     gender = map['gender'],
     party = map['party'],
     race = map['race'],
+    state = map['state'],
     documentId = map['id'];
 
 
@@ -50,6 +53,7 @@ class VoteIssue {
       'gender' : gender,
       'party' : party,
       'race' : race,
+      'state' : state,
       'id': documentId
     };
   }

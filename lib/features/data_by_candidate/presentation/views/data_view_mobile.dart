@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myvoicecounts/core/core.dart';
 import 'package:myvoicecounts/features/data/presentation/widgets/date_picker.dart';
 import 'package:myvoicecounts/features/data_by_candidate/presentation/view_models/data_person_view_model.dart';
+import 'package:myvoicecounts/features/data_by_candidate/presentation/views/legends.dart';
 import 'package:myvoicecounts/features/issues/issues.dart';
 import 'package:myvoicecounts/features/people/data/candidate.dart';
 import 'package:myvoicecounts/features/people/people.dart';
@@ -43,7 +44,13 @@ class DataViewMobile extends StatelessWidget {
                   crossAxisCount: 1,
                   mainAxisSpacing: sizingInfo.screenSize.height * 0.05,
                   children: <Widget>[
-                    _buildGraphForCandidate(context, sizingInfo),
+                   // _buildGraphForCandidate(context, sizingInfo),
+                    _buildGraphByTopAge(context, sizingInfo),
+                          _buildGraphByGender(context, sizingInfo,),
+                          _buildGraphByEthnicity(context, sizingInfo),
+                          _buildGraphByRace(context, sizingInfo),
+                          _buildGraphByParty(context, sizingInfo),
+                          _buildGraphByState(context, sizingInfo)
                    
                     
                   ],
@@ -138,6 +145,163 @@ class DataViewMobile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+    Widget _buildGraphByTopAge(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('TOP 5 AGE GROUPS',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedTopAgeGraph.withTopAgeData(
+                sizingInfo, createTopAgeData(model)),
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphByGender(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('GENDER',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedGenderGraph.withGenderData(sizingInfo, createGenderData(model)),
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphByEthnicity(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('ETHNICITY',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedEthnicityGraph.withEthnicityData( sizingInfo,createEthnicityData(model) ),
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphByParty(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('PARTY',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedPartyGraph.withPartyData(sizingInfo, createPartyData(model)),
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphByRace(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('RACE',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedRaceGraph.withRaceData(sizingInfo, createRaceData(model)),
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
+      ),
+    );
+  }
+
+    Widget _buildGraphByState(context, SizingInformation sizingInfo) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          Text('TOP STATES',
+              style: themeData.textTheme.body1.copyWith(
+                fontSize: sizingInfo.screenSize.width * 0.04,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              )),
+          SizedBox(
+            height: sizingInfo.screenSize.width * 0.05,
+          ),
+          Expanded(
+            child: GroupedTopStateGraph.withTopStateData(sizingInfo, createTopStateData(model)),
+          ),
+          SizedBox(
+            height: sizingInfo.screenSize.height * 0.03,
+          ),
+          LegendWidget(sizingInfo)
+        ],
       ),
     );
   }

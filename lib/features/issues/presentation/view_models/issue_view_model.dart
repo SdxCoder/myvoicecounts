@@ -32,11 +32,12 @@ class IssueViewModel extends BaseModel{
   
     var result  = await _issueService.addVoteForIssue(VoteIssue(
        documentId: _currentUser.id,
-       age: int.parse(_currentUser.age),
+       age: _currentUser.age,
        ethnicity: _currentUser.ethnicity,
        gender: _currentUser.gender,
        party: _currentUser.party,
        race: _currentUser.race,
+       state: _currentUser.state,
        adu: adu,
        date: DateTime.now().toUtc(),
        issueId: issue.documentId,
@@ -53,7 +54,7 @@ class IssueViewModel extends BaseModel{
       }, _currentUser.id).then((value) {
         fetchUpdatedUser();
       });
-      showSnackBarInfo(desc : "Your vote has been submitted");
+      await showInfoDialogBox(title: "Success", description : "Your Opinion has been recorded");
     }
   }
 
@@ -82,7 +83,6 @@ class IssueViewModel extends BaseModel{
     else{
       return false;
     }
-   
   }
 
   void navigateToData() async{

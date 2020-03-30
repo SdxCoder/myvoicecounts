@@ -65,7 +65,7 @@ class GroupedRaceGraph extends StatelessWidget {
 
 class OrdinalRaceAdu {
   final String race;
-  final int adu;
+  final double adu;
 
   OrdinalRaceAdu(this.race, this.adu);
 }
