@@ -144,6 +144,10 @@ class HomeService {
     try {
       QuerySnapshot snapshot =
           await _instance.collection(Db.personVotesCollection).getDocuments();
+       QuerySnapshot snapshot1 =
+          await _instance.collection(Db.issueVotesCollection).getDocuments();
+        QuerySnapshot snapshot2 =
+          await _instance.collection(Db.personIssuesVotesCollection).getDocuments();
 
       // if (snapshot.documents.isEmpty) {
       //   return false;
@@ -151,7 +155,7 @@ class HomeService {
       //   partyData.total = snapshot.documents.length;
       // }
 
-      partyData.total = snapshot.documents.length;
+      partyData.total = snapshot.documents.length + snapshot1.documents.length + snapshot2.documents.length;
 
       for (int index = 0; index < snapshot.documents.length; index++) {
         if (snapshot.documents[index].data['party'] == 'Democrat') {

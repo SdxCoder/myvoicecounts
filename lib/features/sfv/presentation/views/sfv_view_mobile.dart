@@ -45,7 +45,21 @@ class SfvViewMobile extends StatelessWidget {
               //   backgroundColor: themeData.primaryColor.withOpacity(0.1),
               //   maxRadius: 30,
               //   child: Icon(Icons.play_arrow, color: themeData.primaryColor,)),
-              leading: Container(
+              leading:( model.sfvList[index].thumbnail == null) ? 
+              Container(
+                height: 60,
+                width: 100,
+                
+                decoration: BoxDecoration(
+                  
+                  borderRadius : BorderRadius.circular(10),
+                 
+                  color: Colors.red
+                ),
+               child: Icon(Icons.play_arrow, color: Colors.white, size: 24,),
+              )
+              
+              :  Container(
                 height: 60,
                 width: 100,
                 
@@ -54,7 +68,7 @@ class SfvViewMobile extends StatelessWidget {
                   borderRadius : BorderRadius.circular(10),
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('images/bernie.jpg')
+                    image: NetworkImage( model.sfvList[index].thumbnail)
                   ),
                   color: Colors.red
                 ),

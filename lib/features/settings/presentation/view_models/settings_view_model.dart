@@ -55,7 +55,7 @@ class SettingsViewModel extends BaseModel {
             },
             title: "Warning",
             description:
-                "You have no edits left, if you edit your all data will be lost. Do you want to continue?");
+                "You have no more edits left for your profile. If you continue, all your data will be lost. Do you wish to continue?");
         
          return false;
       } 

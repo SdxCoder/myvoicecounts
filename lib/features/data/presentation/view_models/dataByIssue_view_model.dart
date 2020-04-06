@@ -25,7 +25,12 @@ class DataByIssueViewModel extends BaseModel{
     notifyListeners();
   }
 
+  void resetData(){
+    data = null;
+  }
+
   Future fetchData(period, issueId) async {
+    resetData();
     setBuzy(true);
     var result = await _service.fetchData(period, issueId);
    if(result is String){
@@ -41,7 +46,7 @@ class DataByIssueViewModel extends BaseModel{
 
          data.agree.calculatePercent(data.total);
          data.disagree.calculatePercent(data.total);
-        data.undecided.calculatePercent(data.total);
+         data.undecided.calculatePercent(data.total);
          _noData = false;  
       }
     }
@@ -84,33 +89,7 @@ class DataByIssueViewModel extends BaseModel{
   
   }
 
-  void _calculateDisagree(int total){
-    List<double> totalAduList = [];
-     for(var state in data.disagree.states){
-      int index = 0;
-      if(index >= data.disagree.states.length){
-        break;
-      }
-      print("total : $total");
-      print("Calculate disagree : ${data.disagree.states.map((e) => e.totalAdu)}");
-      double val =  (data.disagree.states[index].totalAdu/total);
-      print(val);
-      totalAduList.add(val);
-      index++;
-    }
-
-    for(var adu in totalAduList){
-      int index = 0;
-      if(index >= totalAduList.length){
-        break;
-      }
-      print(adu);
-      data.disagree.states[index].totalAdu = adu;
-      index++;
-    }
-
-     print("Calculate - -${totalAduList.map((e) => e)}");
-  }
+ 
 
  
 

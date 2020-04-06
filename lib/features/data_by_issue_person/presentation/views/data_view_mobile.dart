@@ -131,7 +131,7 @@ class DataViewMobile extends StatelessWidget {
                                         : 20,
                                   )),
                                Container(
-                                 width: sizingInfo.screenSize.width - 100,
+                                 width: sizingInfo.screenSize.width - 152,
                                  child: Text("${personIssueObject.issue.issueName}",
                                     style: themeData.textTheme.body1.copyWith(
                                       color: Colors.black54,
@@ -169,15 +169,23 @@ class DataViewMobile extends StatelessWidget {
                   foregroundColor: Colors.white,
                   tooltip: "Select Date",
                   onPressed: () async {
-                    await showCalenderDialogBox(
+                    String changed = await showCalenderDialogBox(
                       title: "Select Date",
+                      model: model,
                       content: DateRangePicker(
                         onNewRangeSelected: (period){
                           model.fetchPeriod(period);
-                           model.fetchData(period,   personIssueObject.issue.documentId,   personIssueObject.candidate.documentId);
+                           
                         },
                       )
                     );
+                    print(changed);
+
+                    if(changed == "true"){
+                       model.fetchData(model.selectedPeriod,   personIssueObject.issue.documentId,   personIssueObject.candidate.documentId);
+                    }
+
+                   
                    
                     
                     print("${model.selectedPeriod.start} - ${model.selectedPeriod.start}");

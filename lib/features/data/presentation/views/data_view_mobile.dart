@@ -84,16 +84,20 @@ class DataViewMobile extends StatelessWidget {
                   foregroundColor: Colors.white,
                   tooltip: "Select Date",
                   onPressed: () async {
-                    await showCalenderDialogBox(
+                    String changed = await showCalenderDialogBox(
                       title: "Select Date",
                       content: DateRangePicker(
                         onNewRangeSelected: (period){
                           model.fetchPeriod(period);
-                           model.fetchData(period, issue.documentId);
+                          
+                           print("called");
                         },
                       )
                     );
-                   
+                     if(changed == "true")
+                  {
+                     model.fetchData(model.selectedPeriod, issue.documentId);
+                  }
                     
                     print("${model.selectedPeriod.start} - ${model.selectedPeriod.start}");
                   },

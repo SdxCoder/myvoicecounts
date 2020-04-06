@@ -14,6 +14,7 @@ class DataByPersonIssueViewModel extends BaseModel{
   final _service = Modular.get<DataPersonIssueService>();
 
   DatePeriod _selectedPeriod = DatePeriod(DateTime.utc(2020, 3, 1), DateTime.now().toUtc());
+  bool dateSelected = false;
   QueryPersonIssueData data;
 
   bool _noData = false;
@@ -23,6 +24,7 @@ class DataByPersonIssueViewModel extends BaseModel{
 
   void fetchPeriod(period){
     _selectedPeriod = period;
+    dateSelected = true;
     notifyListeners();
   }
 
@@ -46,6 +48,7 @@ class DataByPersonIssueViewModel extends BaseModel{
          _noData = false;  
       }
     }
+   dateSelected = false;
    setBuzy(false);
 
    if(data != null){

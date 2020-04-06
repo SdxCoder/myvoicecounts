@@ -6,6 +6,7 @@ class Sfv extends Equatable{
   final String title;
   final String link;
   final String videoUrl;
+  final String thumbnail;
   final String adminId;
   final int agree;
   final int disagree;
@@ -14,7 +15,7 @@ class Sfv extends Equatable{
 
   String get documentId => _documentId;
 
-  Sfv( {this.agree, this.disagree, this.undecided,this.link, this.videoUrl, this.title, this.adminId, documentId}) : _documentId = documentId;
+  Sfv( {this.agree, this.disagree, this.undecided,this.link, this.videoUrl,this.thumbnail, this.title, this.adminId, documentId}) : _documentId = documentId;
 
   Sfv.fromMap(Map<String, dynamic> map,  DocumentSnapshot snapshot) :
    
@@ -25,6 +26,7 @@ class Sfv extends Equatable{
    this.agree = map['agree'],
    this.disagree = map['disagree'],
    this.undecided = map['undecided'],
+   this.thumbnail = map['thumbnail'],
    this._documentId = snapshot.documentID;
 
   Map<String, dynamic> toMap(String id){
@@ -34,6 +36,7 @@ class Sfv extends Equatable{
       'link' : this.link,
       'videoUrl' : this.videoUrl,
       'adminId': this.adminId,
+      'thumbnail' : this.thumbnail,
       'agree' :agree,
       'disagree': disagree,
       'undecided': undecided

@@ -24,14 +24,46 @@ class SplashScreenMobile extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20))),
               ),
             ),
-            
-            Text('Welcome to', style: Theme.of(context).textTheme.bodyText1.copyWith(color:Colors.white54)),
-            SizedBox(height: 10,),
-            Text('OPINION8ED', style: Theme.of(context).textTheme.display1.copyWith(color:Colors.white70, fontWeight: FontWeight.bold)),
-           SizedBox(height: 10,),
+            Text('Welcome to',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .copyWith(color: Colors.white54)),
+            SizedBox(
+              height: 10,
+            ),
+            RichText(
+              text: TextSpan(
+               // style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'OPINION',
+                      style: Theme.of(context).textTheme.display1.copyWith(
+                        color: Colors.white70, fontWeight: FontWeight.bold)),
+                  TextSpan(text: '8',  style: Theme.of(context).textTheme.display1.copyWith(
+                        fontSize: 52,
+                       
+                        color: Colors.white70, fontWeight: FontWeight.bold)),
+                  TextSpan(text: 'ED',  style: Theme.of(context).textTheme.display1.copyWith(
+                        color: Colors.white70, fontWeight: FontWeight.bold))
+                ],
+              ),
+            ),
+            // Row(
+            //   children: <Widget>[
+            //     Text('OPINION'),
+            //     Text('OPINION8ED',
+            //         style: Theme.of(context).textTheme.display1.copyWith(
+            //             color: Colors.white70, fontWeight: FontWeight.bold)),
+            //   ],
+            // ),
+            SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
               child: Container(
+               
                 width: sizingInfo.screenSize.width * 0.9,
                 //padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -54,8 +86,9 @@ class SplashScreenMobile extends StatelessWidget {
                     child: Text(
                       "Agree? Disagree? Undecided?",
                       style: themeData.textTheme.bodyText1.copyWith(
-                        fontSize: 20,
-                          color: Colors.white70, fontWeight: FontWeight.bold),
+                          fontSize: 20,
+                          color: Colors.white70,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 )),
@@ -63,8 +96,8 @@ class SplashScreenMobile extends StatelessWidget {
             ),
             Text('How people feel on issues\nand personalities. Open to all',
                 textAlign: TextAlign.center,
-                style: themeData.textTheme.bodyText1.copyWith(color:Colors.white54)),
-          
+                style: themeData.textTheme.bodyText1
+                    .copyWith(color: Colors.white54)),
           ],
         )),
       );

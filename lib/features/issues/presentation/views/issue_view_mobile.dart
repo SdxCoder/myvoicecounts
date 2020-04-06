@@ -211,7 +211,7 @@ Widget _issueItem(
                         model.voteForIssue(issue, "undecided");
                       },
                       child: Icon(
-                        FontAwesomeIcons.timesCircle,
+                        FontAwesomeIcons.questionCircle,
                         color: Colors.grey,
                         size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                       )),

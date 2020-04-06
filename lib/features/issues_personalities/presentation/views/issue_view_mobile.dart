@@ -268,7 +268,7 @@ class IssueViewMobile extends StatelessWidget {
                               issue, candidate, "undecided");
                         },
                         child: Icon(
-                          FontAwesomeIcons.timesCircle,
+                          FontAwesomeIcons.questionCircle,
                           color: Colors.grey,
                           size: (sizingInfo.screenSize.width < 400) ? 26 : 32,
                         )),

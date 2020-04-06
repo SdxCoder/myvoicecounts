@@ -82,7 +82,7 @@ class PersonIssueViewModel extends BaseModel{
         await _personIssueService.getPersonIssueVoteIntegrityByDay( candidate.documentId,issue.documentId);
     
     if(currentVoteIntegrity <= 0){
-      await showInfoDialogBox(title: "Reminder", description: "You have already voted 2 times.\n\n You can vote again tomorrow");
+      await showInfoDialogBox(title: "Reminder", description: "You have already given opinion 2 times.\n\n You can upload an opinion again tomorrow");
       return true;
     }
     else{
@@ -92,7 +92,7 @@ class PersonIssueViewModel extends BaseModel{
 
   Future<bool> _manageProfile() async {
     if(!_currentUser.isComplete){
-      await showInfoDialogBox(title: "Reminder", description: "You can't vote untile your profile is complete. Please complete your profile and then continue");
+      await showInfoDialogBox(title: "Reminder", description: "You can't upload an opinion until your profile is complete. Please tap the Settings button to do so. Thank you");
       return true;
     }
     else{
@@ -102,7 +102,7 @@ class PersonIssueViewModel extends BaseModel{
 
   void navigateToData() async{
     if(_selectedIssue == null){
-      await showInfoDialogBox(title: "Reminder", description: "Please, First select an issue for which you want to see the demographics for selected personality");
+      await showInfoDialogBox(title: "Reminder", description: "To see the demographics, please select an issue");
     }else{
       Modular.to.pushNamed(Paths.dataByPersonIssue, arguments : PersonIssueObject(
         issue : _selectedIssue,

@@ -65,7 +65,7 @@ class IssueViewModel extends BaseModel {
       await showInfoDialogBox(
           title: "Reminder",
           description:
-              "You have already voted 2 times.\n\n You can vote again tomorrow");
+              "You have already given opinion 2 times.\n\n You can upload an opinion again tomorrow");
       return true;
     } else {
       return false;
@@ -77,7 +77,7 @@ class IssueViewModel extends BaseModel {
       await showInfoDialogBox(
           title: "Reminder",
           description:
-              "You can't vote untile your profile is complete. Please complete your profile and then continue");
+              "You can't upload an opinion until your profile is complete. Please tap the Settings button to do so. Thank you");
       return true;
     } else {
       return false;
@@ -89,7 +89,7 @@ class IssueViewModel extends BaseModel {
       await showInfoDialogBox(
           title: "Reminder",
           description:
-              "Please, First select an issue for which you want to see the demographics");
+              "To see the demographics, please select an issue");
     } else {
       Modular.to
           .pushReplacementNamed(Paths.dataByIssue, arguments: _selectedIssue);

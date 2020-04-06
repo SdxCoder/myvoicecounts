@@ -6,13 +6,18 @@ import '../data/queryData.dart';
 
 class DataIssueService {
   Firestore _instance = Firestore.instance;
-  QueryData data;
+  QueryData data = QueryData(
+        agree: QueryDataAgree(states: List<StateData>()),
+        disagree: QueryDataDisAgree(states: List<StateData>()),
+        undecided: QueryDataUndecided(states: List<StateData>()));
 
   Future fetchData(DatePeriod period, String issueId) async {
+    
     data = QueryData(
         agree: QueryDataAgree(states: List<StateData>()),
         disagree: QueryDataDisAgree(states: List<StateData>()),
         undecided: QueryDataUndecided(states: List<StateData>()));
+
 
     try {
       QuerySnapshot snapshot0 = await _instance
@@ -106,11 +111,13 @@ class DataIssueService {
       stateData.state = state;
 
       statesDataList.add(stateData);
+     
     }
 
     statesDataList.sort((b, a) => a.totalAdu.compareTo(b.totalAdu));
     for (var state in statesDataList) {
-      print("Descending states : ${state.state} - ${state.totalAdu} \n");
+      print("Descending states :${statesDataList.length}  ${state.state} - ${state.totalAdu} \n");
+      
     }
 
 

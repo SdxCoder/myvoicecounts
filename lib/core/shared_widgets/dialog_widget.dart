@@ -40,7 +40,8 @@ Future<void> showInfoDialogBox({
                   Align(
                       alignment: Alignment.center,
                       child: RaisedButton(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         color: themeData.accentColor,
                         elevation: 0,
                         child: Text(buttonText),
@@ -56,18 +57,13 @@ Future<void> showInfoDialogBox({
   );
 }
 
-
-
-
-
-Future<void> showActionDialogBox({
-  @required String title,
-  @required String description,
-  Function onPressedYes,
-   Function onPressedNo,
-  String buttonText = "Yes",
-  String buttonTextCancel = "No"
-}) async {
+Future<void> showActionDialogBox(
+    {@required String title,
+    @required String description,
+    Function onPressedYes,
+    Function onPressedNo,
+    String buttonText = "Yes",
+    String buttonTextCancel = "No"}) async {
   print("show dialog");
   await showDialog<void>(
     context: Modular.navigatorKey.currentState.overlay.context,
@@ -75,22 +71,19 @@ Future<void> showActionDialogBox({
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         actions: <Widget>[
-           FlatButton(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                     
-      
-                      child: Text(buttonTextCancel, style: TextStyle(color: themeData.accentColor)),
-                      onPressed: onPressedNo
-                    ),
+          FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Text(buttonTextCancel,
+                  style: TextStyle(color: themeData.accentColor)),
+              onPressed: onPressedNo),
           RaisedButton(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      color: themeData.accentColor,
-                      elevation: 0,
-                      child: Text(buttonText),
-                      onPressed: onPressedYes
-                    ),
-         
-          
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: themeData.accentColor,
+              elevation: 0,
+              child: Text(buttonText),
+              onPressed: onPressedYes),
         ],
         content: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -108,10 +101,62 @@ Future<void> showActionDialogBox({
                         style: TextStyle(fontWeight: FontWeight.bold),
                       )),
                   Divider(),
-                  Wrap(
-                    direction: Axis.horizontal,
+                  Text(description, textAlign: TextAlign.center,),
+                 
+                ]),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Future<String> showCalenderDialogBox(
+    {@required String title,
+    @required Widget content,
+    model,
+    String buttonText = "Ok",
+    String buttonTextCancel = "No"}) async {
+  print("show dialog");
+  return await showDialog<String>(
+    context: Modular.navigatorKey.currentState.overlay.context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            width: 400,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 16),
+                
+                  Padding(padding: const EdgeInsets.all(16.0), child: content),
+                   SizedBox(height: 16),
+                  ButtonBar(
                     children: <Widget>[
-                      Text(description),
+                      FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(buttonTextCancel,
+                              style: TextStyle(color: themeData.accentColor)),
+                          onPressed: () {
+                            String result = "false";
+                            return Modular.to
+                                .pop(result);
+                          }),
+                      RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          color: themeData.accentColor,
+                          elevation: 0,
+                          child: Text(buttonText),
+                          onPressed:  () {
+                                  return Modular.to
+                                      .pop("true");
+                                }),
                     ],
                   ),
                 ]),
@@ -122,84 +167,35 @@ Future<void> showActionDialogBox({
   );
 }
 
+Future showSnackBarInfo({String desc}) {
+  var context = Modular.navigatorKey.currentState.overlay.context;
+  Flushbar flush;
 
-
-Future<void> showCalenderDialogBox({
-  @required String title,
-  @required Widget content,
-  Function onPressedYes,
-  String buttonText = "Ok",
-  String buttonTextCancel = "No"
-}) async {
-  print("show dialog");
-  await showDialog<void>(
-    context: Modular.navigatorKey.currentState.overlay.context,
-    builder: (context) {
-      return AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        actions: <Widget>[
-            // FlatButton(
-            //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                     
-      
-            //           child: Text(buttonTextCancel, style: TextStyle(color: themeData.accentColor)),
-            //           onPressed: (){
-            //             return Modular.to.pop(false);
-            //           }
-            //         ),
-          
-          RaisedButton(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      color: themeData.accentColor,
-                      elevation: 0,
-                      child: Text(buttonText),
-                      onPressed: (){
-                         Modular.to.pop();
-                      }
-                    ),
-         
-          
-        ],
-        content: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: content
-        ),
-      );
-    },
-  );
-}
-
-
-Future showSnackBarInfo({String desc}){
- var context = Modular.navigatorKey.currentState.overlay.context;
-Flushbar flush;
-
-flush =  Flushbar(
-      messageText: Text(
-        desc,
-        style: TextStyle(
-          color: Colors.white,
-        ),
+  flush = Flushbar(
+    messageText: Text(
+      desc,
+      style: TextStyle(
+        color: Colors.white,
       ),
-      mainButton: FlatButton(
-          onPressed: () {
-            flush.dismiss(true);
-          },
-          child: Text(
-            "DISMISS",
-            style: themeData.textTheme.button,
-          )),
-      backgroundColor:themeData.primaryColor,
-      flushbarPosition: FlushbarPosition.BOTTOM,
-      padding: EdgeInsets.all(8),
-      overlayBlur: 0.0001,
-     // overlayColor: overlayColor,
-      borderRadius: 0,
-      icon: Icon(
-        Icons.info,
-        color: themeData.primaryColor,
-      ),
-      duration: Duration(seconds: 3),
-    )..show(context);
-
+    ),
+    mainButton: FlatButton(
+        onPressed: () {
+          flush.dismiss(true);
+        },
+        child: Text(
+          "DISMISS",
+          style: themeData.textTheme.button,
+        )),
+    backgroundColor: themeData.primaryColor,
+    flushbarPosition: FlushbarPosition.BOTTOM,
+    padding: EdgeInsets.all(8),
+    overlayBlur: 0.0001,
+    // overlayColor: overlayColor,
+    borderRadius: 0,
+    icon: Icon(
+      Icons.info,
+      color: themeData.primaryColor,
+    ),
+    duration: Duration(seconds: 3),
+  )..show(context);
 }
