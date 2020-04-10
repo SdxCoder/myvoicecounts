@@ -5,6 +5,7 @@ import 'package:myvoicecounts/core/core.dart';
 
 import 'package:myvoicecounts/features/settings/services/settings_service.dart';
 import 'package:string_validator/string_validator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../splash_screen/data/user.dart';
 
@@ -16,20 +17,50 @@ class SettingsViewModel extends BaseModel {
 
   User get currentUser => _currentUser;
 
- // User _updatedUser;
+  // User _updatedUser;
 
   Future updateUser(Map<String, dynamic> map) async {
-    if(await _manageZeroIntegrity() == false) return;
+    if (await _manageZeroIntegrity() == false) return;
     if (_validateText(map)) return;
     var result = await _settingsService.updateUser(map, _currentUser.id);
 
     if (result is String) {
       showInfoDialogBox(title: "error", description: result);
     } else {
-      showSnackBarInfo(desc: "${map.keys} updated : ${map.values}".replaceAll("(", "").replaceAll(")", ""));
+      showSnackBarInfo(
+          desc: "${map.keys} updated : ${map.values}"
+              .replaceAll("(", "")
+              .replaceAll(")", ""));
       fetchUpdatedUser().then((value) {
         _manageIntegrity();
       });
+    }
+  }
+
+  openDescription() async {
+    await showActionSettingsDialogBox(
+        title: "How this works",
+        url: "https://www.gridnewsbureau.com/home-of-opinion8ed",
+        description: "To see more about how Opinion8ed works, go here",
+        buttonText: "OPEN URL",
+        buttonTextCancel: "Close",
+        onPressedYes: () async {
+          await _launchURL();
+          Modular.to.pop();
+        },
+        onPressedNo: (){
+          Modular.to.pop();
+        }
+        );
+  }
+
+  _launchURL() async {
+    const url = 'https://www.gridnewsbureau.com/home-of-opinion8ed';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      await showInfoDialogBox(
+          title: "error", description: 'Could not launch $url');
     }
   }
 
@@ -41,26 +72,25 @@ class SettingsViewModel extends BaseModel {
     notifyListeners();
   }
 
-  Future<bool> _manageZeroIntegrity() async{
+  Future<bool> _manageZeroIntegrity() async {
     int integrity = _currentUser.integrity;
-      if (integrity == 0) {
-       await showActionDialogBox(
-            onPressedYes: () {
-              _settingsService.deleteUser(_currentUser.id, _firebaseUser);
-              Modular.to.pushNamedAndRemoveUntil(Paths.splash, (route) => false);
+    if (integrity == 0) {
+      await showActionDialogBox(
+          onPressedYes: () {
+            _settingsService.deleteUser(_currentUser.id, _firebaseUser);
+            Modular.to.pushNamedAndRemoveUntil(Paths.splash, (route) => false);
+          },
+          onPressedNo: () {
+            Modular.to.pop();
+          },
+          title: "Warning",
+          description:
+              "You have no more edits left for your profile. If you continue, all your data will be lost. Do you wish to continue?");
 
-            },
-            onPressedNo: (){
-              Modular.to.pop();
-            },
-            title: "Warning",
-            description:
-                "You have no more edits left for your profile. If you continue, all your data will be lost. Do you wish to continue?");
-        
-         return false;
-      } 
-    
-     return true;
+      return false;
+    }
+
+    return true;
   }
 
   void _manageIntegrity() {
@@ -73,15 +103,13 @@ class SettingsViewModel extends BaseModel {
         _currentUser.party != null &&
         _currentUser.zip != null) {
       int integrity = _currentUser.integrity;
-     
-        _settingsService.updateUser(
-            { 
-              'isComplete': true,
-              'integrity': integrity - 1,
-              
-            }, _currentUser.id).then((value) {
-          fetchUpdatedUser();
-        });
+
+      _settingsService.updateUser({
+        'isComplete': true,
+        'integrity': integrity - 1,
+      }, _currentUser.id).then((value) {
+        fetchUpdatedUser();
+      });
       //}
     }
   }
@@ -98,7 +126,7 @@ class SettingsViewModel extends BaseModel {
       return true;
       // await showSnackBarInfo(
       //     desc: "Please update all parameters of your profile");
-    }else{
+    } else {
       return false;
     }
   }
@@ -119,7 +147,7 @@ class SettingsViewModel extends BaseModel {
         return true;
       }
 
-       if (!isNumeric(zip)) {
+      if (!isNumeric(zip)) {
         showSnackBarInfo(desc: "Only digits are allowed");
         return true;
       }
@@ -156,13 +184,7 @@ class SettingsViewModel extends BaseModel {
   List<String> party = ["Democrat", "Independent", "Republican", "Other"];
   List<String> gender = ["Male", "Female"];
 //  List<int> age = List<int>.generate(51, (index) => index + 15);
-  List<String> age = [
-    "15-20",
-    "21-35",
-    "36-50",
-    "51-65",
-    "66-Older"
-  ];
+  List<String> age = ["15-20", "21-35", "36-50", "51-65", "66-Older"];
 
   List<String> allStates = [
     "Alabama",

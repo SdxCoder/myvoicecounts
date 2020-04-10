@@ -18,7 +18,7 @@ void main() {
     ),
   );
 
-   BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
+  // BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 }
 
 
@@ -52,16 +52,15 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
 
-
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-    BackgroundFetch.start().then((int status) {
-        print('[BackgroundFetch] start success: $status');
-      }).catchError((e) {
-        print('[BackgroundFetch] start FAILURE: $e');
-      });
+   // initPlatformState();
+    // BackgroundFetch.start().then((int status) {
+    //     print('[BackgroundFetch] start success: $status');
+    //   }).catchError((e) {
+    //     print('[BackgroundFetch] start FAILURE: $e');
+    //   });
   }
 
   @override

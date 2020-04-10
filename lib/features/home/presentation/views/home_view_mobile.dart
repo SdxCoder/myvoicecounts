@@ -63,7 +63,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                       child: (widget.model.buzy)
                           ? Text('')
                           : Text(
-                              "Total Votes\n${widget.model.partyData.total}",
+                              "Total Opinions\n${widget.model.partyData.total}",
                               textAlign: TextAlign.right,
                               style: themeData.textTheme.body1
                                   .copyWith(color: themeData.primaryColorLight),
@@ -87,8 +87,10 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                                 child: (widget.model.buzy)
                                     ? Text('')
                                     : Text(
-                                        "${widget.model.partyData.independent}%",
-                                        style: themeData.textTheme.body1,
+                                        "${widget.model.partyData.independent.round()}%",
+                                        style: themeData.textTheme.body1.copyWith(
+                                          color: Colors.white
+                                        ),
                                       ),
                               ),
                               SizedBox(
@@ -105,9 +107,9 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                                 backgroundColor: Colors.blue,
                                 minRadius: sizingInfo.screenSize.width * 0.07,
                                 child: Text(
-                                  "${widget.model.partyData.democrat}%",
+                                  "${widget.model.partyData.democrat.round()}%",
                                   style: themeData.textTheme.body1
-                                      .copyWith(color: Colors.black),
+                                      .copyWith(color: Colors.white),
                                 ),
                               ),
                               SizedBox(
@@ -124,9 +126,9 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                                 backgroundColor: Colors.red,
                                 minRadius: sizingInfo.screenSize.width * 0.07,
                                 child: Text(
-                                  "${widget.model.partyData.republic}%",
+                                  "${widget.model.partyData.republic.round()}%",
                                   style: themeData.textTheme.body1
-                                      .copyWith(color: Colors.black54),
+                                      .copyWith(color: Colors.white),
                                 ),
                               ),
                               SizedBox(
@@ -143,9 +145,9 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
                                 backgroundColor: Colors.grey,
                                 minRadius: sizingInfo.screenSize.width * 0.07,
                                 child: Text(
-                                  "${widget.model.partyData.other}%",
+                                  "${widget.model.partyData.other.round()}%",
                                   style: themeData.textTheme.body1
-                                      .copyWith(color: Colors.black),
+                                      .copyWith(color: Colors.white),
                                 ),
                               ),
                               SizedBox(

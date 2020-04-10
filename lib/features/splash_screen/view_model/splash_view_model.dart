@@ -58,9 +58,9 @@ class SplashViewModel extends BaseModel {
         );
       } else {
         _splashService.addToAccounts(user);
-        _splashService.updateUser({
-          'lastActive' : DateTime.now().toUtc()
-        }, user.uid);
+        // _splashService.updateUser({
+        //   'lastActive' : DateTime.now().toUtc()
+        // }, user.uid);
 
         if (prefs.containsKey('uid')) {
           if (prefs.getString('uid') != user.uid) {

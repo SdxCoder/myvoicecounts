@@ -101,8 +101,82 @@ Future<void> showActionDialogBox(
                         style: TextStyle(fontWeight: FontWeight.bold),
                       )),
                   Divider(),
-                  Text(description, textAlign: TextAlign.center,),
-                 
+                  Text(
+                    description,
+                    textAlign: TextAlign.center,
+                  ),
+                ]),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Future<void> showActionSettingsDialogBox(
+    {@required String title,
+    @required String description,
+    @required String url,
+    Function onPressedYes,
+    Function onPressedNo,
+    String buttonText = "Yes",
+    String buttonTextCancel = "No"}) async {
+  print("show dialog");
+  await showDialog<void>(
+    context: Modular.navigatorKey.currentState.overlay.context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        actions: <Widget>[
+          FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Text(buttonTextCancel,
+                  style: TextStyle(color: themeData.accentColor)),
+              onPressed: onPressedNo),
+          RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: themeData.accentColor,
+              elevation: 0,
+              child: Text(buttonText),
+              onPressed: onPressedYes),
+        ],
+        content: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            width: 400,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        title,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  // Divider(),
+                  SizedBox(height: 10),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: description,
+                            style: TextStyle(color: Colors.black54)),
+                        TextSpan(
+                          text: " ",
+                        ),
+                        TextSpan(
+                          text: url,
+                          style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
+                  ),
                 ]),
           ),
         ),
@@ -132,9 +206,8 @@ Future<String> showCalenderDialogBox(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 16),
-                
                   Padding(padding: const EdgeInsets.all(16.0), child: content),
-                   SizedBox(height: 16),
+                  SizedBox(height: 16),
                   ButtonBar(
                     children: <Widget>[
                       FlatButton(
@@ -144,8 +217,7 @@ Future<String> showCalenderDialogBox(
                               style: TextStyle(color: themeData.accentColor)),
                           onPressed: () {
                             String result = "false";
-                            return Modular.to
-                                .pop(result);
+                            return Modular.to.pop(result);
                           }),
                       RaisedButton(
                           shape: RoundedRectangleBorder(
@@ -153,10 +225,9 @@ Future<String> showCalenderDialogBox(
                           color: themeData.accentColor,
                           elevation: 0,
                           child: Text(buttonText),
-                          onPressed:  () {
-                                  return Modular.to
-                                      .pop("true");
-                                }),
+                          onPressed: () {
+                            return Modular.to.pop("true");
+                          }),
                     ],
                   ),
                 ]),

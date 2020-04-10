@@ -35,10 +35,17 @@ class _SettingsViewMobileState extends State<SettingsViewMobile> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
           child: Column(
             children: <Widget>[
-              Text(
-                "How this works",
-                style: themeData.textTheme.body1.copyWith(
-                    color: Colors.black54, fontSize: headlineSize(sizingInfo)),
+              InkWell(
+                onTap: () {
+                  print("how this works");
+                  widget.model.openDescription();
+                },
+                child: Text(
+                  "How this works",
+                  style: themeData.textTheme.body1.copyWith(
+                      color: Colors.black54,
+                      fontSize: headlineSize(sizingInfo)),
+                ),
               ),
               SizedBox(
                 height: 16,

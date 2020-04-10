@@ -48,6 +48,9 @@ class IssueViewModel extends BaseModel {
      
       await showInfoDialogBox(
           title: "Success", description: "Your Opinion has been recorded");
+      await _issueService.updateUser({
+          'lastActive' : DateTime.now().toUtc()
+      }, _currentUser.id);
     }
   }
 
@@ -59,7 +62,7 @@ class IssueViewModel extends BaseModel {
 
   Future<bool> _manageVoteIntegrity(Issue issue) async {
     int currentVoteIntegrity =
-        await _issueService.getIssueVoteIntegrityByDay(issue.documentId);
+        await _issueService.getIssueVoteIntegrityByDay(_currentUser.id, issue.documentId);
     print("vote Integrity - $currentVoteIntegrity");
     if (currentVoteIntegrity <= 0) {
       await showInfoDialogBox(

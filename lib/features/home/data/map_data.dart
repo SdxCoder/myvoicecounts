@@ -25,19 +25,19 @@ class MapData extends Equatable{
 }
 
 class PartyData{
-  int independent;
-  int republic;
-  int democrat;
-  int other;
+  double independent;
+  double republic;
+  double democrat;
+  double other;
   int total;
 
   PartyData({this.democrat, this.independent, this.other, this.republic});
 
    void calculatePercent(int total){
-    independent = ((independent / total) * 100).toInt();
-    republic = ((republic / total) * 100).toInt();
-    democrat = ((democrat / total) * 100).toInt();
-    other = ((other / total) * 100).toInt();
+    independent = (independent / total) * 100;
+    republic = (republic / total) * 100;
+    democrat = (democrat / total) * 100;
+    other = (other / total) * 100;
 
    }
 

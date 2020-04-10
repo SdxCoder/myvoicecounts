@@ -54,7 +54,7 @@ class HomeService {
         dataList.add(data);
 
         for (var item in dataList) {
-          print("-----> ${item.state} - ${item.party}");
+         // print("-----> ${item.state} - ${item.party}");
           if (filteredList.contains(item.state)) {
             continue;
           } else {
@@ -135,11 +135,11 @@ class HomeService {
   }
 
   Future fetchPartyData() async {
-    partyData = PartyData(independent: 0, democrat: 0, republic: 0, other: 0);
-    int independent = 0;
-    int republic = 0;
-    int democrat = 0;
-    int other = 0;
+    partyData = PartyData(independent: 0.0, democrat: 0.0, republic: 0.0, other: 0.0);
+    double independent =  0.0;
+    double republic =  0.0;
+    double democrat =  0.0;
+    double other =  0.0;
 
     try {
       QuerySnapshot snapshot =
@@ -159,19 +159,55 @@ class HomeService {
 
       for (int index = 0; index < snapshot.documents.length; index++) {
         if (snapshot.documents[index].data['party'] == 'Democrat') {
-          democrat = democrat + 1;
+          democrat = democrat + 1.0;
         }
 
         if (snapshot.documents[index].data['party'] == 'Independent') {
-          independent = independent + 1;
+          independent = independent + 1.0;
         }
 
         if (snapshot.documents[index].data['party'] == 'Republican') {
-          republic = republic + 1;
+          republic = republic + 1.0;
         }
 
         if (snapshot.documents[index].data['party'] == 'Other') {
-          other = other + 1;
+          other = other + 1.0;
+        }
+      }
+
+      for (int index = 0; index < snapshot1.documents.length; index++) {
+        if (snapshot1.documents[index].data['party'] == 'Democrat') {
+          democrat = democrat + 1.0;
+        }
+
+        if (snapshot1.documents[index].data['party'] == 'Independent') {
+          independent = independent + 1.0;
+        }
+
+        if (snapshot1.documents[index].data['party'] == 'Republican') {
+          republic = republic + 1.0;
+        }
+
+        if (snapshot1.documents[index].data['party'] == 'Other') {
+          other = other + 1.0;
+        }
+      }
+
+       for (int index = 0; index < snapshot2.documents.length; index++) {
+        if (snapshot2.documents[index].data['party'] == 'Democrat') {
+          democrat = democrat + 1.0;
+        }
+
+        if (snapshot2.documents[index].data['party'] == 'Independent') {
+          independent = independent + 1.0;
+        }
+
+        if (snapshot2.documents[index].data['party'] == 'Republican') {
+          republic = republic + 1.0;
+        }
+
+        if (snapshot2.documents[index].data['party'] == 'Other') {
+          other = other + 1.0;
         }
       }
 
@@ -179,6 +215,10 @@ class HomeService {
       partyData.republic = republic;
       partyData.other = other;
       partyData.democrat = democrat;
+      print("Idep - $independent");
+      print("republic - $republic");
+      print("other - $other");
+      print("democrat - $democrat");
 
       return partyData;
     } catch (e) {

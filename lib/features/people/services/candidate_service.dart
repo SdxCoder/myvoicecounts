@@ -19,7 +19,7 @@ class CandidateService {
 
        DocumentSnapshot snapshot = await _instance
         .collection(Db.personVotesCollection)
-        .document("${vote.personId}-${DateTime.now().getDate()}")
+        .document("${vote.documentId}-${vote.personId}-${DateTime.now().getDate()}")
         .get();
 
         
@@ -27,13 +27,13 @@ class CandidateService {
       try {
         await _instance
             .collection(Db.personVotesCollection)
-            .document("${vote.personId}-${DateTime.now().getDate()}")
+            .document("${vote.documentId}-${vote.personId}-${DateTime.now().getDate()}")
             .setData(vote.toMap());
       } catch (e) {
         return e.message;
       }
     }else{
-       int voteIntegrity = await getPersonVoteIntegrityByDay(vote.personId);
+       int voteIntegrity = await getPersonVoteIntegrityByDay(vote.documentId,vote.personId);
       await updatePersonVote({
         'personId': vote.personId,
         'personName': vote.personName,
@@ -47,17 +47,17 @@ class CandidateService {
         'state': vote.state,
         'id': vote.documentId,
         'voteIntegrity': voteIntegrity - 1
-      }, vote.personId);
+      }, vote.personId, vote.documentId);
     }
 
    
   }
 
-   Future updatePersonVote(Map<String, dynamic> map, String id) async {
+   Future updatePersonVote(Map<String, dynamic> map, String id,String uid,) async {
     try {
       await _instance
           .collection(Db.personVotesCollection)
-          .document("$id-${DateTime.now().getDate()}")
+          .document("$uid-$id-${DateTime.now().getDate()}")
           .updateData(map);
       return true;
     } catch (e) {
@@ -70,11 +70,11 @@ class CandidateService {
     }
   }
 
-   Future<int> getPersonVoteIntegrityByDay(String id) async {
+   Future<int> getPersonVoteIntegrityByDay(String uid,String id) async {
     int voteIntegrity = 2;
     DocumentSnapshot snapshot = await _instance
         .collection(Db.personVotesCollection)
-        .document("$id-${DateTime.now().getDate()}")
+        .document("$uid-$id-${DateTime.now().getDate()}")
         .get();
 
     if (snapshot.exists) {

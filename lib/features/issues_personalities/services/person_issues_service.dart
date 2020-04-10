@@ -14,20 +14,20 @@ class PersonIssuesService {
     DocumentSnapshot snapshot = await _instance
         .collection(Db.personIssuesVotesCollection)
         .document(
-            "${vote.personId}-${vote.issueId}-${DateTime.now().getDate()}")
+            "${vote.documentId}-${vote.personId}-${vote.issueId}-${DateTime.now().getDate()}")
         .get();
 
     if (snapshot.exists == false) {
       try {
         await _instance
             .collection(Db.personIssuesVotesCollection)
-            .document("${vote.personId}-${vote.issueId}-${DateTime.now().getDate()}")
+            .document("${vote.documentId}-${vote.personId}-${vote.issueId}-${DateTime.now().getDate()}")
             .setData(vote.toMap());
       } catch (e) {
         return e.message;
       }
     }else{
-       int voteIntegrity = await getPersonIssueVoteIntegrityByDay(vote.personId, vote.issueId);
+       int voteIntegrity = await getPersonIssueVoteIntegrityByDay(vote.documentId,vote.personId, vote.issueId);
       await updatePersonIssueVote({
         'personId': vote.personId,
         'personName':vote.personName,
@@ -43,15 +43,15 @@ class PersonIssuesService {
         'state': vote.state,
         'id': vote.documentId,
         'voteIntegrity': voteIntegrity - 1
-      }, vote.issueId, vote.personId);
+      }, vote.issueId, vote.personId, vote.documentId);
     }
   }
 
-  Future updatePersonIssueVote(Map<String, dynamic> map, String issueId, String personId) async {
+  Future updatePersonIssueVote(Map<String, dynamic> map, String issueId, String personId, String uid) async {
     try {
       await _instance
           .collection(Db.personIssuesVotesCollection)
-          .document("$personId-$issueId-${DateTime.now().getDate()}")
+          .document("$uid-$personId-$issueId-${DateTime.now().getDate()}")
           .updateData(map);
       return true;
     } catch (e) {
@@ -64,11 +64,11 @@ class PersonIssuesService {
     }
   }
 
-  Future<int> getPersonIssueVoteIntegrityByDay(String personId, String issueId) async {
+  Future<int> getPersonIssueVoteIntegrityByDay(String uid, String personId, String issueId) async {
     int voteIntegrity = 1;
     DocumentSnapshot snapshot = await _instance
         .collection(Db.personIssuesVotesCollection)
-        .document("$personId-$issueId-${DateTime.now().getDate()}")
+        .document("$uid-$personId-$issueId-${DateTime.now().getDate()}")
         .get();
 
     if (snapshot.exists) {

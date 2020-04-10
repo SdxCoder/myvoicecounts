@@ -67,6 +67,9 @@ class PersonIssueViewModel extends BaseModel{
       //   fetchUpdatedUser();
       // });
       await showInfoDialogBox(title: "Success", description : "Your Opinion has been recorded");
+       await _personIssueService.updateUser({
+          'lastActive' : DateTime.now().toUtc()
+      }, _currentUser.id);
     }
   }
 
@@ -79,7 +82,7 @@ class PersonIssueViewModel extends BaseModel{
 
   Future<bool> _manageVoteIntegrity(candidate, issue) async{
      int currentVoteIntegrity =
-        await _personIssueService.getPersonIssueVoteIntegrityByDay( candidate.documentId,issue.documentId);
+        await _personIssueService.getPersonIssueVoteIntegrityByDay( _currentUser.id,candidate.documentId,issue.documentId);
     
     if(currentVoteIntegrity <= 0){
       await showInfoDialogBox(title: "Reminder", description: "You have already given opinion 2 times.\n\n You can upload an opinion again tomorrow");

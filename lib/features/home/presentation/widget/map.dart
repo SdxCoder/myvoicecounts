@@ -44,8 +44,8 @@ class MapView extends StatelessWidget {
                     interactive: false,
                    // maxZoom: 5,
                    // minZoom: 3.5,
-                    center: (sizingInfo.screenSize.width < 600) ? LatLng(52.00, -107.00) : LatLng(52.00, -111.00),
-                    zoom: (sizingInfo.screenSize.width < 480) ? 2 : (sizingInfo.screenSize.width < 600) ? 2.3 : (sizingInfo.screenSize.width <= 1024) ? 2.9 : 3.2
+                    center: (sizingInfo.screenSize.width < 600) ? LatLng(52.00, -107.00) : (sizingInfo.screenSize.width < 1000) ? LatLng(50.00, -105.00) : LatLng(52.00, -102.00),
+                    zoom: (sizingInfo.screenSize.width < 480) ? 1.9 : (sizingInfo.screenSize.width < 600) ? 2.3 : (sizingInfo.screenSize.width < 800) ? 2.8 : (sizingInfo.screenSize.width < 1024) ? 3.0 : 3.2
                   ),
                   layers: [
                     TileLayerOptions(
