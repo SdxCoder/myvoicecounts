@@ -75,12 +75,12 @@ class SfvViewMobile extends StatelessWidget {
                child: Icon(Icons.play_arrow, color: Colors.white, size: 24,),
               ),
               title: Text(model.sfvList[index].title),
-              onTap: () {
-              
+              onTap: () async {
+              await model.launchURL(model.sfvList[index].link);
              //  Modular.to.pushNamed("player", arguments: model);
-               Navigator.push(context, MaterialPageRoute(
-                 builder: (context) => PlaySfvWidget(model : model, sfv : model.sfvList[index])
-               ));
+              //  Navigator.push(context, MaterialPageRoute(
+              //    builder: (context) => PlaySfvWidget(model : model, sfv : model.sfvList[index])
+              //  ));
                
               },
             ),

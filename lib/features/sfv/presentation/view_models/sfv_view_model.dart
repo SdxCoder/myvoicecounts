@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:myvoicecounts/features/sfv/data/sfv_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/core.dart';
 import '../../services/sfv_service.dart';
 
@@ -22,6 +23,16 @@ class SfvViewModel extends BaseModel {
     
  //   _swapSfv(sfv);
     notifyListeners();
+  }
+
+  launchURL(String url) async {
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      await showInfoDialogBox(
+          title: "Error", description: 'Could not launch $url');
+    }
   }
 
   // void _swapSfv(sfv) {

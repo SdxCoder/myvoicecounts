@@ -6,7 +6,7 @@ import 'package:myvoicecounts/core/core.dart';
 Future<void> showInfoDialogBox({
   @required String title,
   @required String description,
-  String buttonText = "Ok",
+  String buttonText = "OK",
 }) async {
   print("show dialog");
   await showDialog<void>(
@@ -33,7 +33,7 @@ Future<void> showInfoDialogBox({
                   Wrap(
                     direction: Axis.horizontal,
                     children: <Widget>[
-                      Text(description),
+                      Text("$description."),
                     ],
                   ),
                   Divider(),
@@ -102,7 +102,7 @@ Future<void> showActionDialogBox(
                       )),
                   Divider(),
                   Text(
-                    description,
+                    "$description.",
                     textAlign: TextAlign.center,
                   ),
                 ]),
@@ -163,7 +163,7 @@ Future<void> showActionSettingsDialogBox(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: description,
+                            text: "$description.",
                             style: TextStyle(color: Colors.black54)),
                         TextSpan(
                           text: " ",
@@ -189,8 +189,8 @@ Future<String> showCalenderDialogBox(
     {@required String title,
     @required Widget content,
     model,
-    String buttonText = "Ok",
-    String buttonTextCancel = "No"}) async {
+    String buttonText = "OK",
+    String buttonTextCancel = "Close"}) async {
   print("show dialog");
   return await showDialog<String>(
     context: Modular.navigatorKey.currentState.overlay.context,

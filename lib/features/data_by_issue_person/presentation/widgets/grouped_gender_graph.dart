@@ -73,19 +73,19 @@ class OrdinalAgeAdu{
 
   List<charts.Series<OrdinalAgeAdu, String>> createGenderData(DataByPersonIssueViewModel model) {
     final agreed = [
-      new OrdinalAgeAdu('Males',  model.data.agree.male),
-      new OrdinalAgeAdu('Females', model.data.agree.female),
+      new OrdinalAgeAdu('Male',  model.data.agree.male),
+      new OrdinalAgeAdu('Female', model.data.agree.female),
      
     ];
 
     final disagreed = [
-     new OrdinalAgeAdu('Males', model.data.disagree.male),
-      new OrdinalAgeAdu('Females', model.data.disagree.female),
+     new OrdinalAgeAdu('Male', model.data.disagree.male),
+      new OrdinalAgeAdu('Female', model.data.disagree.female),
     ];
 
     final undecided = [
-       new OrdinalAgeAdu('Males', model.data.undecided.male),
-      new OrdinalAgeAdu('Females', model.data.undecided.female),
+       new OrdinalAgeAdu('Male', model.data.undecided.male),
+      new OrdinalAgeAdu('Female', model.data.undecided.female),
     ];
 
 

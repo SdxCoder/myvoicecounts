@@ -42,7 +42,7 @@ class SettingsViewModel extends BaseModel {
         title: "How this works",
         url: "https://www.gridnewsbureau.com/home-of-opinion8ed",
         description: "To see more about how Opinion8ed works, go here",
-        buttonText: "OPEN URL",
+        buttonText: "OPEN",
         buttonTextCancel: "Close",
         onPressedYes: () async {
           await _launchURL();
@@ -60,7 +60,7 @@ class SettingsViewModel extends BaseModel {
       await launch(url);
     } else {
       await showInfoDialogBox(
-          title: "error", description: 'Could not launch $url');
+          title: "Error", description: 'Could not launch $url');
     }
   }
 
