@@ -50,8 +50,8 @@ android {
         applicationId "opinionated.edv"//"myvoicecounts.sdx"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6 // flutterVersionCode.toInteger()
-        versionName "6.0" //flutterVersionName
+        versionCode 7 // flutterVersionCode.toInteger()
+        versionName "7.0" //flutterVersionName
     }
 
     signingConfigs {

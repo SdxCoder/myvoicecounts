@@ -260,7 +260,7 @@ Future showSnackBarInfo({String desc}) {
     backgroundColor: themeData.primaryColor,
     flushbarPosition: FlushbarPosition.BOTTOM,
     padding: EdgeInsets.all(8),
-    overlayBlur: 0.0001,
+    barBlur: 0.0001,
     // overlayColor: overlayColor,
     borderRadius: 0,
     icon: Icon(
