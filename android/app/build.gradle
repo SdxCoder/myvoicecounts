@@ -47,7 +47,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "opinionated.edv"//"myvoicecounts.sdx"
+        applicationId "myvoicecounts.sdx"//"myvoicecounts.sdx"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 7 // flutterVersionCode.toInteger()
